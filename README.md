@@ -35,7 +35,7 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
 ## Performance
 
   - This was developed on a MacBook M4 Pro Max & tested on an entry-level MacBook M1
-  - Observed reasonable results thanks to the efficiency of Llama.cpp & the optimized models available from the ML Community
+  - Observed reasonable results thanks to the efficiency of Llama.cpp, Apple Silicon & the tirelessly optimized models available from the ML Community
   - Loading & initialization of the models is notably slower on the older M-series, such as M1. Inference seems ok.
   
 ## Notes

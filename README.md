@@ -13,7 +13,7 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
 
   2) Install Llama.cpp library
      ```
-     brew install Llama.cpp
+     brew install llama.cpp
      ```
   3) Clone the project
      ```

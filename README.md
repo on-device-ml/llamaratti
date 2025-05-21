@@ -3,7 +3,7 @@
 
 A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for piloting LLM inferencing.
 
-![Screenshot](https://github.com/on-device-ml/llamaratti/llamaratti_llama_prompt.jpg)
+![Screenshot](https://github.com/on-device-ml/llamaratti/blob/main/llamaratti_llama_prompt.jpg)
 
 ## Target Devices
 

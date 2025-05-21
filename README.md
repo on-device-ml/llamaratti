@@ -23,6 +23,12 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
      ```
   4) Compile & run in XCode!
 
+## Wrapper
+
+  - A very simple Objective-C wrapper for Llama.cpp that provides for basic LLM use
+  - Grab these files (LCppWrapper.m/h) if you don't care about anything else
+  - Refer to the Test App that shows you how to use the wrapper
+
 ## Test App
 
   - This simple App allows selection/loading/test inference of various LLMs supported by Llama.cpp
@@ -35,11 +41,16 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
       - A GPU button that launches macOS Activity Monitor with GPU graph - requires macOS accessibility authorization
       - A "Get New" button that launches to a web page where you can download LLMs
 
-## Wrapper
+## Features
 
-  - A very simple Objective-C wrapper for Llama.cpp that provides for basic LLM use
-  - Grab these files (LCppWrapper.m/h) if you don't care about anything else
-  - Refer to the Test App that shows you how to use the wrapper
+  - Select Button - Selects a GGUF model for use with the App. Defaults to ~/Downloads and remembers the last selected folder
+  - Get New Button - Launches to the official URL for GGUF models compatible with Llama.cpp
+  - Prompt Field - Enter your prompt here, then press Enter or select the Go Button
+  - GPU Button - Launches Activity Monitor GPU Graph allows you to monitor inference
+  - Clear Button - Clears the Prompt & Response fields
+  - Go Button - Executes the current text in the Prompt field
+  - Response Field - Displays the response from the currently loaded LLM
+  - Bottom Right - The time taken for the last query
 
 ## Performance
 

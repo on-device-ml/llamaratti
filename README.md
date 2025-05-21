@@ -9,19 +9,17 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
 
 ## Installing
 
-  1) Install Brew for macOS
-     ```
-     [Brew for macOS](https://brew.sh)
-     ```
-  3) Install Llama.cpp library
+  1) Install [Brew for macOS](https://brew.sh)
+
+  2) Install Llama.cpp library
      ```
      brew install Llama.cpp
      ```
-  4) Clone the project
+  3) Clone the project
      ```
      git clone https://github.com/on-device-ml/llamaratti.git
      ```
-  6) Compile & run in XCode!
+  4) Compile & run in XCode!
 
 ## Test App
 

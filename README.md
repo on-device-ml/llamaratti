@@ -1,4 +1,4 @@
-# llamaratti >>
+# llamaratti
 # 🏎️👆🏎️🏎️🏎️🏎️🏎️🏎️🏎️🏎️🏎️🏎️🏎️🏎️
 
 A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for piloting LLM inferencing.

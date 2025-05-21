@@ -10,8 +10,8 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
 ## Installing
 
   1) Install Brew for macOS - https://brew.sh
-  2) Install Llama.cpp library - brew install Llama.cpp
-  3) Clone the project - git clone - https://github.com/on-device-ml/llamaratti.git
+  2) Install Llama.cpp library - "brew install Llama.cpp"
+  3) Clone the project - "git clone https://github.com/on-device-ml/llamaratti.git"
   4) Compile & run in XCode!
 
 ## Test App
@@ -29,18 +29,19 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
 ## Wrapper
 
   - A very simple Objective-C wrapper for Llama.cpp that provides for basic LLM use
+  - Grab these files (LCppWrapper.m/h) if you don't care about anything else
   - Refer to the Test App that shows you how to use the wrapper
 
 ## Performance
 
   - This was developed on a MacBook M4 Pro Max & tested on an entry-level MacBook M1
-  - I have observed reasonable results thanks to the efficiency of Llama.cpp & the optimized models available from the ML Community
-  - In these observations, loading & initialization of the models is slower on the older M-series, such as M1
+  - Observed reasonable results thanks to the efficiency of Llama.cpp & the optimized models available from the ML Community
+  - Loading & initialization of the models is notably slower on the older M-series, such as M1. Inference seems ok.
   
 ## Notes
 
   1) The GPU button launches the Activity Monitor, then displays the GPU graph
-  2) If you get a message when you click this button, its because keystrokes automation is needed to display the GPU graph
-  3) After launching Activity Monitor, you can just select CMD-4 to display the graph
+  2) If you get a message when you click this button, its because keystroke automation is needed to display the GPU graph
+  3) Alternately, after launching Activity Monitor, you can just select CMD-4 to display the graph
 
 

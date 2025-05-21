@@ -3,6 +3,8 @@
 
 A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for piloting LLM inferencing.
 
+![Screenshot](https://github.com/on-device-ml/llamaratti/llamaratti_llama_prompt.jpg)
+
 ## Target Devices
 
 1) Apple Silicon M-series Macs such as M1, M2, M3, M4, and their Pro, Max, and Ultra versions

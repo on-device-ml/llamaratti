@@ -22,13 +22,13 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
      git clone https://github.com/on-device-ml/llamaratti.git
      ```
      
-  4) Download an LLM or two
-     ```
+  4) Download some LLMs
+     
      Examples:
      [Llama](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/tree/main)
      [Mistral](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main)
-     [GGUF Main Page](https://github.com/ggml-org/llama.cpp/discussions/5141)
-     ```
+     [Other Llama.cpp supported models](https://github.com/ggml-org/llama.cpp/discussions/5141)
+    
   5) Compile & run in XCode!
 
 ## Wrapper

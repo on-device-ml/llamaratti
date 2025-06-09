@@ -45,17 +45,17 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
 
   - llamaratti: A simple Objective-C App based on llama.cpp that includes:
       
-    - Text chat capabilities via prompt/response windows, allowing you to query the currently loaded LLM
-    - Load of supported models/mmproj files from folder locations:
-            - Llama.cpp cache folder - exists if you previously used llama-mtmd-cli to download a model & projector
-            - Recently used folder
-            - User selected folder
     - Drag/drop interface for querying image & audio files
+    - Text chat capabilities via prompt/response windows, allowing you to query the currently loaded LLM
+    - Load/selection of supported models/mmproj files:
+            - Load from Llama.cpp cache folder - exists if you previously used llama-mtmd-cli to download a model & projector
+            - Load from recently used folder
+            - Load from user selected folder
+            - Remembers the last used LLM & auto-loads it the next time you run
+    - Displays multimodal capabilities of the currently loaded model - ex: VISION, AUDIO
     - Button to view GPU usage by launching macOS Activity Monitor
     - Displays the currently selected LLM in the title bar
-    - Remembers the last used LLM. Auto-loads it the next time you run
-    - Displays multimodal capabilities of the currently loaded model - ex: VISION, AUDIO
-    - Displays timing for each LLM query/response
+    - Displays timing for each prompt/response
 
 ## Objective-C Wrapper 
   
@@ -68,7 +68,7 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
 
   - Refer to [these M-Series numbers](https://github.com/ggml-org/llama.cpp/discussions/4167) from @ggerganov
   - This was developed on a MacBook M4 Pro Max & tested on an entry-level MacBook M1
-  - Results thanks to the efficiency of Llama.cpp, Apple Silicon & the tirelessly optimized models available from the ML Community
+  - Results thanks to the efficiency of Llama.cpp, the tirelessly optimized models available from the ML Community & Apple Silicon 
   - Loading & initialization of the models is notably slower on the older M-series, such as M1. Inference seems ok
   
 ## Notes

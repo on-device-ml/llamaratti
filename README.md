@@ -16,8 +16,8 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
   2) Install [Brew for macOS](https://brew.sh)<br><br>
   
   3) Install cmake<br>
-    ```
-    brew install cmake
+     ```
+     brew install cmake
      ```
   4) Clone Llama.cpp to your projects folder
      ```
@@ -40,9 +40,9 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
      Output: ./Build/Products/libmy-llama-mtmd.a
      ```
   
-  8) Ensure Llamaratti can find the Llama dylibs<br>
-  Load Llamaratti in XCode & ensure the location of the llama.cpp dylibs are correctly specified under Build Settings:<br>
-  Under LD_RUNPATH_SEARCH_PATHS, add:<br>
+  8) Load Llamaratti in XCode<br>
+  Check that the path to the llama.cpp dylibs are correctly specified under build settings:<br>
+  Under LD_RUNPATH_SEARCH_PATHS, check:<br>
      ```
      @executable_path/../../../../../llama.cpp/build/bin    // Or the location of the dylibs relative to your project
      ```
@@ -51,10 +51,10 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
   
   10) Download some LLMs/MMProj files
      
-     Examples:<br/>
-     [Llama](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/tree/main)<br/>
-     [Mistral](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main)<br/>
-     [Other Llama.cpp supported models](https://github.com/ggml-org/llama.cpp/discussions/5141)<br/>
+     Examples:
+     [Llama](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/tree/main)
+     [Mistral](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main)
+     [Other Llama.cpp supported models](https://github.com/ggml-org/llama.cpp/discussions/5141)
   
   11) Select the up arrow to load 2 files, the model and mmproj file to begin
   

@@ -15,26 +15,37 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
   
   2) Install [Brew for macOS](https://brew.sh)
 
-  3) Clone Llama.cpp
+  3) Install cmake
+     ```
+    brew install cmake
+     ```
+  3) Clone Llama.cpp to your projects folder
      ```
      git clone https://github.com/ggml-org/llama.cpp.git
      ```
   4) Build Llama.cpp
      ```
-     brew install cmake
      cd llama.cpp
      mkdir build
      cd build
-     cmake
+     cmake ..
      make
      ```
-  6) Clone this project
+  6) Clone this project to your projects folder
      ```
      git clone https://github.com/on-device-ml/llamaratti.git
      ```
-  7) Load, compile & run in XCode
+  7) Build my-llama-mtmd in XCode - output will be libmy-llama-mtmd.a
   
-  8) Download some LLMs/MMProj files
+  8) Load Llamaratti in XCode
+  Ensure the location of the llama.cpp dylibs are correctly specified under Build Settings, so they can be found at runtime:
+     ```
+     Under LD_RUNPATH_SEARCH_PATHS, Add "@executable_path/../../../../../llama.cpp/build/bin"
+     ```
+
+  9) Rebuild & Run
+  
+  10) Download some LLMs/MMProj files
      
      Examples:<br/>
      [Llama](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/tree/main)<br/>

@@ -16,14 +16,14 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
   2) Install [Brew for macOS](https://brew.sh)
 
   3) Install cmake
-     ```
+    ```
     brew install cmake
      ```
-  3) Clone Llama.cpp to your projects folder
+  4) Clone Llama.cpp to your projects folder
      ```
      git clone https://github.com/ggml-org/llama.cpp.git
      ```
-  4) Build Llama.cpp
+  5) Build Llama.cpp
      ```
      cd llama.cpp
      mkdir build
@@ -35,12 +35,12 @@ A simple, on-device macOS Silicon M-Series Llama.cpp wrapper & test app for pilo
      ```
      git clone https://github.com/on-device-ml/llamaratti.git
      ```
-  7) Build my-llama-mtmd in XCode - output will be libmy-llama-mtmd.a
+  7) Load & rebuild my-llama-mtmd in XCode - output will be libmy-llama-mtmd.a
   
-  8) Load Llamaratti in XCode
-  Ensure the location of the llama.cpp dylibs are correctly specified under Build Settings, so they can be found at runtime:
+  8) Load Llamaratti in XCode & ensure the location of the llama.cpp dylibs are correctly specified under Build Settings, so they can be found at runtime:<br>
+     Under LD_RUNPATH_SEARCH_PATHS, add:
      ```
-     Under LD_RUNPATH_SEARCH_PATHS, Add "@executable_path/../../../../../llama.cpp/build/bin"
+     @executable_path/../../../../../llama.cpp/build/bin    // Or the location of the dylibs relative to your project
      ```
 
   9) Rebuild & Run

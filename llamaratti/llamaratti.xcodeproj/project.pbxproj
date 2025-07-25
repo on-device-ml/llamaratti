@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F0CBBD62E29A4C9006758F0 /* CircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0CBBD52E29A4C9006758F0 /* CircularSlider.m */; };
+		8F1263AB2E1B4F3D004CDC1C /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1263A92E1B4F3D004CDC1C /* AboutWindowController.m */; };
+		8F1263AC2E1B4F3D004CDC1C /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1263AA2E1B4F3D004CDC1C /* AboutWindowController.xib */; };
+		8F1BAEB82E0486F2000EE242 /* Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BAEB62E0486F2000EE242 /* Errors.m */; };
+		8F1EDD3D2E2009CF0044A8FE /* ViewAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EDD3C2E2009CF0044A8FE /* ViewAttachmentCell.m */; };
+		8F1EDD422E200B540044A8FE /* ImageViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EDD412E200B540044A8FE /* ImageViewContainer.m */; };
+		8F30D0DC2E09B4A600BAA156 /* ModelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F30D0DB2E09B4A600BAA156 /* ModelInfo.m */; };
+		8F34406E2E2B209D00AC28FD /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F34406D2E2B209D00AC28FD /* IOKit.framework */; };
+		8F41CA8C2DF06F8C00FEB9FF /* DragDropTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F41CA8B2DF06F8C00FEB9FF /* DragDropTextView.m */; };
+		8F41CA8F2DF07BAA00FEB9FF /* NSImage+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F41CA8E2DF07BAA00FEB9FF /* NSImage+More.m */; };
+		8F4CAB172E14810300A446C8 /* audio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F4CAB162E14810300A446C8 /* audio.jpg */; };
+		8F59D3462DEEE69000EA4F78 /* LlamarattiWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F59D3452DEEE69000EA4F78 /* LlamarattiWrapper.mm */; };
+		8F6027242E2AD0C500AEA6A4 /* CircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6027232E2AD0C500AEA6A4 /* CircularProgressView.m */; };
+		8F723CE02E32BEB500DE0D37 /* libggml-blas.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CD92E32BEB500DE0D37 /* libggml-blas.dylib */; };
+		8F723CE12E32BEB500DE0D37 /* libggml-metal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CDA2E32BEB500DE0D37 /* libggml-metal.dylib */; };
+		8F723CE22E32BEB500DE0D37 /* libllama.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CDB2E32BEB500DE0D37 /* libllama.dylib */; };
+		8F723CE32E32BEB500DE0D37 /* libggml.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CDC2E32BEB500DE0D37 /* libggml.dylib */; };
+		8F723CE42E32BEB500DE0D37 /* libggml-cpu.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CDD2E32BEB500DE0D37 /* libggml-cpu.dylib */; };
+		8F723CE52E32BEB500DE0D37 /* libggml-base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CDE2E32BEB500DE0D37 /* libggml-base.dylib */; };
+		8F723CE62E32BEB500DE0D37 /* libmtmd.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CDF2E32BEB500DE0D37 /* libmtmd.dylib */; };
+		8F723CE82E32BEE800DE0D37 /* libcommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F723CE72E32BEE800DE0D37 /* libcommon.a */; };
+		8F7857702E0B871600737BD0 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8F78576D2E0B871600737BD0 /* LICENSE.txt */; };
+		8F7857712E0B871600737BD0 /* llamaLICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8F78576E2E0B871600737BD0 /* llamaLICENSE.txt */; };
+		8F7C36202E1DDABB005E78C9 /* ABOUT.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8F7C361F2E1DDABB005E78C9 /* ABOUT.txt */; };
+		8F7C36232E1DE06B005E78C9 /* AckContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C36222E1DE06B005E78C9 /* AckContent.m */; };
+		8FE15F572DDD57AC0061722A /* NSColor+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F502DDD57AC0061722A /* NSColor+More.m */; };
+		8FE15F582DDD57AC0061722A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F532DDD57AC0061722A /* Utils.m */; };
+		8FE15F592DDD57AC0061722A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F3D2DDD57AC0061722A /* AppDelegate.m */; };
+		8FE15F5A2DDD57AC0061722A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F4C2DDD57AC0061722A /* main.m */; };
+		8FE15F5D2DDD57AC0061722A /* DTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F422DDD57AC0061722A /* DTimer.m */; };
+		8FE15F612DDD57AC0061722A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F552DDD57AC0061722A /* ViewController.m */; };
+		8FE15F622DDD57AC0061722A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FE15F3E2DDD57AC0061722A /* Assets.xcassets */; };
+		8FE15F632DDD57AC0061722A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE15F4E2DDD57AC0061722A /* Main.storyboard */; };
+		8FE419FD2E0C5A6900A4F377 /* liblr-mtmd-cli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE419FC2E0C5A6900A4F377 /* liblr-mtmd-cli.a */; };
+		8FFA027E2E207FB800B23258 /* RippleMetalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA027B2E207FB800B23258 /* RippleMetalView.m */; };
+		8FFA027F2E207FB800B23258 /* RippleShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA027C2E207FB800B23258 /* RippleShader.metal */; };
+		8FFA02832E207FD500B23258 /* licensing.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8FFA02812E207FD500B23258 /* licensing.txt */; };
+		D8808D882E220F99002A430D /* FerroRosso.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82FBE712E220C95003A15D6 /* FerroRosso.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8F0CBBD42E29A4C9006758F0 /* CircularSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircularSlider.h; sourceTree = "<group>"; };
+		8F0CBBD52E29A4C9006758F0 /* CircularSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircularSlider.m; sourceTree = "<group>"; };
+		8F1263A82E1B4F3D004CDC1C /* AboutWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
+		8F1263A92E1B4F3D004CDC1C /* AboutWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
+		8F1263AA2E1B4F3D004CDC1C /* AboutWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutWindowController.xib; sourceTree = "<group>"; };
+		8F1BAEB52E0486F2000EE242 /* Errors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
+		8F1BAEB62E0486F2000EE242 /* Errors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Errors.m; sourceTree = "<group>"; };
+		8F1BAEB72E0486F2000EE242 /* Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = "<group>"; };
+		8F1EDD3B2E2009CF0044A8FE /* ViewAttachmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewAttachmentCell.h; sourceTree = "<group>"; };
+		8F1EDD3C2E2009CF0044A8FE /* ViewAttachmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewAttachmentCell.m; sourceTree = "<group>"; };
+		8F1EDD402E200B540044A8FE /* ImageViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewContainer.h; sourceTree = "<group>"; };
+		8F1EDD412E200B540044A8FE /* ImageViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewContainer.m; sourceTree = "<group>"; };
+		8F30D0DA2E09B4A600BAA156 /* ModelInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInfo.h; sourceTree = "<group>"; };
+		8F30D0DB2E09B4A600BAA156 /* ModelInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelInfo.m; sourceTree = "<group>"; };
+		8F34406D2E2B209D00AC28FD /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		8F41CA8A2DF06F8C00FEB9FF /* DragDropTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDropTextView.h; sourceTree = "<group>"; };
+		8F41CA8B2DF06F8C00FEB9FF /* DragDropTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDropTextView.m; sourceTree = "<group>"; };
+		8F41CA8D2DF07BAA00FEB9FF /* NSImage+More.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+More.h"; sourceTree = "<group>"; };
+		8F41CA8E2DF07BAA00FEB9FF /* NSImage+More.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+More.m"; sourceTree = "<group>"; };
+		8F4CAB162E14810300A446C8 /* audio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = audio.jpg; sourceTree = "<group>"; };
+		8F59D3442DEEE69000EA4F78 /* LlamarattiWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LlamarattiWrapper.h; sourceTree = "<group>"; };
+		8F59D3452DEEE69000EA4F78 /* LlamarattiWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LlamarattiWrapper.mm; sourceTree = "<group>"; };
+		8F6027222E2AD0C500AEA6A4 /* CircularProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircularProgressView.h; sourceTree = "<group>"; };
+		8F6027232E2AD0C500AEA6A4 /* CircularProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircularProgressView.m; sourceTree = "<group>"; };
+		8F723CD92E32BEB500DE0D37 /* libggml-blas.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libggml-blas.dylib"; path = "../../llama.cpp/build/bin/libggml-blas.dylib"; sourceTree = "<group>"; };
+		8F723CDA2E32BEB500DE0D37 /* libggml-metal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libggml-metal.dylib"; path = "../../llama.cpp/build/bin/libggml-metal.dylib"; sourceTree = "<group>"; };
+		8F723CDB2E32BEB500DE0D37 /* libllama.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libllama.dylib; path = ../../llama.cpp/build/bin/libllama.dylib; sourceTree = "<group>"; };
+		8F723CDC2E32BEB500DE0D37 /* libggml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libggml.dylib; path = ../../llama.cpp/build/bin/libggml.dylib; sourceTree = "<group>"; };
+		8F723CDD2E32BEB500DE0D37 /* libggml-cpu.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libggml-cpu.dylib"; path = "../../llama.cpp/build/bin/libggml-cpu.dylib"; sourceTree = "<group>"; };
+		8F723CDE2E32BEB500DE0D37 /* libggml-base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libggml-base.dylib"; path = "../../llama.cpp/build/bin/libggml-base.dylib"; sourceTree = "<group>"; };
+		8F723CDF2E32BEB500DE0D37 /* libmtmd.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmtmd.dylib; path = ../../llama.cpp/build/bin/libmtmd.dylib; sourceTree = "<group>"; };
+		8F723CE72E32BEE800DE0D37 /* libcommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcommon.a; path = ../../llama.cpp/build/common/libcommon.a; sourceTree = "<group>"; };
+		8F78576D2E0B871600737BD0 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		8F78576E2E0B871600737BD0 /* llamaLICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = llamaLICENSE.txt; sourceTree = "<group>"; };
+		8F7C361F2E1DDABB005E78C9 /* ABOUT.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ABOUT.txt; sourceTree = "<group>"; };
+		8F7C36212E1DE06B005E78C9 /* AckContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AckContent.h; sourceTree = "<group>"; };
+		8F7C36222E1DE06B005E78C9 /* AckContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AckContent.m; sourceTree = "<group>"; };
+		8FAFD25A2DD50FFA00BEEC1B /* llamaratti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = llamaratti.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE15F3C2DDD57AC0061722A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8FE15F3D2DDD57AC0061722A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8FE15F3E2DDD57AC0061722A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8FE15F412DDD57AC0061722A /* DTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTimer.h; sourceTree = "<group>"; };
+		8FE15F422DDD57AC0061722A /* DTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTimer.m; sourceTree = "<group>"; };
+		8FE15F4B2DDD57AC0061722A /* llamaratti.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = llamaratti.entitlements; sourceTree = "<group>"; };
+		8FE15F4C2DDD57AC0061722A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8FE15F4D2DDD57AC0061722A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8FE15F4F2DDD57AC0061722A /* NSColor+More.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+More.h"; sourceTree = "<group>"; };
+		8FE15F502DDD57AC0061722A /* NSColor+More.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+More.m"; sourceTree = "<group>"; };
+		8FE15F522DDD57AC0061722A /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		8FE15F532DDD57AC0061722A /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		8FE15F542DDD57AC0061722A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8FE15F552DDD57AC0061722A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8FE419FC2E0C5A6900A4F377 /* liblr-mtmd-cli.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "liblr-mtmd-cli.a"; path = "../lr-mtmd-cli/Build/Products/Debug/liblr-mtmd-cli.a"; sourceTree = "<group>"; };
+		8FFA027A2E207FB800B23258 /* RippleMetalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RippleMetalView.h; sourceTree = "<group>"; };
+		8FFA027B2E207FB800B23258 /* RippleMetalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RippleMetalView.m; sourceTree = "<group>"; };
+		8FFA027C2E207FB800B23258 /* RippleShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = RippleShader.metal; sourceTree = "<group>"; };
+		8FFA02812E207FD500B23258 /* licensing.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = licensing.txt; sourceTree = "<group>"; };
+		D82FBE712E220C95003A15D6 /* FerroRosso.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FerroRosso.ttf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8FAFD2572DD50FFA00BEEC1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F723CE82E32BEE800DE0D37 /* libcommon.a in Frameworks */,
+				8F723CE02E32BEB500DE0D37 /* libggml-blas.dylib in Frameworks */,
+				8F723CE12E32BEB500DE0D37 /* libggml-metal.dylib in Frameworks */,
+				8F723CE22E32BEB500DE0D37 /* libllama.dylib in Frameworks */,
+				8F723CE32E32BEB500DE0D37 /* libggml.dylib in Frameworks */,
+				8F723CE42E32BEB500DE0D37 /* libggml-cpu.dylib in Frameworks */,
+				8F723CE52E32BEB500DE0D37 /* libggml-base.dylib in Frameworks */,
+				8F723CE62E32BEB500DE0D37 /* libmtmd.dylib in Frameworks */,
+				8FE419FD2E0C5A6900A4F377 /* liblr-mtmd-cli.a in Frameworks */,
+				8F34406E2E2B209D00AC28FD /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F78576F2E0B871600737BD0 /* License */ = {
+			isa = PBXGroup;
+			children = (
+				8F7C361F2E1DDABB005E78C9 /* ABOUT.txt */,
+				8F78576D2E0B871600737BD0 /* LICENSE.txt */,
+				8F78576E2E0B871600737BD0 /* llamaLICENSE.txt */,
+			);
+			path = License;
+			sourceTree = "<group>";
+		};
+		8FA602472E0A0084004928BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F723CE72E32BEE800DE0D37 /* libcommon.a */,
+				8F723CDC2E32BEB500DE0D37 /* libggml.dylib */,
+				8F723CDE2E32BEB500DE0D37 /* libggml-base.dylib */,
+				8F723CD92E32BEB500DE0D37 /* libggml-blas.dylib */,
+				8F723CDD2E32BEB500DE0D37 /* libggml-cpu.dylib */,
+				8F723CDA2E32BEB500DE0D37 /* libggml-metal.dylib */,
+				8F723CDB2E32BEB500DE0D37 /* libllama.dylib */,
+				8F723CDF2E32BEB500DE0D37 /* libmtmd.dylib */,
+				8F34406D2E2B209D00AC28FD /* IOKit.framework */,
+				8FE419FC2E0C5A6900A4F377 /* liblr-mtmd-cli.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8FAFD2512DD50FFA00BEEC1B = {
+			isa = PBXGroup;
+			children = (
+				8FE15F562DDD57AC0061722A /* llamaratti */,
+				8FA602472E0A0084004928BE /* Frameworks */,
+				8FAFD25B2DD50FFA00BEEC1B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8FAFD25B2DD50FFA00BEEC1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FAFD25A2DD50FFA00BEEC1B /* llamaratti.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FE15F562DDD57AC0061722A /* llamaratti */ = {
+			isa = PBXGroup;
+			children = (
+				8F1263A82E1B4F3D004CDC1C /* AboutWindowController.h */,
+				8F1263A92E1B4F3D004CDC1C /* AboutWindowController.m */,
+				8F1263AA2E1B4F3D004CDC1C /* AboutWindowController.xib */,
+				8F7C36212E1DE06B005E78C9 /* AckContent.h */,
+				8F7C36222E1DE06B005E78C9 /* AckContent.m */,
+				8FE15F3C2DDD57AC0061722A /* AppDelegate.h */,
+				8FE15F3D2DDD57AC0061722A /* AppDelegate.m */,
+				8FE15F3E2DDD57AC0061722A /* Assets.xcassets */,
+				8F6027222E2AD0C500AEA6A4 /* CircularProgressView.h */,
+				8F6027232E2AD0C500AEA6A4 /* CircularProgressView.m */,
+				8F0CBBD42E29A4C9006758F0 /* CircularSlider.h */,
+				8F0CBBD52E29A4C9006758F0 /* CircularSlider.m */,
+				8F41CA8A2DF06F8C00FEB9FF /* DragDropTextView.h */,
+				8F41CA8B2DF06F8C00FEB9FF /* DragDropTextView.m */,
+				8FE15F412DDD57AC0061722A /* DTimer.h */,
+				8FE15F422DDD57AC0061722A /* DTimer.m */,
+				8F1BAEB52E0486F2000EE242 /* Errors.h */,
+				8F1BAEB62E0486F2000EE242 /* Errors.m */,
+				8FFA02822E207FD500B23258 /* Fonts */,
+				8FE9D1062DDD7A5E008E9F03 /* Images */,
+				8F1EDD402E200B540044A8FE /* ImageViewContainer.h */,
+				8F1EDD412E200B540044A8FE /* ImageViewContainer.m */,
+				8F78576F2E0B871600737BD0 /* License */,
+				8FE15F4B2DDD57AC0061722A /* llamaratti.entitlements */,
+				8F59D3442DEEE69000EA4F78 /* LlamarattiWrapper.h */,
+				8F59D3452DEEE69000EA4F78 /* LlamarattiWrapper.mm */,
+				8FE15F4C2DDD57AC0061722A /* main.m */,
+				8FE15F4E2DDD57AC0061722A /* Main.storyboard */,
+				8F30D0DA2E09B4A600BAA156 /* ModelInfo.h */,
+				8F30D0DB2E09B4A600BAA156 /* ModelInfo.m */,
+				8FE15F4F2DDD57AC0061722A /* NSColor+More.h */,
+				8FE15F502DDD57AC0061722A /* NSColor+More.m */,
+				8F41CA8D2DF07BAA00FEB9FF /* NSImage+More.h */,
+				8F41CA8E2DF07BAA00FEB9FF /* NSImage+More.m */,
+				8FFA027D2E207FB800B23258 /* Ripple */,
+				8F1BAEB72E0486F2000EE242 /* Shared.h */,
+				8FE15F522DDD57AC0061722A /* Utils.h */,
+				8FE15F532DDD57AC0061722A /* Utils.m */,
+				8F1EDD3B2E2009CF0044A8FE /* ViewAttachmentCell.h */,
+				8F1EDD3C2E2009CF0044A8FE /* ViewAttachmentCell.m */,
+				8FE15F542DDD57AC0061722A /* ViewController.h */,
+				8FE15F552DDD57AC0061722A /* ViewController.m */,
+			);
+			path = llamaratti;
+			sourceTree = "<group>";
+		};
+		8FE9D1062DDD7A5E008E9F03 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				8F4CAB162E14810300A446C8 /* audio.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		8FFA027D2E207FB800B23258 /* Ripple */ = {
+			isa = PBXGroup;
+			children = (
+				8FFA027A2E207FB800B23258 /* RippleMetalView.h */,
+				8FFA027B2E207FB800B23258 /* RippleMetalView.m */,
+				8FFA027C2E207FB800B23258 /* RippleShader.metal */,
+			);
+			path = Ripple;
+			sourceTree = "<group>";
+		};
+		8FFA02822E207FD500B23258 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D82FBE712E220C95003A15D6 /* FerroRosso.ttf */,
+				8FFA02812E207FD500B23258 /* licensing.txt */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8FAFD2592DD50FFA00BEEC1B /* llamaratti */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FAFD26D2DD50FFA00BEEC1B /* Build configuration list for PBXNativeTarget "llamaratti" */;
+			buildPhases = (
+				8FAFD2562DD50FFA00BEEC1B /* Sources */,
+				8FAFD2572DD50FFA00BEEC1B /* Frameworks */,
+				8FAFD2582DD50FFA00BEEC1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = llamaratti;
+			packageProductDependencies = (
+			);
+			productName = "llama_cpp_chat-obj-c";
+			productReference = 8FAFD25A2DD50FFA00BEEC1B /* llamaratti.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8FAFD2522DD50FFA00BEEC1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					8FAFD2592DD50FFA00BEEC1B = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = 8FAFD2552DD50FFA00BEEC1B /* Build configuration list for PBXProject "llamaratti" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8FAFD2512DD50FFA00BEEC1B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8FAFD25B2DD50FFA00BEEC1B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FAFD2592DD50FFA00BEEC1B /* llamaratti */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FAFD2582DD50FFA00BEEC1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8808D882E220F99002A430D /* FerroRosso.ttf in Resources */,
+				8FE15F622DDD57AC0061722A /* Assets.xcassets in Resources */,
+				8F7C36202E1DDABB005E78C9 /* ABOUT.txt in Resources */,
+				8F7857702E0B871600737BD0 /* LICENSE.txt in Resources */,
+				8F1263AC2E1B4F3D004CDC1C /* AboutWindowController.xib in Resources */,
+				8F7857712E0B871600737BD0 /* llamaLICENSE.txt in Resources */,
+				8FFA02832E207FD500B23258 /* licensing.txt in Resources */,
+				8F4CAB172E14810300A446C8 /* audio.jpg in Resources */,
+				8FE15F632DDD57AC0061722A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8FAFD2562DD50FFA00BEEC1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F41CA8C2DF06F8C00FEB9FF /* DragDropTextView.m in Sources */,
+				8FE15F572DDD57AC0061722A /* NSColor+More.m in Sources */,
+				8F1EDD422E200B540044A8FE /* ImageViewContainer.m in Sources */,
+				8FE15F582DDD57AC0061722A /* Utils.m in Sources */,
+				8F0CBBD62E29A4C9006758F0 /* CircularSlider.m in Sources */,
+				8F1EDD3D2E2009CF0044A8FE /* ViewAttachmentCell.m in Sources */,
+				8FE15F592DDD57AC0061722A /* AppDelegate.m in Sources */,
+				8F41CA8F2DF07BAA00FEB9FF /* NSImage+More.m in Sources */,
+				8F1263AB2E1B4F3D004CDC1C /* AboutWindowController.m in Sources */,
+				8F7C36232E1DE06B005E78C9 /* AckContent.m in Sources */,
+				8F30D0DC2E09B4A600BAA156 /* ModelInfo.m in Sources */,
+				8FE15F5A2DDD57AC0061722A /* main.m in Sources */,
+				8F59D3462DEEE69000EA4F78 /* LlamarattiWrapper.mm in Sources */,
+				8FFA027E2E207FB800B23258 /* RippleMetalView.m in Sources */,
+				8FFA027F2E207FB800B23258 /* RippleShader.metal in Sources */,
+				8F1BAEB82E0486F2000EE242 /* Errors.m in Sources */,
+				8F6027242E2AD0C500AEA6A4 /* CircularProgressView.m in Sources */,
+				8FE15F5D2DDD57AC0061722A /* DTimer.m in Sources */,
+				8FE15F612DDD57AC0061722A /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8FE15F4E2DDD57AC0061722A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FE15F4D2DDD57AC0061722A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8FAFD26B2DD50FFA00BEEC1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lcurl";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8FAFD26C2DD50FFA00BEEC1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-lcurl";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8FAFD26E2DD50FFA00BEEC1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = llamaratti/llamaratti.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../llama.cpp/include",
+					"$(PROJECT_DIR)/../../llama.cpp/ggml/include",
+					"$(PROJECT_DIR)/../../llama.cpp/tools/mtmd",
+					"$(PROJECT_DIR)/../../llama.cpp/common",
+					"$(PROJECT_DIR)/../../llama.cpp/vendor",
+					"$(PROJECT_DIR)/../lr-mtmd-cli/lr-mtmd-cli",
+				);
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../lr-mtmd-cli/Build/Products/Debug",
+					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
+					"$(PROJECT_DIR)/../../llama.cpp/build/common",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.on-device-ml.llamaratti";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		8FAFD26F2DD50FFA00BEEC1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = llamaratti/llamaratti.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../llama.cpp/include",
+					"$(PROJECT_DIR)/../../llama.cpp/ggml/include",
+					"$(PROJECT_DIR)/../../llama.cpp/tools/mtmd",
+					"$(PROJECT_DIR)/../../llama.cpp/common",
+					"$(PROJECT_DIR)/../../llama.cpp/vendor",
+					"$(PROJECT_DIR)/../lr-mtmd-cli/lr-mtmd-cli",
+				);
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../lr-mtmd-cli/Build/Products/Debug",
+					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
+					"$(PROJECT_DIR)/../../llama.cpp/build/common",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.on-device-ml.llamaratti";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8FAFD2552DD50FFA00BEEC1B /* Build configuration list for PBXProject "llamaratti" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FAFD26B2DD50FFA00BEEC1B /* Debug */,
+				8FAFD26C2DD50FFA00BEEC1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FAFD26D2DD50FFA00BEEC1B /* Build configuration list for PBXNativeTarget "llamaratti" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FAFD26E2DD50FFA00BEEC1B /* Debug */,
+				8FAFD26F2DD50FFA00BEEC1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8FAFD2522DD50FFA00BEEC1B /* Project object */;
+}

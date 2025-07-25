@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[LCppWrapper executePrompt:target:selector:]:LCppWrapper.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "pMsgs[0]">
+            </PersistentString>
+            <PersistentString
+               value = "pMsgs[1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController sliderLLMTempValueChanged:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "event.type">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[ChatMessage freeData:withCount:]:ChatMessage.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "pMsgs[i]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController viewDidLoad]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_fontGuage">
+            </PersistentString>
+            <PersistentString
+               value = "_fontGuageBold">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController getLastUsedModelPair:withMMProj:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "arrModelPair[0]">
+            </PersistentString>
+            <PersistentString
+               value = "arrModelPair[1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__43-[ViewController sliderCtxLenValueChanged:]_block_invoke:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self-&gt;_sliderCtxLen value]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[NSMutableArray(Chat) freeCArray:count:]:NSMutableArray+Chat.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "pMsgs[0]">
+            </PersistentString>
+            <PersistentString
+               value = "pMsgs[1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "mtmd_cli::eval_message:mtmd-cli.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "ctx.bitmaps.entries">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[CircularSlider drawRect:]:CircularSlider.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_knobColor">
+            </PersistentString>
+            <PersistentString
+               value = "knobRadius">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

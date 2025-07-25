@@ -1,0 +1,7 @@
+
+Llamaratti - Demo App & Wrapper for Multimodal llama.cpp
+© 2025 %@
+
+Created by Geoff Grindrod
+
+Based on the %@ multimodal library by Georgi Gerganov & the ggml team

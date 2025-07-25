@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B2087B4E-48E2-494F-95C9-BF10855963EC"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "670A65F1-B797-4470-A617-DFA94B3C8ED1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "llamaratti-swift/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "Fonts"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "670A65F1-B797-4470-A617-DFA94B3C8ED1 - f73cfd24deaee049"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Llamaratti_swift.AppConstants.Fonts.init() -&gt; Llamaratti_swift.AppConstants.Fonts"
+                  moduleName = "Llamaratti-swift.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joe/Open%20Source/llamaratti-swift/llamaratti-swift/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110">
+               </Location>
+               <Location
+                  uuid = "670A65F1-B797-4470-A617-DFA94B3C8ED1 - e2083164ec3f2d69"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 0 of Llamaratti_swift.AppConstants.Fonts.init(fontLogo: __C.NSFont) -&gt; Llamaratti_swift.AppConstants.Fonts"
+                  moduleName = "Llamaratti-swift.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joe/Open%20Source/llamaratti-swift/llamaratti-swift/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

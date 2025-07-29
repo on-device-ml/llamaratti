@@ -551,6 +551,25 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 
 /**
  *
+ * @brief Returns the macOS version details
+ *
+ * @return - the macOS version details
+ *
+ */
++ (NSString *)getOSVersion {
+    
+    NSOperatingSystemVersion ver
+            = [[NSProcessInfo processInfo] operatingSystemVersion];
+    
+    NSString *osVersion = [NSString stringWithFormat:@"%ld.%ld.%ld",
+                            ver.majorVersion,
+                            ver.minorVersion,
+                            ver.patchVersion];
+    return osVersion;
+}
+
+/**
+ *
  * @brief Returns the total available system memory
  *
  * @param total - the returned total available system memory

@@ -44,7 +44,7 @@ extern const uint32_t LLAMA_DEFAULT_CTXLEN;
 #define LLAMA_DEFAULT_SEED          0xFFFFFFFF
 
 // Prompt Length
-#define MAX_PROMPT_LENGTH           5000
+#define MAX_PROMPT_LENGTH           20000
 #define MAX_PROMPT_DISPLAY_LENGTH   100
 
 // Media

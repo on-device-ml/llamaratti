@@ -1177,6 +1177,20 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
         return nil;
     }
     
+    // Is the input too long?
+    if ([prompt length] > MAX_PROMPT_LENGTH) {
+        
+        // Yes, message & outta here...
+        NSString *title=@"Smaller Prompt Please 🫠";
+        NSString *msg=[NSString stringWithFormat:@"\nPlease enter a question that is less than %u characters 👍",MAX_PROMPT_LENGTH];
+        [Utils showAlertWithTitle:title
+                       andMessage:msg
+                         urlTitle:nil
+                              url:nil
+                          buttons:nil];
+        return nil;
+    }
+    
     return prompt;
 }
 

@@ -361,15 +361,19 @@ llamaratti stores info about recently loaded model pairs in User Defaults. Use o
 
 These are some known issues:
 <pre>
-1. Some models may emit tofu or repeated garbled output. For Gemma specifically this 
-occurred when there were duplicate copies of llama.cpp on the system. Ex: Homebrew and 
-Github builds. The versions between these two sources can differ slightly.<br>
-2. Some models may be too large to load & use on your device. The load may hang, or you
+1. Some models might emit "tofu" or garbled output. This can happen for various reasons, including 
+having duplicate copies of llama.cpp on the system. Ex: Homebrew & Github builds, custom
+model parameters, beta versions of macOS & lack of system resources. Using the installed version
+of llama.cpp is recommended, since there are still many changes happening with llama.cpp multimodal.
+2. If you modify parameters in llamaratti and then receive an "ERROR: Unable to parse parameters"
+this is likely due to a parameter thats incompatible with the model or llama. Clear the parameters and 
+try again.
+3. Some models may be too large to load & use on your device. The load may hang, or you
 may receive an "ERROR: Unable to evaluate prompt. Result=...". In this case try lowering the
 context length value in the CTX LEN gauge (llamaratti).<br>
-3. After dragging an image into the response window, the image does not refresh when the
+4. After dragging an image into the response window, the image does not refresh when the
 window is resized (llamaratti).<br>
-4. Some HEIC images don't appear to convert properly when dragged into the response 
+5. Some .heic images don't appear to convert properly when dragged into the response 
 view.
 </pre>
 
@@ -377,17 +381,18 @@ view.
 
 Refer to [these M-Series numbers](https://github.com/ggml-org/llama.cpp/discussions/4167) from @ggerganov & ggml team
 
-Note: The SHA256 check on models can slow the initial load time of models. This can be toggled in shared.h (Obj-C) or AppConstants (Swift)
+Note: The SHA256 check on models can slow the initial load time of models. This can be toggled in shared.h 
+(Obj-C) or AppConstants (Swift)
 
-## Final App Considerations for Builders
+## Final Considerations for Developers
 
 In your final product:
 <pre>
 1. Add "App Sandbox" capabilities to enable sandboxing in your application<br>
 2. Add "Hardened Runtime" capabilities - you may need to "Disable Library Validation" for
 some modules<br>
-3. Add validation/content/bounds checks to inputs such as the Prompts and Files loaded
-into the app<br>
+3. Add validation/content/bounds checks to inputs and outputs such as the Prompts and Files 
+loaded into the app<br>
 4. Consider how the app remembers user entered prompts between sessions and how they
 can be secured/cleared<br>
 5. When models have problems loading on the current hardware, use methods to prevent
@@ -409,7 +414,7 @@ them from auto-loading in future<br>
 
 Based on the llama.cpp multimodal library by @ggerganov and the ggml team.
 
-Many thanks to the llama.cpp team, the ML community, HuggingFace & the individuals @ Apple who inspired this project 🤗🥇
+Many thanks to the llama.cpp team, the ML community, HuggingFace & the folks @ Apple who inspired this project 🤗🥇
 
 ## Feedback and Contributions
 

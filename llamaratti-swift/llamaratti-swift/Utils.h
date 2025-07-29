@@ -60,6 +60,8 @@
 
 + (NSInteger)safeCodeFromNSError:(NSError *)e;
 
++ (NSString *)getOSVersion;
+
 + (BOOL)getTotalSystemMemory:(ULONGLONG *)total;
 
 + (BOOL)getAvailSystemMemory:(ULONGLONG *)avail;

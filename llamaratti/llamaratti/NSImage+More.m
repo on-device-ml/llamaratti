@@ -284,6 +284,8 @@
 /**
  * @brief Rotates the specified image to a specified orientation
  *
+ * @note the return value must be released by the caller
+ * 
  * @return a CGImageRef which must be released by the caller
  *
  */

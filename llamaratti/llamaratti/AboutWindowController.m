@@ -55,6 +55,7 @@
 #endif
 
     // Build an info string
+    NSString *osVersion = [Utils getOSVersion];
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSString *buildVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     NSString *appInfo = [NSString stringWithFormat:@"%@ v%@ (b%@ - %@)",gAppName,appVersion,buildVersion,buildType];
@@ -62,7 +63,7 @@
     NSString *deviceInfo=[LlamarattiWrapper appleSiliconModel:YES];
     NSString *sandboxInfo=([Utils runningInSandbox]?@"Enabled":@"Disabled");
     NSString *finalDetails=[NSString stringWithFormat:
-        @"%@\n\n%@\nSandbox - %@\nBuild - %@\n\n",appInfo,deviceInfo,sandboxInfo,buildType];
+        @"%@\n\n%@\nmacOS Version - %@\nSandbox - %@\nBuild - %@\n\n",appInfo,deviceInfo,osVersion,sandboxInfo,buildType];
     
     [self->_textInfo setTextColor:[NSColor colorNamed:@"AppTextColor"]];
     [self->_textInfo setBackgroundColor:[NSColor windowBackgroundColor]];

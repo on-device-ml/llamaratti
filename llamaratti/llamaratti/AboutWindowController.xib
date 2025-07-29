@@ -75,9 +75,9 @@ DQ
                         </connections>
                     </button>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1lg-0N-grd">
-                        <rect key="frame" x="293" y="367" width="389" height="122"/>
+                        <rect key="frame" x="293" y="348" width="389" height="170"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="122" id="Nbd-Cq-oDM"/>
+                            <constraint firstAttribute="height" constant="170" id="Nbd-Cq-oDM"/>
                         </constraints>
                         <textFieldCell key="cell" lineBreakMode="clipping" id="IKN-BQ-cPM">
                             <font key="font" metaFont="system"/>
@@ -96,7 +96,7 @@ DQ
                     <constraint firstItem="ST5-cD-eQW" firstAttribute="trailing" secondItem="Y2G-He-klt" secondAttribute="trailing" id="EbR-5A-Kme"/>
                     <constraint firstItem="oRB-G1-I9s" firstAttribute="leading" secondItem="Y2G-He-klt" secondAttribute="leading" id="JzX-WW-nol"/>
                     <constraint firstItem="oRB-G1-I9s" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="N0g-3u-lAW"/>
-                    <constraint firstItem="1lg-0N-grd" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="87" id="Qes-jK-ald"/>
+                    <constraint firstItem="1lg-0N-grd" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="58" id="Qes-jK-ald"/>
                     <constraint firstAttribute="bottom" secondItem="Y2G-He-klt" secondAttribute="bottom" constant="57" id="bZi-F3-p5y"/>
                 </constraints>
             </view>

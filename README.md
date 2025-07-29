@@ -17,9 +17,6 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 
 ## Before We Start
 
-
-
-
 - llamaratti is a tool for developers creating on-device Apple Silicon apps that use llama.cpp multimodal capabilities. It provides convenience features such as drag/drop/conversion of multimedia files, simple prompt selection, simple changes to model settings, timing of loading/querying and displays simple metrics that can help understand the system impact of models.
 
 - llamaratti uses llama.cpp multimodal libraries that are still **in development**.  **This means this project will be impacted by future updates**.
@@ -74,14 +71,14 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 - Displays the currently loaded model & Mac device model in the title bar
 - Allows selection of pre-defined prompts and remembers the ones you used previously in NSUserDefaults - toggle in shared.h
 - Displays timing for loading/prompt/response
-
+- Allows customizing additional per-model parameters 
 
 ## Features - llamaratti-swift Demo App
 
 - Supports running in sandboxed mode
 - Drag/drop interface for querying image & audio files
 - Text chat capabilities via prompt/response windows, allowing you to query the currently loaded model pair
-- Load/select of downloaded model pairs
+- Load/select of downloaded model pairs &#129093;
     - Load from llama.cpp default cache folder - exists if you previously used **llama-mtmd-cli**/other llama tools to download models
     - Load from ~/Downloads folder
     - Load from user selected folder
@@ -348,24 +345,11 @@ window is resized (llamaratti).<br>
 view.
 </pre>
 
-## Future Additions
-
-Possible features for future versions of llamaratti:
-<pre>
-1. Ability to easily provide additional llama.cpp arguments<br>
-2. Parsing & formatting of model output in response view<br>
-3. Ability to use non-multimodal models<br>
-4. Voice input/output<br>
-5. Support non-multimodal models<br>
-6. Download models directly from within the App<br>
-7. iOS version<br>
-8. Others? Let me know<br>
-</pre>
-
 ## Performance
 
 Refer to [these M-Series numbers](https://github.com/ggml-org/llama.cpp/discussions/4167) from @ggerganov & ggml team
 
+Note: The SHA256 check on models can slow the initial load time of models. This can be toggled in shared.h (Obj-C) or AppConstants (Swift)
 
 ## Final App Considerations for Builders
 

@@ -361,14 +361,15 @@ llamaratti stores info about recently loaded model pairs in User Defaults. Use o
 
 These are some known issues:
 <pre>
-1. Some models might emit "tofu" or garbled output. This can happen for various reasons, including 
-having duplicate copies of llama.cpp on the system. Ex: Homebrew & Github builds, custom
-model parameters, beta versions of macOS & lack of system resources. Using the installed version
-of llama.cpp is recommended, since there are still many changes happening with llama.cpp multimodal.<br>
+1. Some models might emit "tofu" or garbled output. This can happen for various reasons, 
+including having duplicate copies of llama.cpp on the system. Ex: Homebrew & Github builds, 
+custom model parameters, beta versions of macOS & lack of system resources. Using a 
+Github installed version of llama.cpp is recommended, since there are still many changes 
+happening within llama.cpp multimodal.<br>
 
-2. If you modify parameters in llamaratti and then receive an "ERROR: Unable to parse parameters"
-this is likely due to a parameter thats incompatible with the model or llama. Clear the parameters and 
-try again.<br>
+2. If you modify parameters in llamaratti and then receive an "ERROR: Unable to parse 
+parameters", this is likely due to a parameter thats incompatible with the model or llama. 
+Clear the parameters and try again.<br>
 
 3. Some models may be too large to load & use on your device. The load may hang, or you
 may receive an "ERROR: Unable to evaluate prompt. Result=...". In this case try lowering the

@@ -27,7 +27,7 @@
 @property uint32_t ctxLen;
 @property NSDictionary *dictCtxLen;
 @property float temp;
-@property int32_t seed;
+@property NSString *additionalArgs;
 @property BOOL isVerified;
 
 // Methods
@@ -40,7 +40,7 @@
          withMMProjHash:(NSString *)mmprojHash
          withDictCtxLen:(NSDictionary *)dictCtxLen
                withTemp:(float)temp
-               withSeed:(uint32_t)seed;
+     withAdditionalArgs:(NSString *)additionalArgs;
 
 @end
 

@@ -83,7 +83,7 @@ struct mtmd_cli_context {
         n_batch = params.n_batch;
 
         if (!model || !lctx) {
-            exit(1);
+            throw std::runtime_error("Invalid parameters");
         }
 
         if (!llama_model_chat_template(model, nullptr) && params.chat_template.empty()) {
@@ -91,7 +91,7 @@ struct mtmd_cli_context {
             LOG_ERR("  For old llava models, you may need to use '--chat-template vicuna'\n");
             LOG_ERR("  For MobileVLM models, use '--chat-template deepseek'\n");
             LOG_ERR("  For Mistral Small 3.1, use '--chat-template mistral-v7'\n");
-            exit(1);
+            throw std::runtime_error("Model does not have chat template");
         }
 
         tmpls = common_chat_templates_init(model, params.chat_template);
@@ -125,9 +125,8 @@ struct mtmd_cli_context {
             auto args = std::make_format_args(__func__, clip_path);
             std::string err=std::vformat(gErrMtmdLoadVisionModel, args);
             LOG_ERR("%s\n", err.c_str());
-            //lr_mtmd_cli_callback(this, Lr_mtmd_cli_event_status,err.c_str());
-
-            exit(1);
+            lr_mtmd_cli_callback(this, LlamarattiEventStatus,err.c_str());
+            throw std::runtime_error(err.c_str());
         }
     }
 
@@ -179,24 +178,18 @@ lr_mtmd_cli::~lr_mtmd_cli() {
 /**
  * @brief Initializes this adapter
  *
- * @param path_model - path to the model
- * @param path_mmproj - path to the model projector
+ * @param argv - the arguments for llama.cpp
+ * @param argc - the count of arguments for llama.cpp
  * @param is_vision_supported - (returned) whether vision is supported
  * @param is_audio_supported - (returned) whether audio is supported
- * @param context_len - the context length for the model
- * @param temp - temperature for the model
- * @param seed - seed for the model - LLAMA_DEFAULT_SEED = randomize
  * @param user_callback - callback function for receiving events
  *
  * @return The status of the operation
  */
-int lr_mtmd_cli::init(char *path_model,
-                      char *path_mmproj,
+int lr_mtmd_cli::init(char *argv[],
+                      int argc,
                       bool *is_vision_supported,
                       bool *is_audio_supported,
-                      uint32_t context_len,
-                      float temp,
-                      uint32_t seed,
                       bool (*user_callback)(void *,LlamarattiEvent, const char *)) {
     
     // Did the user provide their own callback?
@@ -212,8 +205,8 @@ int lr_mtmd_cli::init(char *path_model,
     }
 
     // Did we get the parameters we need?
-    if ( !is_valid_string(path_model) ||
-         !is_valid_string(path_mmproj) ||
+    if ( argv == NULL ||
+         argc < 3 ||
          is_vision_supported == NULL ||
          is_audio_supported == NULL ) {
         
@@ -230,24 +223,10 @@ int lr_mtmd_cli::init(char *path_model,
     
     ggml_time_init();
     
-    common_params params;
-    params.sampling.temp = temp; // 0.2 will lower temp by default for better quality
-    params.sampling.seed = seed; // LLAMA_DEFAULT_SEED is default (random)
-    
-    auto args = std::make_format_args(context_len);
-    std::string context_len_str=std::vformat("{}", args);
-    char *argv[]={
-        NULL,
-        (char *)"--model",
-        path_model,
-        (char *)"--mmproj",
-        path_mmproj,
-        (char *)"-c",
-        (char *)context_len_str.c_str(),
-    };
-    int argc=sizeof(argv)/sizeof(char *);
-    
     // Can we process our parameters?
+    common_params params;
+    params.sampling.temp = 0.2; // lower temp by default for better quality
+    
     if (!common_params_parse(argc, argv, params, LLAMA_EXAMPLE_MTMD, NULL)) {
         
         auto args = std::make_format_args(__func__);
@@ -261,16 +240,28 @@ int lr_mtmd_cli::init(char *path_model,
     common_init();
 
     // Can we create a context object?
-    _vctx = new mtmd_cli_context(params);
-    if ( _vctx == NULL ) {
+    try {
+        _vctx = new mtmd_cli_context(params);
         
-        auto args = std::make_format_args(__func__);
+    } catch (const std::runtime_error& e) {
+        
+        const char *msg = e.what();
+        auto args = std::make_format_args(__func__, msg);
         std::string err=std::vformat(gErrMtmdClientContext, args);
         LOG_ERR("%s\n", err.c_str());
         lr_mtmd_cli_callback(this, LlamarattiEventStatus,err.c_str());
+        return GGML_STATUS_FAILED;
         
+    } catch (const std::exception& e) {
+        
+        const char *msg = e.what();
+        auto args = std::make_format_args(__func__, msg);
+        std::string err=std::vformat(gErrMtmdClientContext, args);
+        LOG_ERR("%s\n", err.c_str());
+        lr_mtmd_cli_callback(this, LlamarattiEventStatus,err.c_str());
         return GGML_STATUS_FAILED;
     }
+    
     mtmd_cli_context *ctx=(mtmd_cli_context *)_vctx;
     
     // Initialize instance members

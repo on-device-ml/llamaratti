@@ -43,19 +43,19 @@
 #define DISPLAY_DETAILED_DEVICE         NO
 
 // Toggle model hash verification
-#define VERIFY_MODEL_HASHES             NO
+#define VERIFY_MODEL_HASHES             YES
 
 #define TEXT_INSETS                     NSMakeSize(10, 10)
 
 #define BORDER_WIDTH                    1
 #define BORDER_RADIUS                   10
 
-// Guages
-#define GUAGE_TRACK_LINE_WIDTH          2.0
+// Gauges
+#define GAUGE_TRACK_LINE_WIDTH          2.0
 
 // LLM TEMP - Thresholds
 #define THRESHOLD_LLM_TEMP_MIN          0.1f
-#define THRESHOLD_LLM_TEMP_DEFAULT      LLAMA_CTXLEN_DEFAULT
+#define THRESHOLD_LLM_TEMP_DEFAULT      LLAMA_DEFAULT_TEMP
 #define THRESHOLD_LLM_TEMP_WARN         1.0f
 #define THRESHOLD_LLM_TEMP_DANGER       1.2f
 #define THRESHOLD_LLM_TEMP_MAX          2.0f
@@ -95,18 +95,30 @@
 #define FONT_SIZE_LARGE              20
 #define FONT_SIZE_HUGE               25
 
-#define FONT_SIZE_GUAGE_TITLE        13
-#define FONT_SIZE_GUAGE_TEXT         16
+#define FONT_SIZE_GAUGE_TITLE        13
+#define FONT_SIZE_GAUGE_TEXT         16
+
+// Maximum length of additional arguments for llama.cpp
+#define MAX_ARGS_LEN                 4096
+
+extern NSString * const gAppName;
+
+// User Defaults
+extern NSString * const gPrefsLastModelPaths;
+extern NSString * const gPrefsLastModelBookmarks;
+extern NSString * const gPrefsLastPrompts;
+extern NSString * const gPrefsLastArgs;
 
 // Fonts...
-
-// Font Names
-extern NSString *gFontNameLight;
-extern NSString *gFontNameNormal;
-extern NSString *gFontNameMedium;
-extern NSString *gFontNameDemiBold;
-extern NSString *gFontNameBold;
-extern NSString *gFontNameLogo;
+extern NSString * const gFontNameLight;
+extern NSString * const gFontNameNormal;
+extern NSString * const gFontNameMedium;
+extern NSString * const gFontNameDemiBold;
+extern NSString * const gFontNameBold;
+extern NSString * const gFontNameLogo;
+extern NSString * const gFontNameGauge;
+extern NSString * const gFontNameGaugeBold;
+extern NSString * const gFontFilenameLogo;
 
 // Colors...
 #define COLOR_LIME              @"defe7f"

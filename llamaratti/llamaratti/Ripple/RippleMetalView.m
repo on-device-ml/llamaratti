@@ -65,6 +65,7 @@ static const float quadVertices[] = {
 }
 
 - (void)loadShaders {
+    
     id<MTLLibrary> library = [_metalDevice newDefaultLibrary];
     id<MTLFunction> vertexFunction = [library newFunctionWithName:@"vertex_main"];
     id<MTLFunction> rippleFragmentFunction = [library newFunctionWithName:@"ripple_fragment"];

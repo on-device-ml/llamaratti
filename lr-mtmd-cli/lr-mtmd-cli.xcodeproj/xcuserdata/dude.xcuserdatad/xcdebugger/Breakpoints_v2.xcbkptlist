@@ -3,22 +3,4 @@
    uuid = "8A7DD5C0-F04E-468D-A3F9-F84C72903565"
    type = "1"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "65C146C8-A9FB-4913-9531-9AAF35D7C7A4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lr-mtmd-cli/lr-mtmd-cli.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "lr_mtmd_cli::init(path_model, path_mmproj, is_vision_supported, is_audio_supported, context_len, temp, seed)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>

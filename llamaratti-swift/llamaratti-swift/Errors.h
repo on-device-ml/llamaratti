@@ -28,6 +28,11 @@ extern NSString *gErrLrtFontRegFailed;
 extern NSString *gErrLrtGetMemFailed;
 extern NSString *gErrLrtGetDskSpcFailed;
 extern NSString *gErrLrtConvertImageFail;
+extern NSString *gErrLrtEnumeratingFolder;
+
+extern NSString *gErrLrtIOServiceNotFound;
+extern NSString *gErrLrtIOServiceProperties;
+extern NSString *gErrLrtIOServiceProp;
 
 extern NSString *gErrLrtBookmarkCreate;
 extern NSString *gErrLrtBookmarkResolve;

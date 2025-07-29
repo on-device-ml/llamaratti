@@ -30,6 +30,8 @@
 #define SYSTEMP_MIN_KELVINS              288.15
 #define SYSTEMP_MAX_KELVINS              383.15
 
+NSString * const gActMonBundleID=@"com.apple.ActivityMonitor";
+
 @implementation Utils
 
 /**
@@ -59,7 +61,7 @@
 }
 
 /**
- * @brief Opens the specified URL in the default browser
+ * @brief Opens the specified URL in the default web browser
  *
  * @param url the URL to open
  *
@@ -72,7 +74,7 @@
 }
 
 /**
- * @brief Opens the specified URL in the default browser
+ * @brief Launches the macOS Activity Monitor app
  *
  * @return the status of the operation
  *
@@ -80,9 +82,8 @@
 + (BOOL)launchActivityMonitor {
     
     // Build a path to the Activity Monitor App
-    const NSString *gActMonBundleID=@"com.apple.ActivityMonitor";
     NSWorkspace *ws=[NSWorkspace sharedWorkspace];
-    NSURL *actMonUrl=[ws URLForApplicationWithBundleIdentifier:(NSString *)gActMonBundleID];
+    NSURL *actMonUrl=[ws URLForApplicationWithBundleIdentifier:gActMonBundleID];
 
     // Launch
     NSWorkspaceOpenConfiguration *cfg=[NSWorkspaceOpenConfiguration configuration];
@@ -103,7 +104,7 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
         }
 
         // Bring App into the foreground
-        [self activateApplicationWithBundleIdentifier:(NSString *)gActMonBundleID];
+        [self activateApplicationWithBundleIdentifier:gActMonBundleID];
     }];
 
     return YES;
@@ -114,7 +115,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @param prompt the prompt to display
  * @param urlFolder the default folder to display
- * @param allowedContentTypes the prompt to display
+ * @param allowMultiple whether multiple file selections are allowed
+ * @param allowedContentTypes the file types that can be selected
+ * @param arrSelectedURLs - the returned selected URLs
  *
  * @return the status of the operation, or nil if the user cancels
  *
@@ -263,6 +266,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 /**
  * @brief Returns the abbreviated version of a long path for display
  *
+ * @param path - the path to abbreviate
+ * @param len - the desired length of the abbreviated path
+ *
  * @return the abbreviated path
  *
  */
@@ -292,7 +298,7 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 /**
  * @brief Checks the SHA256 of the specified file against a hash
  *
- * @param urlFile the URL of the file to check
+ * @param urlFile the file URL of the file to check
  * @param sha256Hash the hash to use when validating the file content
  *
  * @return whether the hash matches the file content
@@ -353,6 +359,8 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 
 /**
  * @brief Copies the specified text to the pasteboard
+ *
+ * @param text - the text to copy to the pasteboard
  *
  * @return the status of the operation
  *
@@ -439,9 +447,12 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Returns whether the specified array is a valid model pair
  *
+ * A valid  model pair is one that has 2 NSURL entries representing
+ * the model and the model projector files
+ *
  * @param arrModelPair - an NSArray of 2 File URLs
  *
- * @return BOOL - the validity of the model pair
+ * @return - the validity of the model pair
  *
  */
 + (BOOL)isValidModelPair:(NSArray *)arrModelPair {
@@ -458,9 +469,12 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Returns whether the specified array is a valid model pair
  *
+ * A valid bookmark model pair is one that has 2 NSData entries representing
+ * the security scoped bookmarks of the model and the model projector files
+ *
  * @param arrBookmarkModelPair - an NSArray of 2 NSData bookmarks
  *
- * @return BOOL - the validity of the bookmarked model pair
+ * @return - the validity of the bookmarked model pair
  *
  */
 + (BOOL)isValidBookmarkModelPair:(NSArray *)arrBookmarkModelPair {
@@ -503,6 +517,8 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Safely returns the code field of an NSError
  *
+ * @param e - the NSError object
+ *
  * @return the code field of an NSError
  *
  */
@@ -519,7 +535,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Safely returns the localizedDescription field of an NSError
  *
- * @return C string - the localizedDescription field of an NSError
+ * @param e - the NSError object
+ *
+ * @return - the localizedDescription field of an NSError as a C string
  *
  */
 + (char *)safeDescFromNSError:(NSError *)e {
@@ -535,7 +553,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Returns the total available system memory
  *
- * @return the total available system memory
+ * @param total - the returned total available system memory
+ *
+ * @return - the status of the operation
  *
  */
 + (BOOL)getTotalSystemMemory:(ULONGLONG *)total {
@@ -552,7 +572,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Returns the currently available system memory
  *
- * @return the currently available system memory
+ * @param avail - the returned currently available system memory
+ *
+ * @return - the status of the operation
  *
  */
 + (BOOL)getAvailSystemMemory:(ULONGLONG *)avail {
@@ -593,7 +615,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Returns the total system disk space
  *
- * @return the total system disk space
+ * @param total - the returned total system disk space
+ *
+ * @return - the status of the operation
  *
  */
 + (BOOL)getTotalDiskSpace:(double *)total {
@@ -629,7 +653,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @brief Returns the available system disk space
  *
- * @return the available system disk space
+ * @param avail - the returned available disk space
+ *
+ * @return - the status of the operation
  *
  */
 + (BOOL)getAvailDiskSpace:(double *)avail {
@@ -677,6 +703,8 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @param bytes - the bytes value to format
  *
+ * @return the formatted Gigabytes string
+ *
  */
 + (NSString *)formatToGig:(ULONGLONG)bytes {
     double gb = (double)bytes / (1024.0 * 1024.0 * 1024.0);
@@ -684,7 +712,7 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 }
 
 /**
- * @brief Scales a specified number within a range down to 0.0 to 1.0
+ * @brief Scales down a specified min/max range to a percentile range
  *
  * @param fVal - the value to scale
  * @param fMin - the minimum value
@@ -711,9 +739,10 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 }
 
 /**
- * @brief Determines whether the current locale uses farenheit
+ * @brief Determines the locale-specific temperature units
  *
- * @return - BOOL
+ * @return - the temperature units C or F
+ *
  */
 + (NSString *)getTemperatureUnits {
     
@@ -737,14 +766,13 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 }
 
 /**
- * @brief Converts a kelvins temperature to the locale-specific F or C
+ * @brief Converts a kelvins temperature to the locale-specific temperature
  *
  * @param kelvins - the kelvins value to convert
  * @param units - the returned units
  *
  * @return - locale specific temperature
  */
-
 + (CGFloat)kelvinsToLocaleTemp:(CGFloat)kelvins
                  returnedUnits:(NSString **)units {
     
@@ -772,7 +800,6 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
  *
  * @return - whether the app is sandboxed
  */
-
 + (BOOL)runningInSandbox {
     
     NSDictionary *env = [[NSProcessInfo processInfo] environment];
@@ -783,12 +810,14 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 /**
  * @brief Reads a specified embedded property name from the specified IOService
  *
- * @param propertyName - the embedded property name
+ * @note Using this method will get your app rejected if you're submitting to the App Store
+ *
+ * @param propertyName - the embedded property name for the specified IOService
  * @param ioServiceName - the name of the IOService
  *
  * @return NSObject - generic return representing the property value, or nil on failure
+ *
  */
-
 + (NSObject *)readEmbeddedProperty:(NSString *)propertyName
                  forIOServiceNamed:(NSString *)ioServiceName {
 
@@ -803,7 +832,9 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
         IOServiceMatching(safeCharFromNSS(ioServiceName)));
 
     if (!ioSvc) {
-        NSLog(@"❌ '%@' service not found.",ioServiceName);
+        NSLog(gErrLrtIOServiceNotFound,
+              __func__,
+              ioServiceName);
         return nil;
     }
 
@@ -814,13 +845,25 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
                                                              0);
 
     if (result != KERN_SUCCESS || !properties) {
-        NSLog(@"❌ Failed to get battery properties.");
+        
         IOObjectRelease(ioSvc);
+        NSLog(gErrLrtIOServiceProperties,
+              __func__,
+              ioServiceName);
         return nil;
     }
 
+    // Can we get the specified property?
     NSDictionary *props = (__bridge_transfer NSDictionary *)properties;
     NSNumber *propVal = props[propertyName];
+    if ( !isValidNSNumber(propVal) ) {
+        
+        IOObjectRelease(ioSvc);
+        NSLog(gErrLrtIOServiceProp,
+              __func__,
+              ioServiceName);
+        return nil;
+    }
 
     IOObjectRelease(ioSvc);
     
@@ -830,15 +873,22 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 /**
  * @brief Reads the battery temperature from IOServices
  *
- * Apple desktop models such as Mac mini, Studio & Pro don't have a battery, so this metric
- * won't be available. I dream of a world, where one day Apple can provide the temperature
- * of their systems via an simple, sandbox friendly API that doesn't make me feel like a
- * criminal
+ * This method only works for MacBooks that have a battery as a power source. Apple desktop
+ * models such as Mac mini, Studio & Pro are not supported.
  *
- * The value we are reading can return pretty bogus values especially following initial startup,
- * so we return an error if we can't get a reasonable value.
+ * I dream of a world, where one day Apple can provide the granular temperature of their systems
+ * via a simple, sandbox friendly API that doesn't make me feel like a criminal.
+ *
+ * We read two properties of the AppleSmartBattery because each property has it's own pros
+ * and cons based on the state of the device. Note: The scanForIOServices method below
+ * which can help you dig into services.
+ *
+ * @note Using this method will get your app rejected if you're submitting to the App Store
+ *
+ * @param temp - the returned temperature in Kelvins
  *
  * @return NSObject - generic return representing the property value, or nil on failure
+ * 
  */
 
 + (BOOL)getBatteryTemperature:(CGFloat *)temp {
@@ -889,18 +939,15 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 }
 
 /**
- * @brief Deletes the specified list of files matching a template from the users temporary folder
+ * @brief Removes all temporary files matching a specified template
  *
  * @return the status of the operation
+ *
  */
-
-+ (BOOL)removeTempFiles:(NSMutableArray *)arrFiles
-       matchingTemplate:(NSString  *)templ {
++ (BOOL)removeTempFilesMatchingTemplate:(NSString *)templ {
     
     // Did we get the parameters we need?
-    if ( !isValidNSArray(arrFiles) ||
-         !isValidNSString(templ) ) {
-        
+    if ( !isValidNSString(templ) ) {
         return NO;
     }
     
@@ -910,7 +957,11 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
     NSArray *contents = [fm contentsOfDirectoryAtPath:tempDir
                                                 error:&e];
     if ( e ) {
-        //NSLog(@"Error reading temporary directory: %@", e);
+        NSLog(gErrLrtEnumeratingFolder,
+              __func__,
+              tempDir,
+              safeDesc(e),
+              safeCode(e));
         return NO;
     }
     
@@ -919,27 +970,44 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
     NSArray *matchingFiles = [contents filteredArrayUsingPredicate:predicate];
     
     // Can we remove these files?
-    BOOL bCountRemoved=0;
+    BOOL countFailed=0;
     for ( NSString *fileName in matchingFiles ) {
         
         NSString *fullPath = [tempDir stringByAppendingPathComponent:fileName];
         if ( ![fm removeItemAtPath:fullPath
                              error:&e] ) {
+            countFailed++;
             NSLog(gErrLrtCantRemoveFile,
                   __func__,
                   fullPath,
                   safeDesc(e),
                   safeCode(e));
-            
             continue;
         }
-        bCountRemoved++;
     }
-    return ( [arrFiles count] == bCountRemoved );
+    return (countFailed == 0);
+}
+
+/**
+ * @brief Removes leading and trailing whitespace from a string
+ *
+ * @return the new string
+ *
+ */
++ (NSString *)stripWhitespace:(NSString *)str {
+    
+    if ( !isValidNSString(str) ) {
+        return @"";
+    }
+    NSMutableCharacterSet *wsChars=[NSMutableCharacterSet whitespaceCharacterSet];
+    [wsChars formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
+    return [str stringByTrimmingCharactersInSet:wsChars];
 }
 
 /**
  * @brief Enable this if you are looking for interesting machine-specific sensor values
+ *
+ * @note Using this method will get your app rejected if you're submitting to the App Store
  *
  */
 

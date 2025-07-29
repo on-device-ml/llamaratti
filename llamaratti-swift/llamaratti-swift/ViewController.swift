@@ -367,12 +367,31 @@ class ViewController: NSViewController {
             // Start Timer
             let dt : DTimer = DTimer.timer(withFunc: #function, andDesc: nil) as! DTimer
             
+            // Build Arguments String
+            var temp : Float = LLAMA_DEFAULT_TEMP;
+            var ctxLen : UInt32 = LLAMA_DEFAULT_CTXLEN;
+            
+            // Do we know of this model?
+            let am : ArgManager? = ArgManager()
+            let mi : ModelInfo? = LlamarattiWrapper.modelInfo(forFileURL: arrModelPair.first)
+            if ( mi != nil ) {
+                temp = mi!.temp
+                ctxLen = mi!.ctxLen
+                if ( isValidString(mi!.additionalArgs) ) {
+                    am!.addArguments(from: mi!.additionalArgs)
+                }
+            }
+
+            let strTemp : String = String(format: "%0.1f", temp)
+            let strCtxLen : String = String(format: "%u", ctxLen)
+            am!.setOption(strTemp, forKey: gArgModel)
+            am!.setOption(strCtxLen, forKey: gArgCtxSize)
+
+            let finalArgs : String? = am!.toString()
             self.llamaWrapper = LlamarattiWrapper( modelURL: urlModel,
                                                    andMMProjURL: urlMMProj,
+                                                   andAdditionalArgs: finalArgs,
                                                    verifyModels: AppConstants.ModelParams.verifyModels,
-                                                   contextLen: AppConstants.ModelParams.defaultCtxLen,
-                                                   temp: AppConstants.ModelParams.defaultTemp,
-                                                   seed: AppConstants.ModelParams.defaultSeed,
                                                    target: self,
                                                    selector: #selector(ViewController.llamaEventsSelector))
             self.toggleAnimation(isOn: false)
@@ -990,7 +1009,7 @@ class ViewController: NSViewController {
         }
         
         // Can we load the audio into our context?
-        if ( !(llamaWrapper!.loadMedia(urlAudio)) ) {
+        if ( !(llamaWrapper!.loadMedia(urlAudio, useSecurityScope: true)) ) {
             return false
         }
         
@@ -1023,7 +1042,7 @@ class ViewController: NSViewController {
         }
         
         // Can we load the audio into our context?
-        if ( !(llamaWrapper!.loadMedia(urlImage)) ) {
+        if ( !(llamaWrapper!.loadMedia(urlImage, useSecurityScope: true)) ) {
             return false
         }
 

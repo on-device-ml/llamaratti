@@ -43,7 +43,7 @@
 #define DISPLAY_DETAILED_DEVICE         NO
 
 // Toggle model hash verification
-#define VERIFY_MODEL_HASHES             NO
+#define VERIFY_MODEL_HASHES             YES
 
 #define TEXT_INSETS                     NSMakeSize(10, 10)
 
@@ -55,7 +55,7 @@
 
 // LLM TEMP - Thresholds
 #define THRESHOLD_LLM_TEMP_MIN          0.1f
-#define THRESHOLD_LLM_TEMP_DEFAULT      LLAMA_CTXLEN_DEFAULT
+#define THRESHOLD_LLM_TEMP_DEFAULT      LLAMA_DEFAULT_TEMP
 #define THRESHOLD_LLM_TEMP_WARN         1.0f
 #define THRESHOLD_LLM_TEMP_DANGER       1.2f
 #define THRESHOLD_LLM_TEMP_MAX          2.0f
@@ -98,15 +98,27 @@
 #define FONT_SIZE_GAUGE_TITLE        13
 #define FONT_SIZE_GAUGE_TEXT         16
 
-// Fonts...
+// Maximum length of additional arguments for llama.cpp
+#define MAX_ARGS_LEN                 4096
 
-// Font Names
-extern NSString *gFontNameLight;
-extern NSString *gFontNameNormal;
-extern NSString *gFontNameMedium;
-extern NSString *gFontNameDemiBold;
-extern NSString *gFontNameBold;
-extern NSString *gFontNameLogo;
+extern NSString * const gAppName;
+
+// User Defaults
+extern NSString * const gPrefsLastModelPaths;
+extern NSString * const gPrefsLastModelBookmarks;
+extern NSString * const gPrefsLastPrompts;
+extern NSString * const gPrefsLastArgs;
+
+// Fonts...
+extern NSString * const gFontNameLight;
+extern NSString * const gFontNameNormal;
+extern NSString * const gFontNameMedium;
+extern NSString * const gFontNameDemiBold;
+extern NSString * const gFontNameBold;
+extern NSString * const gFontNameLogo;
+extern NSString * const gFontNameGauge;
+extern NSString * const gFontNameGaugeBold;
+extern NSString * const gFontFilenameLogo;
 
 // Colors...
 #define COLOR_LIME              @"defe7f"

@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="imgViewLogo" destination="oRB-G1-I9s" id="RZC-Cy-4HZ"/>
                 <outlet property="textAck" destination="9e4-f4-Aan" id="Z38-DC-mNY"/>
+                <outlet property="textInfo" destination="1lg-0N-grd" id="XSs-vt-qwq"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -49,37 +50,54 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oRB-G1-I9s">
+                        <rect key="frame" x="20" y="309" width="253" height="247"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="247" id="O41-fb-RR5"/>
+                            <constraint firstAttribute="width" constant="253" id="PNm-Fi-JNm"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" id="upg-n4-pOy"/>
+                    </imageView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ST5-cD-eQW">
-                        <rect key="frame" x="606" y="13" width="81" height="32"/>
+                        <rect key="frame" x="592" y="13" width="95" height="32"/>
                         <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T6Z-HM-hvt">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                         </buttonCell>
                         <constraints>
-                            <constraint firstAttribute="width" constant="67" id="u3y-kM-jVZ"/>
+                            <constraint firstAttribute="width" constant="81" id="odu-W1-mRe"/>
                         </constraints>
                         <connections>
                             <action selector="btnOk:" target="-2" id="49r-gZ-9K8"/>
                         </connections>
                     </button>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oRB-G1-I9s">
-                        <rect key="frame" x="210" y="309" width="281" height="260"/>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1lg-0N-grd">
+                        <rect key="frame" x="293" y="367" width="389" height="122"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="260" id="3uE-iW-zzc"/>
-                            <constraint firstAttribute="width" constant="281" id="Q5P-8I-a20"/>
+                            <constraint firstAttribute="height" constant="122" id="Nbd-Cq-oDM"/>
                         </constraints>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" id="upg-n4-pOy"/>
-                    </imageView>
+                        <textFieldCell key="cell" lineBreakMode="clipping" id="IKN-BQ-cPM">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Y2G-He-klt" secondAttribute="trailing" constant="20" id="4ui-UR-Nji"/>
-                    <constraint firstItem="oRB-G1-I9s" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="7" id="9fc-TP-ixv"/>
-                    <constraint firstItem="oRB-G1-I9s" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" constant="0.5" id="cnv-RG-NPh"/>
-                    <constraint firstItem="Y2G-He-klt" firstAttribute="trailing" secondItem="ST5-cD-eQW" secondAttribute="trailing" id="fWC-Vz-yav"/>
-                    <constraint firstItem="Y2G-He-klt" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="hWA-No-MtK"/>
-                    <constraint firstItem="Y2G-He-klt" firstAttribute="top" secondItem="oRB-G1-I9s" secondAttribute="bottom" constant="8" symbolic="YES" id="nlQ-l3-PyH"/>
-                    <constraint firstAttribute="bottom" secondItem="ST5-cD-eQW" secondAttribute="bottom" constant="20" symbolic="YES" id="rmC-Su-aEb"/>
-                    <constraint firstItem="ST5-cD-eQW" firstAttribute="top" secondItem="Y2G-He-klt" secondAttribute="bottom" constant="17" id="w5y-mw-Sml"/>
+                    <constraint firstItem="1lg-0N-grd" firstAttribute="leading" secondItem="oRB-G1-I9s" secondAttribute="trailing" constant="22" id="1ay-YK-zWg"/>
+                    <constraint firstItem="Y2G-He-klt" firstAttribute="top" secondItem="oRB-G1-I9s" secondAttribute="bottom" constant="8" symbolic="YES" id="3UR-RO-hLH"/>
+                    <constraint firstAttribute="trailing" secondItem="1lg-0N-grd" secondAttribute="trailing" constant="20" symbolic="YES" id="3cu-Am-ekz"/>
+                    <constraint firstAttribute="bottom" secondItem="ST5-cD-eQW" secondAttribute="bottom" constant="20" symbolic="YES" id="5kW-hS-BsM"/>
+                    <constraint firstItem="1lg-0N-grd" firstAttribute="trailing" secondItem="Y2G-He-klt" secondAttribute="trailing" id="7p3-0N-md4"/>
+                    <constraint firstItem="oRB-G1-I9s" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="CBA-kF-k7v"/>
+                    <constraint firstItem="ST5-cD-eQW" firstAttribute="trailing" secondItem="Y2G-He-klt" secondAttribute="trailing" id="EbR-5A-Kme"/>
+                    <constraint firstItem="oRB-G1-I9s" firstAttribute="leading" secondItem="Y2G-He-klt" secondAttribute="leading" id="JzX-WW-nol"/>
+                    <constraint firstItem="oRB-G1-I9s" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="N0g-3u-lAW"/>
+                    <constraint firstItem="1lg-0N-grd" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="87" id="Qes-jK-ald"/>
+                    <constraint firstAttribute="bottom" secondItem="Y2G-He-klt" secondAttribute="bottom" constant="57" id="bZi-F3-p5y"/>
                 </constraints>
             </view>
             <connections>

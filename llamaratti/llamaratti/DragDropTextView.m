@@ -11,6 +11,7 @@
 #import "ViewController.h"
 
 #import "NSColor+More.h"
+#import "NSImage+More.h"
 
 #import "Shared.h"
 #import "Utils.h"
@@ -21,8 +22,6 @@
     
     NSColor *_savedBorderColor;
     NSInteger _savedBorderWidth;
-    
-    NSMutableArray *_arrConvertedMedia;
 }
 
 /**
@@ -37,8 +36,6 @@
     _savedBorderColor=[NSColor colorWithCGColor:[[self layer] borderColor]];
     _savedBorderWidth=[[self layer] borderWidth];
     
-    _arrConvertedMedia=[NSMutableArray array];
-    
     [self setWantsLayer:YES];
 
     [self registerForDraggedTypes:@[NSPasteboardTypeFileURL]];
@@ -50,6 +47,7 @@
  */
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
+    
 }
 
 #pragma mark - NSDraggingDestination
@@ -186,7 +184,8 @@
         // Is this a supported audio type?
         if ( [llamaWrapper isSupportedAudioURL:urlDragged] ) {
 
-            if ( [vc loadAudioIntoContext:urlDragged] ) {
+            if ( [vc loadAudioIntoContext:urlDragged
+                         useSecurityScope:YES] ) {
                 countAdded++;
             }
         }
@@ -194,34 +193,39 @@
         // Is this a supported image type?
         else if ( [llamaWrapper isSupportedImageURL:urlDragged] ) {
 
+            BOOL useSecurityScope=YES;
+            
             // Is this an HEIC image?
             NSString *pathExt=[urlDragged pathExtension];
             if ( [[pathExt lowercaseString] isEqualToString:@"heic"] ) {
                 
                 // Yes, can we convert the file?
-                urlDragged = [LlamarattiWrapper convertHEICtoTmpJPG:urlTmpDragged
-                                                           withLoss:IMAGE_CONVERSION_LOSS];
+                urlDragged = [NSImage convertHEICtoTmpJPG:urlTmpDragged
+                                            withTmpPrefix:gMediaTemplate
+                                                withLoss:IMAGE_CONVERSION_LOSS];
                 if ( !urlDragged ) {
                     continue;
                 }
                 
-                // Yes, save path so we can clean it up later
-                [_arrConvertedMedia addObject:urlDragged];
+                // URL points to temp folder within app sandbox
+                useSecurityScope=NO;
                 
             // Is this a WEBP image?
             } else if ( [[pathExt lowercaseString] isEqualToString:@"webp"] ) {
                 
                 // Yes, can we convert the file?
-                urlDragged = [LlamarattiWrapper convertWEBPtoTmpJPG:urlTmpDragged];
+                urlDragged = [NSImage convertWEBPtoTmpJPG:urlTmpDragged
+                                            withTmpPrefix:gMediaTemplate];
                 if ( !urlDragged ) {
                     continue;
                 }
                 
-                // Yes, save path so we can clean it up later
-                [_arrConvertedMedia addObject:urlDragged];
+                // URL points to temp folder within app sandbox
+                useSecurityScope=NO;
             }
-
-            if ( [vc loadImageIntoContext:urlDragged] ) {
+            
+            if ( [vc loadImageIntoContext:urlDragged
+                         useSecurityScope:useSecurityScope] ) {
                 countAdded++;
             }
         }
@@ -290,8 +294,7 @@
     
     // Remove any temporary files
     NSString *template=[NSString stringWithFormat:@"%@*",gMediaTemplate];
-    [Utils removeTempFiles:_arrConvertedMedia
-          matchingTemplate:template];
+    [Utils removeTempFilesMatchingTemplate:template];
 }
 
 /**

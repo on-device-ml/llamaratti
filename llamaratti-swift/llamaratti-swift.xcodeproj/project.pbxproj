@@ -326,7 +326,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../lr-mtmd-cli/Build/Products/Debug",
-					/opt/homebrew/lib,
 					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
 					"$(PROJECT_DIR)/../../llama.cpp/build/common",
 				);
@@ -380,7 +379,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../lr-mtmd-cli/Build/Products/Debug",
-					/opt/homebrew/lib,
 					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
 					"$(PROJECT_DIR)/../../llama.cpp/build/common",
 				);

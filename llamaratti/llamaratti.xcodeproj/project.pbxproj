@@ -32,6 +32,7 @@
 		8F7857712E0B871600737BD0 /* llamaLICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8F78576E2E0B871600737BD0 /* llamaLICENSE.txt */; };
 		8F7C36202E1DDABB005E78C9 /* ABOUT.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8F7C361F2E1DDABB005E78C9 /* ABOUT.txt */; };
 		8F7C36232E1DE06B005E78C9 /* AckContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C36222E1DE06B005E78C9 /* AckContent.m */; };
+		8FCFAB612E3697E600D5C5C0 /* ArgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FCFAB602E3697E600D5C5C0 /* ArgManager.m */; };
 		8FE15F572DDD57AC0061722A /* NSColor+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F502DDD57AC0061722A /* NSColor+More.m */; };
 		8FE15F582DDD57AC0061722A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F532DDD57AC0061722A /* Utils.m */; };
 		8FE15F592DDD57AC0061722A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F3D2DDD57AC0061722A /* AppDelegate.m */; };
@@ -44,6 +45,8 @@
 		8FFA027E2E207FB800B23258 /* RippleMetalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA027B2E207FB800B23258 /* RippleMetalView.m */; };
 		8FFA027F2E207FB800B23258 /* RippleShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA027C2E207FB800B23258 /* RippleShader.metal */; };
 		8FFA02832E207FD500B23258 /* licensing.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8FFA02812E207FD500B23258 /* licensing.txt */; };
+		8FFB66FF2E35C1AE00FAE0EB /* ArgsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB66FD2E35C1AE00FAE0EB /* ArgsWindowController.m */; };
+		8FFB67002E35C1AE00FAE0EB /* ArgsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FFB66FE2E35C1AE00FAE0EB /* ArgsWindowController.xib */; };
 		D8808D882E220F99002A430D /* FerroRosso.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82FBE712E220C95003A15D6 /* FerroRosso.ttf */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +89,8 @@
 		8F7C36212E1DE06B005E78C9 /* AckContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AckContent.h; sourceTree = "<group>"; };
 		8F7C36222E1DE06B005E78C9 /* AckContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AckContent.m; sourceTree = "<group>"; };
 		8FAFD25A2DD50FFA00BEEC1B /* llamaratti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = llamaratti.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FCFAB5F2E3697E600D5C5C0 /* ArgManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArgManager.h; sourceTree = "<group>"; };
+		8FCFAB602E3697E600D5C5C0 /* ArgManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArgManager.m; sourceTree = "<group>"; };
 		8FE15F3C2DDD57AC0061722A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8FE15F3D2DDD57AC0061722A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8FE15F3E2DDD57AC0061722A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +110,9 @@
 		8FFA027B2E207FB800B23258 /* RippleMetalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RippleMetalView.m; sourceTree = "<group>"; };
 		8FFA027C2E207FB800B23258 /* RippleShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = RippleShader.metal; sourceTree = "<group>"; };
 		8FFA02812E207FD500B23258 /* licensing.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = licensing.txt; sourceTree = "<group>"; };
+		8FFB66FC2E35C1AE00FAE0EB /* ArgsWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArgsWindowController.h; sourceTree = "<group>"; };
+		8FFB66FD2E35C1AE00FAE0EB /* ArgsWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArgsWindowController.m; sourceTree = "<group>"; };
+		8FFB66FE2E35C1AE00FAE0EB /* ArgsWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArgsWindowController.xib; sourceTree = "<group>"; };
 		D82FBE712E220C95003A15D6 /* FerroRosso.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FerroRosso.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +191,11 @@
 				8F7C36222E1DE06B005E78C9 /* AckContent.m */,
 				8FE15F3C2DDD57AC0061722A /* AppDelegate.h */,
 				8FE15F3D2DDD57AC0061722A /* AppDelegate.m */,
+				8FCFAB5F2E3697E600D5C5C0 /* ArgManager.h */,
+				8FCFAB602E3697E600D5C5C0 /* ArgManager.m */,
+				8FFB66FC2E35C1AE00FAE0EB /* ArgsWindowController.h */,
+				8FFB66FD2E35C1AE00FAE0EB /* ArgsWindowController.m */,
+				8FFB66FE2E35C1AE00FAE0EB /* ArgsWindowController.xib */,
 				8FE15F3E2DDD57AC0061722A /* Assets.xcassets */,
 				8F6027222E2AD0C500AEA6A4 /* CircularProgressView.h */,
 				8F6027232E2AD0C500AEA6A4 /* CircularProgressView.m */,
@@ -310,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8808D882E220F99002A430D /* FerroRosso.ttf in Resources */,
+				8FFB67002E35C1AE00FAE0EB /* ArgsWindowController.xib in Resources */,
 				8FE15F622DDD57AC0061722A /* Assets.xcassets in Resources */,
 				8F7C36202E1DDABB005E78C9 /* ABOUT.txt in Resources */,
 				8F7857702E0B871600737BD0 /* LICENSE.txt in Resources */,
@@ -329,12 +343,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F41CA8C2DF06F8C00FEB9FF /* DragDropTextView.m in Sources */,
+				8FFB66FF2E35C1AE00FAE0EB /* ArgsWindowController.m in Sources */,
 				8FE15F572DDD57AC0061722A /* NSColor+More.m in Sources */,
 				8F1EDD422E200B540044A8FE /* ImageViewContainer.m in Sources */,
 				8FE15F582DDD57AC0061722A /* Utils.m in Sources */,
 				8F0CBBD62E29A4C9006758F0 /* CircularSlider.m in Sources */,
 				8F1EDD3D2E2009CF0044A8FE /* ViewAttachmentCell.m in Sources */,
 				8FE15F592DDD57AC0061722A /* AppDelegate.m in Sources */,
+				8FCFAB612E3697E600D5C5C0 /* ArgManager.m in Sources */,
 				8F41CA8F2DF07BAA00FEB9FF /* NSImage+More.m in Sources */,
 				8F1263AB2E1B4F3D004CDC1C /* AboutWindowController.m in Sources */,
 				8F7C36232E1DE06B005E78C9 /* AckContent.m in Sources */,
@@ -494,7 +510,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1001;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -508,12 +524,14 @@
 					"$(PROJECT_DIR)/../../llama.cpp/vendor",
 					"$(PROJECT_DIR)/../lr-mtmd-cli/lr-mtmd-cli",
 				);
+				INFOPLIST_KEY_CFBundleDisplayName = Llamaratti;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
+					/opt/homebrew/lib,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../lr-mtmd-cli/Build/Products/Debug",
@@ -540,7 +558,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1001;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -554,12 +572,14 @@
 					"$(PROJECT_DIR)/../../llama.cpp/vendor",
 					"$(PROJECT_DIR)/../lr-mtmd-cli/lr-mtmd-cli",
 				);
+				INFOPLIST_KEY_CFBundleDisplayName = Llamaratti;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../llama.cpp/build/bin",
+					/opt/homebrew/lib,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../lr-mtmd-cli/Build/Products/Debug",

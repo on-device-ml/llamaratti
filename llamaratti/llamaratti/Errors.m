@@ -29,6 +29,11 @@ const NSString *gErrLrtFontRegFailed=@"%s | ERROR: Font registration failed for 
 const NSString *gErrLrtGetMemFailed=@"%s | ERROR: Unable to get system memory metric. Error='%s', Code=%ld";
 const NSString *gErrLrtGetDskSpcFailed=@"%s | ERROR: Unable to get disk space metric for '%@'. Error='%s', Code=%ld";
 const NSString *gErrLrtConvertImageFail=@"%s | ERROR: Unable to convert image '%@'.";
+const NSString *gErrLrtEnumeratingFolder=@"%s | ERROR: Unable to enumerate files in folder '%@'. Error='%s', Code=%ld";
+
+const NSString *gErrLrtIOServiceNotFound=@"%s | ERROR: The specified IOService '%@' was not found.";
+const NSString *gErrLrtIOServiceProperties=@"%s | ERROR: Unable to get properties for the specified IOService '%@'.";
+const NSString *gErrLrtIOServiceProp=@"%s | ERROR: Unable to get property '%@' for the specified IOService '%@'.";
 
 const NSString *gErrLrtBookmarkCreate=@"%s | ERROR: Unable to create bookmark for '%@'. Error='%s', Code=%ld";
 const NSString *gErrLrtBookmarkResolve=@"%s | ERROR: Unable to resolve bookmark. Error='%s', Code='%ld'";

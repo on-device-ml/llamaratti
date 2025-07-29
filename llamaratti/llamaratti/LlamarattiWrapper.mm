@@ -26,7 +26,6 @@
 #import <AppKit/AppKit.h>
 #import <ImageIO/ImageIO.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 #import "LlamarattiWrapper.h"
 
@@ -37,17 +36,24 @@
 #include "Shared.h"
 #include "Errors.h"
 #include "Utils.h"
+#include "ArgManager.h"
 
 #pragma mark Globals
 
+// llama.cpp Arguments
+NSString * const gArgModel=@"model";
+NSString * const gArgMMProj=@"mmproj";
+NSString * const gArgTemp=@"temp";
+NSString * const gArgCtxSize=@"ctx-size";
+
 // Extension
-NSString *gGGUFExt=@"GGUF";
+NSString * const gGGUFExt=@"GGUF";
 
 // Multimedia projection files
-NSString *gMMProj=@"mmproj";
+NSString * const gMMProj=@"mmproj";
 
 // Template for temporary files
-NSString *gMediaTemplate=@"lr-media-";
+NSString * const gMediaTemplate=@"lr-media-";
 
 // "Known" model/projection pairs
 NSArray *gArrModelInfo;
@@ -134,8 +140,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
     /**
      * @brief Known multimodal models array used by wrapper. Eases model selection & validation.
      *
-     * @todo Update with latest multimodal model pairs
-     * @todo Dynamic download of models
+     * @todo Keep updated with latest multimodal model pairs
      *
      * @note Use "llama-lookup-stats -m <model.GGUF>" "context_length" for model info.
 
@@ -154,7 +159,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"731199e016ec5f227b8293fef839899472e0ee4c51adf5f9e5cb66f6558fa142"
                           withDictCtxLen:@{@0:@2048,@16:@65536,@36:@131072,@64:@131072,@128:@131072}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
            
            [ModelInfo modelInfoWithTitle:@"Gemma 3 12B"
                                withModel:@"ggml-org_gemma-3-12b-it-GGUF_gemma-3-12b-it-Q4_K_M.gguf"
@@ -163,7 +168,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"30c02d056410848227001830866e0a269fcc28aaf8ca971bded494003de9f5a5"
                           withDictCtxLen:@{@0:@2048,@16:@65536,@36:@131072,@64:@131072,@128:@131072}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
            
            [ModelInfo modelInfoWithTitle:@"Gemma 3 27B"
                                withModel:@"ggml-org_gemma-3-27b-it-GGUF_gemma-3-27b-it-Q4_K_M.gguf"
@@ -172,7 +177,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"54cb61c842fe49ac3c89bc1a614a2778163eb49f3dec2b90ff688b4c0392cb48"
                           withDictCtxLen:@{@0:@2048,@16:@65536,@36:@65536,@64:@65536,@128:@65536}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
            
            [ModelInfo modelInfoWithTitle:@"Llama 4 Scout 17B"
                                withModel:@"ggml-org_Llama-4-Scout-17B-16E-Instruct-GGUF_Llama-4-Scout-17B-16E-Instruct-UD-IQ1_S.gguf"
@@ -181,7 +186,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"a7eec12068ae70f993fbba6eb350c095727be20f7a6ecbe6e431940c1a8823fb"
                           withDictCtxLen:@{@0:@2048}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
            
            [ModelInfo modelInfoWithTitle:@"Mistral 3.1 24B"
                                withModel:@"ggml-org_Mistral-Small-3.1-24B-Instruct-2503-GGUF_Mistral-Small-3.1-24B-Instruct-2503-UD-IQ2_M.gguf"
@@ -190,7 +195,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"6de5bee5ce4950fa362b97b875d0ffd1ae7e058c399834c1d0d1f7b014714fb4"
                           withDictCtxLen:@{@0:@2048,@16:@4096,@36:@65536,@64:@131072,@128:@131072,@192:@131072}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
            
            [ModelInfo modelInfoWithTitle:@"Pixtral 12B"
                                withModel:@"ggml-org_pixtral-12b-GGUF_pixtral-12b-Q4_K_M.gguf"
@@ -199,7 +204,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"5504fe00067629053e6f99abac05f628c653a50394f4929bcc185bc80a10daf4"
                           withDictCtxLen:@{@0:@32768}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
            
             [ModelInfo modelInfoWithTitle:@"InternVL 2 1B"
                                 withModel:@"ggml-org_InternVL2_5-1B-GGUF_InternVL2_5-1B-Q8_0.gguf"
@@ -208,7 +213,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                            withMMProjHash:@"bab5e4294eda170db20c361f087a4c568c97380c8982d2404dfb19a9d294b72f"
                            withDictCtxLen:@{@0:@32768}
                                  withTemp:LLAMA_DEFAULT_TEMP
-                                 withSeed:LLAMA_DEFAULT_SEED],
+                       withAdditionalArgs:nil],
             
             [ModelInfo modelInfoWithTitle:@"InternVL 3 8B"
                                 withModel:@"ggml-org_InternVL3-8B-Instruct-GGUF_InternVL3-8B-Instruct-Q4_K_M.gguf"
@@ -217,7 +222,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                            withMMProjHash:@"de6a246f6b2ec51e5863e987c994c7b6d3edfa742b8d0ccf115ac4c67eb6b7aa"
                            withDictCtxLen:@{@0:@8192,@36:@32768,@64:@32768,@128:@32768,@192:@32768}
                                  withTemp:LLAMA_DEFAULT_TEMP
-                                 withSeed:LLAMA_DEFAULT_SEED],
+                       withAdditionalArgs:nil],
                    
             [ModelInfo modelInfoWithTitle:@"SmolVLM Instruct"
                                withModel:@"ggml-org_SmolVLM-Instruct-GGUF_SmolVLM-Instruct-Q4_K_M.gguf"
@@ -226,7 +231,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"86b84aa7babf1ab51a6366d973b9d380354e92c105afaa4f172cc76d044da739"
                           withDictCtxLen:@{@0:@16384}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                       withAdditionalArgs:nil],
                   
         [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 256M"
                             withModel:@"ggml-org_SmolVLM-256M-Instruct-GGUF_SmolVLM-256M-Instruct-Q8_0.gguf"
@@ -235,7 +240,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                        withMMProjHash:@"7e943f7c53f0382a6fc41b6ee0c2def63ba4fded9ab8ed039cc9e2ab905e0edd"
                        withDictCtxLen:@{@0:@16384}
                              withTemp:LLAMA_DEFAULT_TEMP
-                             withSeed:LLAMA_DEFAULT_SEED],
+                   withAdditionalArgs:nil],
 
          [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 500M"
                              withModel:@"ggml-org_SmolVLM-500M-Instruct-GGUF_SmolVLM-500M-Instruct-Q8_0.gguf"
@@ -244,7 +249,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                         withMMProjHash:@"d1eb8b6b23979205fdf63703ed10f788131a3f812c7b1f72e0119d5d81295150"
                         withDictCtxLen:@{@0:@16384}
                               withTemp:LLAMA_DEFAULT_TEMP
-                              withSeed:LLAMA_DEFAULT_SEED],
+                    withAdditionalArgs:nil],
 
           [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 2.2B"
                              withModel:@"ggml-org_SmolVLM2-2.2B-Instruct-GGUF_SmolVLM2-2.2B-Instruct-Q4_K_M.gguf"
@@ -253,7 +258,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                         withMMProjHash:@"ae07ea1facd07dd3230c4483b63e8cda96c6944ad2481f33d531f79e892dd024"
                         withDictCtxLen:@{@0:@16384}
                               withTemp:LLAMA_DEFAULT_TEMP
-                              withSeed:LLAMA_DEFAULT_SEED],
+                     withAdditionalArgs:nil],
 
            [ModelInfo modelInfoWithTitle:@"SmolVLM2 Video Instruct 250M"
                               withModel:@"ggml-org_SmolVLM2-256M-Video-Instruct-GGUF_SmolVLM2-256M-Video-Instruct-Q8_0.gguf"
@@ -262,7 +267,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                          withMMProjHash:@"d34913a588464ff7215f086193e0426a4f045eaba74456ee5e2667d8ed6798b1"
                          withDictCtxLen:@{@0:@16384}
                                withTemp:LLAMA_DEFAULT_TEMP
-                               withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
 
             [ModelInfo modelInfoWithTitle:@"SmolVLM2 Video Instruct 500M"
                                withModel:@"ggml-org_SmolVLM2-500M-Video-Instruct-GGUF_SmolVLM2-500M-Video-Instruct-Q8_0.gguf"
@@ -271,7 +276,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"921dc7e259f308e5b027111fa185efcbf33db13f6e35749ddf7f5cdb60ef520b"
                           withDictCtxLen:@{@0:@16384}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                       withAdditionalArgs:nil],
                   
            [ModelInfo modelInfoWithTitle:@"Qwen2 VL 2B"
                               withModel:@"ggml-org_Qwen2-VL-2B-Instruct-GGUF_Qwen2-VL-2B-Instruct-Q4_K_M.gguf"
@@ -280,7 +285,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                          withMMProjHash:@"a0ad91f00a7a80dcf84d719a61b00ee2e07b71794f4ee2dfa81a254621a8c418"
                           withDictCtxLen:@{@0:@32768}
                                 withTemp:LLAMA_DEFAULT_TEMP
-                                withSeed:LLAMA_DEFAULT_SEED],
+                      withAdditionalArgs:nil],
 
             [ModelInfo modelInfoWithTitle:@"Qwen Omni 2.5 3B"
                                withModel:@"ggml-org_Qwen2.5-Omni-3B-GGUF_Qwen2.5-Omni-3B-Q4_K_M.gguf"
@@ -289,7 +294,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                           withMMProjHash:@"4e6c816cd33f7298d07cb780c136a396631e50e62f6501660271f8c6e302e565"
                            withDictCtxLen:@{@0:@32768}
                                  withTemp:LLAMA_DEFAULT_TEMP
-                                 withSeed:LLAMA_DEFAULT_SEED],
+                       withAdditionalArgs:nil],
 
             [ModelInfo modelInfoWithTitle:@"Qwen Omni 2.5 7B"
                                 withModel:@"ggml-org_Qwen2.5-Omni-7B-GGUF_Qwen2.5-Omni-7B-Q4_K_M.gguf"
@@ -298,7 +303,43 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                            withMMProjHash:@"4a7bc5478a2ec8c5d186d63532eb22e75b79ba75ec3c0ce821676157318ef4ad"
                            withDictCtxLen:@{@0:@32768}
                                  withTemp:LLAMA_DEFAULT_TEMP
-                                 withSeed:LLAMA_DEFAULT_SEED],
+                       withAdditionalArgs:nil],
+
+            [ModelInfo modelInfoWithTitle:@"MobileVLM 3B"
+                                withModel:@"guinmoon_MobileVLM-3B-GGUF_MobileVLM-3B-Q4_K_M.gguf"
+                            withModelHash:@"22ae82a42706020e8980178f2cf7b0e1c62476c03ef15886fc7a8585ab088665"
+                               withMMProj:@"guinmoon_MobileVLM-3B-GGUF_MobileVLM-3B-mmproj-f16.gguf"
+                           withMMProjHash:@"c8dda06f00ae031c5428591603a4c3a27dbbf4414a1e269ede4d1c450ca31d51"
+                           withDictCtxLen:@{@0:@2048}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:@"--chat-template deepseek"],
+
+            [ModelInfo modelInfoWithTitle:@"Llava v1.5 7B"
+                                withModel:@"second-state_Llava-v1.5-7B-GGUF_llava-v1.5-7b-Q4_K_M.gguf"
+                            withModelHash:@"2687b20ac8b7a23f6c70296d5b1e7f908fef2ce4769ecdebd1bb9503528a75bf"
+                               withMMProj:@"second-state_Llava-v1.5-7B-GGUF_llava-v1.5-7b-mmproj-model-f16.gguf"
+                           withMMProjHash:@"50da4e5b0a011615f77686f9b02613571e65d23083c225e107c08c3b1775d9b1"
+                           withDictCtxLen:@{@0:@4096}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:@"--chat-template vicuna"],
+
+            [ModelInfo modelInfoWithTitle:@"Llava 1.6 Mistral 7B"
+                                withModel:@"cjpais_llava-1.6-mistral-7b-gguf_llava-1.6-mistral-7b.Q6_K.gguf"
+                            withModelHash:@"31826170ffa2e8080bbcd74cac718f906484fd5a59895550ef94c1baa4997595"
+                               withMMProj:@"cjpais_llava-1.6-mistral-7b-gguf_mmproj-model-f16.gguf"
+                           withMMProjHash:@"00205ee8a0d7a381900cd031e43105f86aa0d8c07bf329851e85c71a26632d16"
+                           withDictCtxLen:@{@0:@8192}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
+
+            [ModelInfo modelInfoWithTitle:@"MiniCPM v2.6"
+                                withModel:@"openbmb_MiniCPM-V-2_6-gguf_ggml-model-Q4_K_M.gguf"
+                            withModelHash:@"3a4078d53b46f22989adbf998ce5a3fd090b6541f112d7e936eb4204a04100b1"
+                               withMMProj:@"openbmb_MiniCPM-V-2_6-gguf_mmproj-model-f16.gguf"
+                           withMMProjHash:@"4485f68a0f1aa404c391e788ea88ea653c100d8e98fe572698f701e5809711fd"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
 
             [ModelInfo modelInfoWithTitle:@"Moondream 2"
                                 withModel:@"ggml-org_moondream2-20250414-GGUF_moondream2-text-model-f16_ct-vicuna.gguf"
@@ -307,16 +348,16 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                            withMMProjHash:@"4cc1cb3660d87ff56432ebeb7884ad35d67c48c7b9f6b2856f305e39c38eed8f"
                            withDictCtxLen:@{@0:@2048}
                                  withTemp:LLAMA_DEFAULT_TEMP
-                                 withSeed:LLAMA_DEFAULT_SEED],
+                       withAdditionalArgs:nil],
 
-//            [ModelInfo modelInfoWithTitle:@"Ultravox 3.2 1b"
-//                                withModel:@"ggml-org_ultravox-v0_5-llama-3_2-1b-GGUF_Llama-3.2-1B-Instruct-Q4_K_M.gguf"
-//                            withModelHash:@"6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83"
-//                               withMMProj:@"ggml-org_ultravox-v0_5-llama-3_2-1b-GGUF_mmproj-ultravox-v0_5-llama-3_2-1b-f16.gguf"
-//                           withMMProjHash:@"b34dde1835752949d6b960528269af93c92fec91c61ea0534fcc73f96c1ed8b2"
-//                           withDictCtxLen:@{@0:@8192,@16:@32768,@36:@32768,@64:@32768,@128:@32768,@192:@32768}
-//                                 withTemp:LLAMA_DEFAULT_TEMP
-//                                 withSeed:LLAMA_DEFAULT_SEED],
+            [ModelInfo modelInfoWithTitle:@"Ultravox 3.2 1b"
+                                withModel:@"ggml-org_ultravox-v0_5-llama-3_2-1b-GGUF_Llama-3.2-1B-Instruct-Q4_K_M.gguf"
+                            withModelHash:@"6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83"
+                               withMMProj:@"ggml-org_ultravox-v0_5-llama-3_2-1b-GGUF_mmproj-ultravox-v0_5-llama-3_2-1b-f16.gguf"
+                           withMMProjHash:@"b34dde1835752949d6b960528269af93c92fec91c61ea0534fcc73f96c1ed8b2"
+                           withDictCtxLen:@{@0:@8192,@16:@32768,@36:@32768,@64:@32768,@128:@32768,@192:@32768}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
             
            // Add new here...
 //           [ModelInfo modelInfoWithTitle:@""
@@ -326,14 +367,14 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
 //                          withMMProjHash:@""
 //                          withDictCtxLen:LLM_CTXLEN_DEFAULT
 //                                withTemp:LLM_TEMP_DEFAULT
-//                                withSeed:LLM_SEED_DEFAULT],
+//                      withAdditionalArgs:nil]],
                                       
         nil];
 
     /**
      * @brief Sample prompts available in the right click menu
      *
-     * @todo Update with additional prompts as needed
+     * @todo Keep updated with additional prompts as needed
      * @todo Persist in updateable text file
      *
      */
@@ -392,7 +433,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
     /**
      * @brief Supported file types for drag & drop
      *
-     * @todo Update with latest llama.cpp supported file types
+     * @todo Update with latest llama.cpp mtmd supported file types
      *
      */
     gArrSuppAudioTypes=[NSArray arrayWithObjects:@"wav", @"mp3", @"flac",nil];
@@ -470,10 +511,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
  *
  * @param urlModel the URL path to the model file
  * @param urlMMProj the URL path to the model projection file
+ * @param additionalArgs additional arguments for llama.cpp
  * @param verifyModels whether to perform a hash check on the files
- * @param ctxLen the LLM context length that will be used
- * @param temp the LLM temperature
- * @param seed the LLM seed (LLM_DEFAULT_SEED=randomize)
  * @param aTarget the target selector object
  * @param aSelector the target selector method
  *
@@ -482,58 +521,18 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
  */
 + (id)wrapperWithModelURL:(NSURL *)urlModel
              andMMProjURL:(NSURL *)urlMMProj
+        andAdditionalArgs:(NSString *)additionalArgs
              verifyModels:(BOOL)verifyModels
-               contextLen:(uint32_t)ctxLen
-                     temp:(float)temp
-                     seed:(uint32_t)seed
                    target:(id)aTarget
                  selector:(SEL)aSelector {
     
     LlamarattiWrapper *lw=[[LlamarattiWrapper alloc]
                              initWithModelURL:urlModel
                                  andMMProjURL:urlMMProj
+                           andAdditionalArgs:additionalArgs
                                  verifyModels:verifyModels
-                                   contextLen:ctxLen
-                                         temp:temp
-                                         seed:seed
                                        target:aTarget
                                      selector:aSelector];
-    return lw;
-}
-
-/**
- * @brief Creates and initializes an instance of the wrapper
- *
- * @param pathModel the path to the model file
- * @param pathMMProj the path to the model projection file
- * @param verifyModels whether to perform a hash check on the files
- * @param ctxLen the LLM context length that will be used
- * @param temp the LLM temperature
- * @param seed the LLM seed (LLM_DEFAULT_SEED=randomize)
- * @param aTarget the target selector object
- * @param aSelector the target selector method
-
- * @return an instance of the wrapper, or nil on error
- *
- */
-+ (id)wrapperWithModel:(NSString *)pathModel
-             andMMProj:(NSString *)pathMMProj
-          verifyModels:(BOOL)verifyModels
-            contextLen:(uint32_t)ctxLen
-                  temp:(float)temp
-                  seed:(uint32_t)seed
-                target:(id)aTarget
-              selector:(SEL)aSelector  {
-    
-    LlamarattiWrapper *lw=[[LlamarattiWrapper alloc]
-                              initWithModelURL:[NSURL fileURLWithPath:pathModel]
-                                  andMMProjURL:[NSURL fileURLWithPath:pathMMProj]
-                                  verifyModels:verifyModels
-                                    contextLen:ctxLen
-                                          temp:temp
-                                          seed:seed
-                                        target:aTarget
-                                      selector:aSelector];
     return lw;
 }
 
@@ -542,28 +541,25 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
  *
  * @param urlModel the URL path to the model file
  * @param urlMMProj the URL path to the model projection file
+ * @param additionalArgs additional arguments (optional)
  * @param verifyModels whether to perform a hash check on the files
- * @param ctxLen the LLM context length that will be used
- * @param temp the LLM temperature
- * @param seed the LLM seed (LLM_DEFAULT_SEED=randomize)
- * @param aTarget the target selector object
- * @param aSelector the target selector method
+ * @param aTarget the target selector object to receive llama.cpp notifications
+ * @param aSelector the target selector method to receive llama.cpp notifications
 
  * @return an instance of the wrapper, or nil on error
  *
  */
 - (id)initWithModelURL:(NSURL *)urlModel
           andMMProjURL:(NSURL *)urlMMProj
+     andAdditionalArgs:(NSString *)additionalArgs
           verifyModels:(BOOL)verifyModels
-            contextLen:(uint32_t)ctxLen
-                  temp:(float)temp
-                  seed:(uint32_t)seed
                 target:(id)aTarget
               selector:(SEL)aSelector {
 
     // Did we get the parameters we need?
     if ( !isValidFileNSURL(urlModel) ||
          !isValidFileNSURL(urlMMProj) ||
+         // Optional: additionalArgs
          !aTarget ||
          !aSelector ) {
         
@@ -602,7 +598,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                              withHash:[mi modelHash]];
                 if ( !bResult ) {
                     [Utils stopAccessingSecurityScopedURLs:arrModelPair];
-                    NSLog((NSString *)gErrLrtHashCheckFail,
+                    NSLog(gErrLrtHashCheckFail,
                           __func__,
                           [urlModel path]);
                     return nil;
@@ -613,7 +609,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                         withHash:[mi mmprojHash]];
                 if ( !bResult ) {
                     [Utils stopAccessingSecurityScopedURLs:arrModelPair];
-                    NSLog((NSString *)gErrLrtHashCheckFail,
+                    NSLog(gErrLrtHashCheckFail,
                           __func__,
                           [urlModel path]);
                     return nil;
@@ -624,15 +620,28 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
             }
         }
 
+        // Build the argv C array for llama.cpp
+        ArgManager *am=[[ArgManager alloc] initWithArgumentString:additionalArgs];
+        NSURL *urlModel=(NSURL *)[arrModelPair objectAtIndex:0];
+        NSURL *urlMMProj=(NSURL *)[arrModelPair objectAtIndex:1];
+        [am setOption:[urlModel path]
+               forKey:gArgModel];
+        [am setOption:[urlMMProj path]
+               forKey:gArgMMProj];
+        
+        int argc=0;
+        char **argv = [am argvAndArgc:&argc];
+
         // Can we initialize llama.cpp?
-        int res =_mtmd->init(safeCharFromNSS([urlModel path]),
-                             safeCharFromNSS([urlMMProj path]),
+        int res =_mtmd->init(argv,
+                             argc,
                              &_visionSupported,
                              &_audioSupported,
-                             ctxLen,
-                             temp,
-                             LLAMA_DEFAULT_SEED,
                              llama_multimodal_callback);
+        
+        // Free our argv C array
+        [self freeArgsForLlama:argv
+                      withArgc:argc];
         
         // Stop accessing security scoped resources
         [Utils stopAccessingSecurityScopedURLs:arrModelPair];
@@ -807,80 +816,6 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
              isValidNSURL(_urlMMProj) );
 }
 
-#pragma mark - Apple Device Info
-
-/**
- * @brief Returns a descriptive string about the current Apple Silicon
- * device
- *
- * @param bDetailed - return more details
- *
- * @return a descriptive string, or nil on error
- *
- */
-+ (NSString *)appleSiliconModel:(BOOL)bDetailed {
-        
-    // Can we get the size required to store the brand string?
-    size_t size=0;
-    char *idBrand=(char *)"machdep.cpu.brand_string";
-    if ( sysctlbyname(idBrand, NULL, &size, NULL, 0) ) {
-        return nil;
-    }
-    
-    // Can we get the brand string?
-    char *brand = (char *)malloc(size);
-    memset(brand,0,size);
-    if ( sysctlbyname(idBrand, brand, &size, NULL, 0) ) {
-        free(brand);
-        brand=NULL;
-        return nil;
-    }
-    NSString *deviceDesc = [NSString stringWithUTF8String:brand];
-    free(brand);
-    
-    // Were we asked for more details?
-    if ( bDetailed ) {
-        
-        // Can we get the size required to store the model identifier?
-        size=0;
-        char *idModel=(char *)"hw.model";
-        if ( sysctlbyname(idModel, NULL, &size, NULL, 0) ) {
-            return nil;
-        }
-        
-        // Can we get the model identifier?
-        char *model = (char *)malloc(size);
-        memset(model,0,size);
-        if ( sysctlbyname(idModel, model, &size, NULL, 0) ) {
-            free(model);
-            model=NULL;
-            return nil;
-        }
-        
-        NSString *strModelID = [NSString stringWithUTF8String:model];
-        free(model);
-
-        // Can we lookup a more accurate name for this model?
-        NSString *strModel=[gArrMacDeviceInfo valueForKey:strModelID];
-        if ( isValidNSString(strModel) ) {
-            
-            // Yes, use this instead
-            deviceDesc = strModel;
-        }
-        
-        // Can we get the number of CPU cores?
-        int cores=0;
-        size = sizeof(cores);
-        if ( sysctlbyname("hw.physicalcpu", &cores, &size, NULL, 0) ) {
-            return nil;
-        }
-        // Yes, append CPU cores
-        deviceDesc=[deviceDesc stringByAppendingFormat:@" with %d CPU Cores",cores];
-    }
-    
-    return deviceDesc;
-}
-
 #pragma mark - Inference
 
 /**
@@ -959,7 +894,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
  * @return the status of the operation
  *
  */
-- (BOOL)loadMedia:(NSURL *)urlMedia {
+- (BOOL)loadMedia:(NSURL *)urlMedia
+ useSecurityScope:(BOOL)useSecurityScope {
     
     // Did we get the parameters we need?
     if ( !_mtmd ||
@@ -967,17 +903,21 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
         return NO;
     }
     
-    // Can we start accessing this security-scoped file?
-    BOOL bSuccess = [Utils startAccessingSecurityScopedURLs:@[urlMedia]];
-    if ( !bSuccess ) {
-        return NO;
+    if ( useSecurityScope ) {
+        // Can we start accessing this security-scoped file?
+        BOOL bSuccess = [Utils startAccessingSecurityScopedURLs:@[urlMedia]];
+        if ( !bSuccess ) {
+            return NO;
+        }
     }
     
     // Can we load the specified media?
     int res = _mtmd->load_media(safeCharFromNSS([urlMedia path]));
     
-    // Stop accessing
-    [Utils stopAccessingSecurityScopedURLs:@[urlMedia]];
+    if ( useSecurityScope ) {
+        // Stop accessing
+        [Utils stopAccessingSecurityScopedURLs:@[urlMedia]];
+    }
     
     return (res==GGML_STATUS_SUCCESS);
 }
@@ -1053,218 +993,79 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
     return suppTypes;
 }
 
-/**
- * @brief Converts HEIC images to a temporary JPG image
- *
- * This method creates a copy of the image in the users temporary folder
- * that must be cleaned up by the caller.
- *
- * @return a URL to the converted file in the temporary folder
- *
- */
-+ (NSURL *)convertHEICtoTmpJPG:(NSURL *)urlInput
-                      withLoss:(CGFloat)loss {
-    
-    if ( !isValidFileNSURL(urlInput) ) {
-        return nil;
-    }
-    
-    // Can we create an image source?
-    CGImageSourceRef sourceRef = CGImageSourceCreateWithURL((__bridge CFURLRef)urlInput, NULL);
-    if ( !sourceRef ) {
-        
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-
-    // Can we create the image?
-    CGImageRef sourceImageRef = CGImageSourceCreateImageAtIndex(sourceRef, 0, NULL);
-    if ( !sourceImageRef ) {
-        CFRelease(sourceRef);
-        
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-
-    // Rotate the image as needed
-    NSDictionary *imageProps = (__bridge_transfer NSDictionary *)
-        CGImageSourceCopyPropertiesAtIndex(sourceRef, 0, NULL);
-    NSNumber *numOrient = imageProps[(NSString *)kCGImagePropertyOrientation];
-    if ( isValidNSNumber(numOrient) ) {
-        CGImageRef correctedImage = [LlamarattiWrapper rotateImage:sourceImageRef
-                                                     toOrientation:numOrient.intValue];
-        CGImageRelease(sourceImageRef);
-        sourceImageRef = correctedImage;
-    }
-    
-    // Create a temporary output file
-    NSString *tempFilename = [NSString stringWithFormat:@"%@%@.heic",
-                                                gMediaTemplate,
-                                                [[NSUUID UUID] UUIDString]];
-    NSString *tempFile = [NSTemporaryDirectory() stringByAppendingPathComponent:tempFilename];
-    NSURL *urlOutput = [NSURL fileURLWithPath:tempFile];
-
-    // Can we create the image destination?
-    CGImageDestinationRef dest = CGImageDestinationCreateWithURL(
-                                    (__bridge CFURLRef)urlOutput,
-                                    (__bridge CFStringRef)UTTypeJPEG.identifier,
-                                    1,
-                                    NULL);
-    if ( !dest ) {
-        
-        CGImageRelease(sourceImageRef);
-        CFRelease(sourceRef);
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-
-    NSDictionary *options = @{ (__bridge NSString *)kCGImageDestinationLossyCompressionQuality : @(loss) };
-    CGImageDestinationAddImage(dest, sourceImageRef, (__bridge CFDictionaryRef)options);
-
-    BOOL bSuccess = CGImageDestinationFinalize(dest);
-    if ( !bSuccess ) {
-        
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-
-    // Clean up
-    CGImageRelease(sourceImageRef);
-    CFRelease(dest);
-    CFRelease(sourceRef);
-
-    return urlOutput;
-}
-
-/**
- * @brief Converts WEBP images to a temporary JPG image
- *
- * This method creates a copy of the image in the users temporary folder
- * that must be cleaned up by the caller.
- *
- * @return a URL to the converted file in the temporary folder
- *
- */
-+ (NSURL *)convertWEBPtoTmpJPG:(NSURL *)urlInput{
-    
-    if ( !isValidFileNSURL(urlInput) ) {
-        return nil;
-    }
-    
-    NSImage *image = [[NSImage alloc] initWithContentsOfURL:urlInput];
-    if ( !image ) {
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-    
-    NSData *tiffData = [image TIFFRepresentation];
-    if ( !tiffData ) {
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-    
-    NSBitmapImageRep *bitmap = [NSBitmapImageRep imageRepWithData:tiffData];
-    if ( !bitmap ) {
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-    
-    NSData *jpgData = [bitmap representationUsingType:NSBitmapImageFileTypeJPEG properties:@{}];
-    if ( !jpgData ) {
-        NSLog(gErrLrtConvertImageFail,
-              __func__,
-              [urlInput path]);
-        return nil;
-    }
-
-    // Create a temporary output file
-    NSString *tempFilename = [NSString stringWithFormat:@"%@%@.webp",
-                                                gMediaTemplate,
-                                                [[NSUUID UUID] UUIDString]];
-    NSString *tempFile = [NSTemporaryDirectory() stringByAppendingPathComponent:tempFilename];
-    NSURL *urlOutput = [NSURL fileURLWithPath:tempFile];
-
-    [jpgData writeToURL:urlOutput
-             atomically:YES];
-    
-    return urlOutput;
-}
-
-/**
- * @brief Returns maximum number of loaded media files supported by the current model
- *
- * @return the number of supported media files
- *
- */
-+ (CGImageRef) rotateImage:(CGImageRef)imageRef
-             toOrientation:(NSInteger)orientation {
-             
-    // Did we get the parameters we need?
-    if ( !imageRef ) {
-        return nil;
-    }
-    
-    size_t width = CGImageGetWidth(imageRef);
-    size_t height = CGImageGetHeight(imageRef);
-
-    CGAffineTransform transform = CGAffineTransformIdentity;
-
-    switch (orientation) {
-        case 1:
-            break;                                                      // No change
-        case 2:
-            transform = CGAffineTransformMakeScale(-1, 1); break;       // Flip Horizontally
-            break;
-        case 3:
-            transform = CGAffineTransformMakeRotation(M_PI); break;     // Flip 180 degrees
-            break;
-        case 4:
-            transform = CGAffineTransformMakeScale(1, -1); break;       // Flip Vertically
-            break;
-        case 5:
-        case 6:
-            transform = CGAffineTransformMakeRotation(M_PI_2); break;   // Flip 90°
-            break;
-        case 7:
-        case 8:
-            transform = CGAffineTransformMakeRotation(-M_PI_2); break;  // Flip -90°
-            break;
-        default:
-            break;
-    }
-
-    CGContextRef ctx = CGBitmapContextCreate(NULL,
-                                             width,
-                                             height,
-                                             8,
-                                             0,
-                                             CGImageGetColorSpace(imageRef),
-                                             kCGImageAlphaPremultipliedLast);
-
-    CGContextConcatCTM(ctx, transform);
-
-    CGContextDrawImage(ctx, CGRectMake(0, 0, width, height), imageRef);
-    CGImageRef imageRefNew = CGBitmapContextCreateImage(ctx);
-    CGContextRelease(ctx);
-
-    return imageRefNew;
-}
-
 #pragma mark - Misc
+
+/**
+ * @brief Returns a descriptive string about the current Apple Silicon
+ * device
+ *
+ * @param bDetailed - return more details
+ *
+ * @return a descriptive string, or nil on error
+ *
+ */
++ (NSString *)appleSiliconModel:(BOOL)bDetailed {
+        
+    // Can we get the size required to store the brand string?
+    size_t size=0;
+    char *idBrand=(char *)"machdep.cpu.brand_string";
+    if ( sysctlbyname(idBrand, NULL, &size, NULL, 0) ) {
+        return nil;
+    }
+    
+    // Can we get the brand string?
+    char *brand = (char *)malloc(size);
+    memset(brand,0,size);
+    if ( sysctlbyname(idBrand, brand, &size, NULL, 0) ) {
+        free(brand);
+        brand=NULL;
+        return nil;
+    }
+    NSString *deviceDesc = [NSString stringWithUTF8String:brand];
+    free(brand);
+    
+    // Were we asked for more details?
+    if ( bDetailed ) {
+        
+        // Can we get the size required to store the model identifier?
+        size=0;
+        char *idModel=(char *)"hw.model";
+        if ( sysctlbyname(idModel, NULL, &size, NULL, 0) ) {
+            return nil;
+        }
+        
+        // Can we get the model identifier?
+        char *model = (char *)malloc(size);
+        memset(model,0,size);
+        if ( sysctlbyname(idModel, model, &size, NULL, 0) ) {
+            free(model);
+            model=NULL;
+            return nil;
+        }
+        
+        NSString *strModelID = [NSString stringWithUTF8String:model];
+        free(model);
+
+        // Can we lookup a more accurate name for this model?
+        NSString *strModel=[gArrMacDeviceInfo valueForKey:strModelID];
+        if ( isValidNSString(strModel) ) {
+            
+            // Yes, use this instead
+            deviceDesc = strModel;
+        }
+        
+        // Can we get the number of CPU cores?
+        int cores=0;
+        size = sizeof(cores);
+        if ( sysctlbyname("hw.physicalcpu", &cores, &size, NULL, 0) ) {
+            return nil;
+        }
+        // Yes, append CPU cores
+        deviceDesc=[deviceDesc stringByAppendingFormat:@" with %d CPU Cores",cores];
+    }
+    
+    return deviceDesc;
+}
 
 /**
  * @brief Returns maximum number of loaded media files supported by the current model
@@ -1324,7 +1125,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
     
     // Do the files have the same prefix?
     NSString *filenameModel=[urlModel lastPathComponent];
-    NSRange range=[filenameModel rangeOfString:@"-GGUF_"];
+    NSRange range=[[filenameModel lowercaseString] rangeOfString:@"-gguf_"];
     if ( range.location == NSNotFound ) {
         return nil;
     }
@@ -1352,6 +1153,29 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
         NSLog(@"%@\n",mi.modelTitle);
     }
     return modelsList;
+}
+
+/**
+ * @brief Frees the specified dynamically allocated argv array
+ *
+ */
+- (void)freeArgsForLlama:(char **)argv
+                withArgc:(int)argc {
+    
+    // Did we get the parameters we need?
+    if ( argv == nil || argc == 0 ) {
+        return;
+    }
+    
+    for ( int ind=0; ind<argc; ind++ ) {
+        if ( argv[ind] ) {
+            free(argv[ind]);
+            argv[ind]=NULL;
+        }
+    }
+    free(argv);
+    argv=NULL;
+
 }
 
 #pragma mark - Cleanup

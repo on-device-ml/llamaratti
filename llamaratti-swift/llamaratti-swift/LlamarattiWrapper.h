@@ -22,15 +22,23 @@
 #import "Shared.h"
 #import "ModelInfo.h"
 
+// llama.cpp Arguments
+extern NSString * const gArgModel;
+extern NSString * const gArgMMProj;
+extern NSString * const gArgTemp;
+extern NSString * const gArgCtxSize;
+
 extern NSString *gGGUFExt;
+
 extern NSString *gMMProj;
 extern NSString *gMediaTemplate;
 
+
 // LLM temperature
-#define LLAMA_DEFAULT_TEMP          0.6
+extern const float LLAMA_DEFAULT_TEMP;
 
 // LLM context length
-#define LLAMA_DEFAULT_CTXLEN        2048
+extern const uint32_t LLAMA_DEFAULT_CTXLEN;
 
 // LLM Seed
 #define LLAMA_DEFAULT_SEED          0xFFFFFFFF
@@ -43,7 +51,7 @@ extern NSString *gMediaTemplate;
 #define MAX_SUPPORTED_MEDIA         15
 
 // Macros
-#define isMMProj(urlFile) ([[[urlFile path] lastPathComponent] containsString:(NSString *)gMMProj])
+#define isMMProj(urlFile) ([[[urlFile path] lastPathComponent] containsString:gMMProj])
 #define isValidLLMTemp(val) ( ((val)>=THRESHOLD_LLM_TEMP_MIN)&&((val)<=THRESHOLD_LLM_TEMP_MAX) )
 #define isValidLLMCtxLen(val) ( ((val)>=THRESHOLD_LLM_CTXLEN_MIN)&&((val)<=THRESHOLD_LLM_CTXLEN_MAX) )
 
@@ -64,28 +72,15 @@ extern NSString *gMediaTemplate;
 // Methods
 + (id)wrapperWithModelURL:(NSURL *)urlModel
              andMMProjURL:(NSURL *)urlMMProj
+        andAdditionalArgs:(NSString *)additionalArgs
              verifyModels:(BOOL)verifyModels
-               contextLen:(uint32_t)ctxLen
-                     temp:(float)temp
-                     seed:(uint32_t)seed
                    target:(id)aTarget
                  selector:(SEL)aSelector;
 
-+ (id)wrapperWithModel:(NSString *)pathModel
-             andMMProj:(NSString *)pathMMProj
-          verifyModels:(BOOL)verifyModels
-            contextLen:(uint32_t)ctxLen
-                  temp:(float)temp
-                  seed:(uint32_t)seed
-                target:(id)aTarget
-              selector:(SEL)aSelector;
-
 - (id)initWithModelURL:(NSURL *)urlModel
           andMMProjURL:(NSURL *)urlMMProj
+     andAdditionalArgs:(NSString *)additionalArgs
           verifyModels:(BOOL)verifyModels
-            contextLen:(uint32_t)ctxLen
-                  temp:(float)temp
-                  seed:(uint32_t)seed
                 target:(id)aTarget
               selector:(SEL)aSelector;
 
@@ -107,19 +102,12 @@ extern NSString *gMediaTemplate;
 
 - (BOOL)modelLoaded;
 
-- (BOOL)loadMedia:(NSURL *)urlMedia;
+- (BOOL)loadMedia:(NSURL *)urlMedia
+ useSecurityScope:(BOOL)useSecurityScope;
 
 - (BOOL)isSupportedAudioURL:(NSURL *)urlFile;
 
 - (BOOL)isSupportedImageURL:(NSURL *)urlFile;
-
-+ (NSURL *)convertHEICtoTmpJPG:(NSURL *)urlInput
-                      withLoss:(CGFloat)loss;
-
-+ (NSURL *)convertWEBPtoTmpJPG:(NSURL *)urlInput;
-
-+ (CGImageRef) rotateImage:(CGImageRef)imageRef
-             toOrientation:(NSInteger)orientation;
 
 - (BOOL)generate:(NSString *)prompt;
 

@@ -26,7 +26,6 @@
  * @param mmprojHash the sha256 hash of the model projection file
  * @param dictCtxLen the dictionary used to lookup context length based on memory
  * @param temp the temperature to use with this model
- * @param seed the seed to use with this model (LLM_DEFAULT_SEED=randomize)
  *
  * @return the initialized object, or nil on error
  *
@@ -38,7 +37,7 @@
          withMMProjHash:(NSString *)mmprojHash
          withDictCtxLen:(NSDictionary *)dictCtxLen
                withTemp:(float)temp
-               withSeed:(uint32_t)seed {
+     withAdditionalArgs:(NSString *)additionArgs {
          
     ModelInfo *mi=[[ModelInfo alloc] initWithTitle:modelTitle
                                          withModel:modelFilename
@@ -47,7 +46,7 @@
                                     withMMProjHash:mmprojHash
                                     withDictCtxLen:dictCtxLen
                                           withTemp:temp
-                                          withSeed:seed];
+                                withAdditionalArgs:additionArgs];
     return mi;
 }
 
@@ -68,7 +67,6 @@
         _mmprojHash=@"";
         _dictCtxLen=@{};
         _temp=LLAMA_DEFAULT_TEMP;
-        _seed=LLAMA_DEFAULT_SEED;
     }
     return self;
 }
@@ -83,7 +81,7 @@
  * @param mmprojHash the sha256 hash of the model projection file
  * @param dictCtxLen the dictionary used to lookup context length based on memory
  * @param temp the temperature to use with this model
- * @param seed the seed to use with this model (LLM_DEFAULT_SEED=randomize)
+ * @param additionalArgs and additional arguments needed by the model
  *
  * @return the initialized object, or nil on error
  *
@@ -95,7 +93,7 @@
     withMMProjHash:(NSString *)mmprojHash
     withDictCtxLen:(NSDictionary *)dictCtxLen
           withTemp:(float)temp
-          withSeed:(uint32_t)seed {
+withAdditionalArgs:(NSString *)additionalArgs {
     
     if ( self=[super init] ) {
 
@@ -106,7 +104,7 @@
         _mmprojHash=mmprojHash;
         _dictCtxLen=dictCtxLen;
         _temp=temp;
-        _seed=seed;
+        _additionalArgs=additionalArgs;
         _isVerified=NO;
     }
     return self;

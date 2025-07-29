@@ -675,6 +675,16 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hpp-28-kV9">
+                                <rect key="frame" x="550" y="18" width="60" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9gm-rq-aIp">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="btnArgs:" target="XfG-lQ-9wD" id="3yc-tL-uKk"/>
+                                </connections>
+                            </button>
                             <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU7-KS-hbR">
                                 <rect key="frame" x="14" y="132" width="838" height="110"/>
                                 <clipView key="contentView" drawsBackground="NO" id="Ssf-fQ-7dc">
@@ -768,19 +778,6 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="3Ps-do-2OG"/>
                             </imageView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HMI-q4-vL8">
-                                <rect key="frame" x="550" y="18" width="60" height="32"/>
-                                <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yBz-tg-yzd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="wLo-yy-xTg"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="btnModel:" target="XfG-lQ-9wD" id="bYL-wY-Jes"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gwv-fD-eBS">
                                 <rect key="frame" x="599" y="18" width="60" height="32"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pqe-OA-QBK">
@@ -938,6 +935,19 @@
                                     </textField>
                                 </subviews>
                             </customView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HMI-q4-vL8">
+                                <rect key="frame" x="501" y="18" width="60" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yBz-tg-yzd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="wLo-yy-xTg"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="btnModel:" target="XfG-lQ-9wD" id="bYL-wY-Jes"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="s8b-kH-9RN" firstAttribute="top" secondItem="CXC-q1-kGn" secondAttribute="top" id="2C1-vs-7DY"/>
@@ -966,7 +976,8 @@
                             <constraint firstItem="xfM-cR-T1x" firstAttribute="leading" secondItem="NZF-Uj-QIC" secondAttribute="leading" id="Rge-Wf-jv2"/>
                             <constraint firstAttribute="trailing" secondItem="CXC-q1-kGn" secondAttribute="trailing" constant="30" id="YPC-IO-fHd"/>
                             <constraint firstItem="NZF-Uj-QIC" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="448" id="YZW-2W-214"/>
-                            <constraint firstItem="gwv-fD-eBS" firstAttribute="leading" secondItem="HMI-q4-vL8" secondAttribute="trailing" constant="3" id="Z5r-1x-pO7"/>
+                            <constraint firstItem="Hpp-28-kV9" firstAttribute="baseline" secondItem="HMI-q4-vL8" secondAttribute="baseline" id="Yy4-7M-qID"/>
+                            <constraint firstItem="gwv-fD-eBS" firstAttribute="leading" secondItem="HMI-q4-vL8" secondAttribute="trailing" constant="52" id="Z5r-1x-pO7"/>
                             <constraint firstItem="gwv-fD-eBS" firstAttribute="baseline" secondItem="HMI-q4-vL8" secondAttribute="firstBaseline" id="aPx-pm-mDm"/>
                             <constraint firstItem="ObN-cQ-GIJ" firstAttribute="leading" secondItem="PiH-fa-Tzf" secondAttribute="trailing" constant="8" symbolic="YES" id="bNv-XJ-XqW"/>
                             <constraint firstAttribute="bottom" secondItem="HMI-q4-vL8" secondAttribute="bottom" constant="25" id="bnp-ns-eEk"/>
@@ -987,6 +998,7 @@
                             <constraint firstItem="s8b-kH-9RN" firstAttribute="bottom" secondItem="CXC-q1-kGn" secondAttribute="bottom" id="p65-V5-Hrg"/>
                             <constraint firstItem="0Vw-Qs-9NE" firstAttribute="leading" secondItem="xfM-cR-T1x" secondAttribute="leading" id="pMS-QE-0yD"/>
                             <constraint firstItem="NZF-Uj-QIC" firstAttribute="top" secondItem="xfM-cR-T1x" secondAttribute="bottom" constant="8" symbolic="YES" id="pec-KW-8pt"/>
+                            <constraint firstItem="Hpp-28-kV9" firstAttribute="leading" secondItem="HMI-q4-vL8" secondAttribute="trailing" constant="3" id="qUJ-l5-64c"/>
                             <constraint firstItem="1Xk-2M-4W1" firstAttribute="leading" secondItem="0Vw-Qs-9NE" secondAttribute="leading" id="rcq-Ky-Xdc"/>
                             <constraint firstItem="xfM-cR-T1x" firstAttribute="trailing" secondItem="NZF-Uj-QIC" secondAttribute="trailing" id="s7G-bI-OSB"/>
                             <constraint firstItem="5Ud-hX-dYe" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="uOH-S1-D3N"/>
@@ -995,11 +1007,13 @@
                             <constraint firstItem="6J3-05-BVD" firstAttribute="leading" secondItem="lY7-Wc-VdC" secondAttribute="trailing" constant="3" id="yI4-bc-6dV"/>
                             <constraint firstAttribute="bottom" secondItem="ccE-hu-5Mx" secondAttribute="bottom" constant="9" id="ypn-QN-r3V"/>
                             <constraint firstAttribute="trailing" secondItem="1Xk-2M-4W1" secondAttribute="trailing" constant="15" id="yyk-fc-Vj3"/>
+                            <constraint firstItem="gwv-fD-eBS" firstAttribute="leading" secondItem="Hpp-28-kV9" secondAttribute="trailing" constant="3" id="zTQ-R0-EW2"/>
                             <constraint firstItem="HMI-q4-vL8" firstAttribute="baseline" secondItem="gwv-fD-eBS" secondAttribute="baseline" id="zpx-Ep-QzD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activity" destination="3ja-Cd-HTY" id="dEa-bc-Xh3"/>
+                        <outlet property="btnArgs" destination="Hpp-28-kV9" id="QiD-S5-pew"/>
                         <outlet property="btnClear" destination="lY7-Wc-VdC" id="6Nq-EP-2T0"/>
                         <outlet property="btnGPU" destination="gwv-fD-eBS" id="guz-Iw-zTe"/>
                         <outlet property="btnGo" destination="YeY-VE-XeO" id="OGz-gb-c6x"/>

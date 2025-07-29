@@ -46,13 +46,10 @@ public:
     
     ~lr_mtmd_cli();
 
-    int init( char *path_model,
-              char *path_mmproj,
+    int init( char *argv[],
+              int argc,
               bool *is_vision_supported,
               bool *is_audio_supported,
-              uint32_t context_len,
-              float temp,
-              uint32_t seed,
               bool (*user_callback)(void *, LlamarattiEvent, const char *));
     
     int deinit();

@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[ArgManager hasOption:]:ArgManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mutableOptions">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[LCppWrapper executePrompt:target:selector:]:LCppWrapper.m">
          <PersistentStrings>
             <PersistentString

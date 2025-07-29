@@ -15,6 +15,6 @@
 
 @property (weak) IBOutlet NSImageView *imgViewLogo;
 @property (weak) IBOutlet NSTextView *textAck;
-@property (weak) IBOutlet NSButton *btnOk;
+@property (weak) IBOutlet NSTextField *textInfo;
 
 @end

@@ -81,6 +81,7 @@
 @property (weak) IBOutlet NSTextField *textSysTemp;
 
 @property (weak) IBOutlet NSButton *btnModel;
+@property (weak) IBOutlet NSButton *btnArgs;
 @property (weak) IBOutlet NSButton *btnGPU;
 @property (weak) IBOutlet NSButton *btnClear;
 @property (weak) IBOutlet NSButton *btnStop;
@@ -91,14 +92,35 @@
 @property (weak) IBOutlet NSTextField *textLogo;
 
 @property LlamarattiWrapper *llamaWrapper;
+@property NSString *modelName;
 
 // Methods
 - (void)toggleDragDropIcon:(BOOL)bDisplay;
+
 - (BOOL)isBusy;
 
-- (BOOL)loadAudioIntoContext:(NSURL *)urlAudio;
-- (BOOL)loadImageIntoContext:(NSURL *)urlImage;
+- (BOOL)loadAudioIntoContext:(NSURL *)urlAudio
+            useSecurityScope:(BOOL)useSecurityScope;
+
+- (BOOL)loadImageIntoContext:(NSURL *)urlImage
+            useSecurityScope:(BOOL)useSecurityScope;
+
 - (void)startTimedRippleFor:(CGFloat)time;
+
+- (void)updateGaugesWithTemp:(CGFloat)temp
+                   andCtxLen:(NSUInteger)ctxLen;
+
+- (BOOL)saveAdditionalArguments:(NSString *)args
+                   forModelName:(NSString *)modelName;
+
+- (BOOL)promptToReloadWithSettingsFromGaugeValues:(BOOL)useGaugeArgs
+                                andAdditionalArgs:(BOOL)useAdditionalArgs;
+
+- (NSString *)buildArgumentsForModelPair:(NSArray *)arrModelPair
+                   withUseAdditionalArgs:(BOOL)useAdditionalArgs
+                        withUseGaugeArgs:(BOOL)useGaugeArgs
+                            returnedTemp:(float *)temp
+                          returnedCtxLen:(uint32_t *)ctxLen;
 
 @end
 

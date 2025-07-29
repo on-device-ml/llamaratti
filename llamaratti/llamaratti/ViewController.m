@@ -25,6 +25,7 @@
 #import <CoreText/CoreText.h>
 
 #import "ViewController.h"
+#import "ArgsWindowController.h"
 
 #include "lr-mtmd-cli-callback.h"
 
@@ -38,38 +39,40 @@
 
 #import "RippleMetalView.h"
 #import "ViewAttachmentCell.h"
+#import "ArgManager.h"
 
 #pragma mark - String Constants
 
 // Title
-const NSString *gAppName=@"Llamaratti";
+NSString * const gAppName=@"Llamaratti";
 
 // Llama.cpp caches folder suffix
-const NSString *gLlamaCacheFolder=@"/Library/Caches/llama.cpp";
+NSString * const gLlamaCacheFolder=@"/Library/Caches/llama.cpp";
 
 // User Defaults
-const NSString *gPrefsLastModelPaths=@"lastModelPaths";
-const NSString *gPrefsLastModelBookmarks=@"lastModelBookmarks";
-const NSString *gPrefsLastPrompts=@"lastPrompts";
+NSString * const gPrefsLastModelPaths=@"lastModelPaths";
+NSString * const gPrefsLastModelBookmarks=@"lastModelBookmarks";
+NSString * const gPrefsLastPrompts=@"lastPrompts";
+NSString * const gPrefsLastArgs=@"lastArgs";
 
 // Fonts
-NSString *gFontNameLight=@"Avenir Next Ultra Light";
-NSString *gFontNameNormal=@"Avenir Next Regular";
-NSString *gFontNameMedium=@"Avenir Next Medium";
-NSString *gFontNameDemiBold=@"Avenir Next Demi Bold";
-NSString *gFontNameBold=@"Avenir Next Bold";
-NSString *gFontNameLogo=@"FerroRosso";
-NSString *gFontNameGauge=@"AvenirNextCondensed-Regular";
-NSString *gFontNameGaugeBold=@"Avenir Next Condensed Demi Bold";
-NSString *gFontFilenameLogo=@"FerroRosso";
+NSString * const gFontNameLight=@"Avenir Next Ultra Light";
+NSString * const gFontNameNormal=@"Avenir Next Regular";
+NSString * const gFontNameMedium=@"Avenir Next Medium";
+NSString * const gFontNameDemiBold=@"Avenir Next Demi Bold";
+NSString * const gFontNameBold=@"Avenir Next Bold";
+NSString * const gFontNameLogo=@"FerroRosso";
+NSString * const gFontNameGauge=@"AvenirNextCondensed-Regular";
+NSString * const gFontNameGaugeBold=@"Avenir Next Condensed Demi Bold";
+NSString * const gFontFilenameLogo=@"FerroRosso";
 
 // URLs
-NSString *gURLOnDeviceML=@"https://on-device-ml.org/";
-NSString *gURLLlamaModels=@"https://huggingface.co/collections/ggml-org/multimodal-ggufs-68244e01ff1f39e5bebeeedc";
+NSString * const gURLOnDeviceML=@"https://on-device-ml.org/";
+NSString * const gURLLlamaModels=@"https://github.com/ggml-org/llama.cpp/blob/master/docs/multimodal.md";
 
 // Placeholders for Prompt Field
-NSString *gPlaceholderPromptNoModel=@"Select \U000025B2 to load a model";
-NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U000025B6";
+NSString * const gPlaceholderPromptNoModel=@"Select \U000025B2 to load a model";
+NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U000025B6";
 
 #pragma mark - Constants
 
@@ -81,7 +84,6 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     BOOL _runningInSandbox;
     
     // Current model Information
-    NSString *_modelName;
     NSImage *_modelIcon;
     
     // System Information
@@ -92,7 +94,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     NSImage *_imgSupportsImages;
     NSImage *_imgSupportsAudio;
     
-    NSImage *_imgSelect;
+    NSImage *_imgModel;
+    NSImage *_imgArgs;
     NSImage *_imgGPU;
     NSImage *_imgClear;
     NSImage *_imgStop;
@@ -128,10 +131,13 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     BOOL _bFirstResponse;
     BOOL _bVerifyModels;
     BOOL _bSuppressGaugePrompts;
+    BOOL _addtlArgsApplied;
     
     NSMutableArray *_arrRippleViews;
     NSTimer *_rippleTimer;
     NSTimer *_gaugesMonitorTimer;
+    
+    ArgsWindowController *_argsWindow;
 }
 
 #pragma mark - ViewController
@@ -172,6 +178,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     _modelName=@"";
     _bVerifyModels=VERIFY_MODEL_HASHES;
     _bSuppressGaugePrompts=NO;
+    _addtlArgsApplied=NO;
     
     // Rippled Images
     _arrRippleViews=[NSMutableArray array];
@@ -187,14 +194,14 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     _fontSmallNormal=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_SMALL];
     _fontSmallBold=[NSFont fontWithName:gFontNameBold size:FONT_SIZE_SMALL];
     _fontSmallNormalDate=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_SMALL];
-    _fontNormal=[NSFont fontWithName:(NSString *)gFontNameNormal size:FONT_SIZE_MEDIUM];
+    _fontNormal=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_MEDIUM];
     _fontLargeDemiBold=[NSFont fontWithName:gFontNameDemiBold size:FONT_SIZE_LARGE];
-    _fontLogo=[NSFont fontWithName:(NSString *)gFontNameNormal size:FONT_SIZE_MEDIUM];
+    _fontLogo=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_MEDIUM];
     
-    _fontGaugeText=[NSFont fontWithName:(NSString *)gFontNameGauge size:FONT_SIZE_GAUGE_TEXT];
-    _fontGaugeTextBold=[NSFont fontWithName:(NSString *)gFontNameGaugeBold size:FONT_SIZE_GAUGE_TEXT];
-    _fontGaugeTitle=[NSFont fontWithName:(NSString *)gFontNameGauge size:FONT_SIZE_GAUGE_TITLE];
-    _fontGaugeTitleBold=[NSFont fontWithName:(NSString *)gFontNameGaugeBold size:FONT_SIZE_GAUGE_TITLE];
+    _fontGaugeText=[NSFont fontWithName:gFontNameGauge size:FONT_SIZE_GAUGE_TEXT];
+    _fontGaugeTextBold=[NSFont fontWithName:gFontNameGaugeBold size:FONT_SIZE_GAUGE_TEXT];
+    _fontGaugeTitle=[NSFont fontWithName:gFontNameGauge size:FONT_SIZE_GAUGE_TITLE];
+    _fontGaugeTitleBold=[NSFont fontWithName:gFontNameGaugeBold size:FONT_SIZE_GAUGE_TITLE];
     
     // Colors
     _disabledColor=[NSColor disabledControlTextColor];
@@ -356,7 +363,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     // --------------------------------------------------------------------------------
     // Image View - Logo
     // --------------------------------------------------------------------------------
-    [_textLogo setStringValue:(NSString *)gAppName];
+    [_textLogo setStringValue:gAppName];
     [_textLogo setAlignment:NSTextAlignmentLeft];
     [_textLogo setFont:_fontLogo];
     [_textLogo setTextColor:[NSColor colorNamed:@"LogoTextColor"]];
@@ -372,8 +379,11 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     _imgSupportsAudio=[NSImage imageWithSystemSymbolName:@"waveform"
                                 accessibilityDescription:nil];
     
-    _imgSelect=[NSImage imageWithSystemSymbolName:@"arrowtriangle.up.fill"
-                         accessibilityDescription:nil];
+    _imgModel=[NSImage imageWithSystemSymbolName:@"arrowtriangle.up.fill"
+                        accessibilityDescription:nil];
+    
+    _imgArgs=[NSImage imageWithSystemSymbolName:@"gearshape.fill"
+                       accessibilityDescription:nil];
     
     _imgGPU=[NSImage imageWithSystemSymbolName:@"chart.bar.fill"
                       accessibilityDescription:nil];
@@ -388,20 +398,20 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
                      accessibilityDescription:nil];
     
     // Buttons - Tooltips
-    [_btnModel setToolTip:@"Load Model/Projection"];
-    [_btnGPU setToolTip:@"Show System Stats"];
-    [_btnClear setToolTip:@"Clear Chat History"];
-    [_btnStop setToolTip:@"Stop Generating"];
-    [_btnGo setToolTip:@"Start Generating"];
+    [_btnModel setToolTip:@"Load model/projection"];
+    [_btnGPU setToolTip:@"Show system stats"];
+    [_btnClear setToolTip:@"Reload current model with defaults"];
+    [_btnStop setToolTip:@"Stop generating"];
+    [_btnGo setToolTip:@"Start generating"];
     
     // Disable all capabilities initially
-    [self toggleMultimodalSupportWithText:NO
-                                andImages:NO
-                                 andAudio:NO];
+    [self toggleMultimodalSupportWithImages:NO
+                                   andAudio:NO];
     
     // Disable controls initially
     [self toggleControls:NO
          withStopEnabled:NO
+         withArgsEnabled:NO
        withSelectEnabled:YES
        withGaugesEnabled:NO];
     
@@ -467,8 +477,11 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         [imgBtn setTemplate:YES];
         [_imgViewAudio setImage:imgBtn];
         
-        imgBtn=[_imgSelect imageTintedWithColor:colorBtn];
+        imgBtn=[_imgModel imageTintedWithColor:colorBtn];
         [_btnModel setImage:imgBtn];
+        
+        imgBtn=[_imgArgs imageTintedWithColor:(_addtlArgsApplied?_statusWarnColor:colorBtn)];
+        [_btnArgs setImage:imgBtn];
         
         imgBtn=[_imgGPU imageTintedWithColor:colorBtn];
         [_btnGPU setImage:imgBtn];
@@ -494,8 +507,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
  * @return The status of the operation
  */
 - (BOOL)loadModelPair:(NSArray *)arrModelPair
-             withTemp:(float)temp
-           withCtxLen:(uint32_t)ctxLen {
+    useAdditionalArgs:(BOOL)useAdditionalArgs
+         useGaugeArgs:(BOOL)useGaugeArgs {
     
     // Did we get the parameters we need?
     if ( ![Utils isValidModelPair:arrModelPair] ) {
@@ -505,15 +518,15 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     // Disable Controls
     [self toggleControls:NO
          withStopEnabled:NO
+         withArgsEnabled:NO
        withSelectEnabled:NO
        withGaugesEnabled:NO];
     
     // Hide the drag/drop icon
     [self toggleDragDropIcon:NO];
     
-    [self toggleMultimodalSupportWithText:NO
-                                andImages:NO
-                                 andAudio:NO];
+    [self toggleMultimodalSupportWithImages:NO
+                                   andAudio:NO];
     
     [self toggleAnimation:YES];
     
@@ -536,13 +549,20 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         DTimer *dt=[DTimer timerWithFunc:safeNSSFromChar(__func__)
                                  andDesc:nil];
         
-        // Can we initialize our wrapper?
+        // Build Arguments String
+        float temp=LLAMA_DEFAULT_TEMP;
+        uint32_t ctxLen=LLAMA_DEFAULT_CTXLEN;
+        NSString *finalArgs = [self buildArgumentsForModelPair:arrModelPair
+                                         withUseAdditionalArgs:useAdditionalArgs
+                                              withUseGaugeArgs:useGaugeArgs
+                                                  returnedTemp:&temp
+                                                returnedCtxLen:&ctxLen];
+
+        // Can we create the llama wrapper?
         self->_llamaWrapper=[LlamarattiWrapper wrapperWithModelURL:urlModel
                                                       andMMProjURL:urlMMProj
+                                                 andAdditionalArgs:finalArgs
                                                       verifyModels:self->_bVerifyModels
-                                                        contextLen:ctxLen
-                                                              temp:temp
-                                                              seed:LLAMA_DEFAULT_SEED
                                                             target:self
                                                           selector:@selector(llamaEventsSelector:)];
         [self toggleAnimation:NO];
@@ -552,6 +572,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
             // Disable Controls
             [self toggleControls:NO
                  withStopEnabled:NO
+                 withArgsEnabled:YES
                withSelectEnabled:YES
                withGaugesEnabled:YES];
             
@@ -578,8 +599,12 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         // Enable controls
         [self toggleControls:YES
              withStopEnabled:NO
+             withArgsEnabled:YES
            withSelectEnabled:YES
            withGaugesEnabled:YES];
+        
+        // Apply additional arguments?
+        [self updateArgsBtnState];
         
         // Clear fields
         [self clearTextFields:NO
@@ -596,11 +621,101 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         [self setPromptPlaceholder:gPlaceholderPromptAsk];
         
         // Update our multimedia support
-        [self toggleMultimodalSupportWithText:YES
-                                    andImages:[self->_llamaWrapper visionSupported]
-                                     andAudio:[self->_llamaWrapper audioSupported]];
+        [self toggleMultimodalSupportWithImages:[self->_llamaWrapper visionSupported]
+                                       andAudio:[self->_llamaWrapper audioSupported]];
     }];
     return YES;
+}
+
+/**
+ * @brief Updates the color of the Args button based on available arguments
+ *
+ */
+- (void)updateArgsBtnState {
+    
+    NSOperationQueue *omq=[NSOperationQueue mainQueue];
+    [omq addOperationWithBlock:^{
+        
+        NSImage *imgBtn=nil;
+        if ( self->_addtlArgsApplied ) {
+            imgBtn=[self->_imgArgs imageTintedWithColor:self->_statusWarnColor];
+            [self->_btnArgs setToolTip:@"Additional Argmuments Applied"];
+            
+        } else {
+            imgBtn=[self->_imgArgs imageTintedWithColor:self->_statusColor];
+            [self->_btnArgs setToolTip:@"Add Additional Arguments"];
+         }
+        [self->_btnArgs setImage:imgBtn];
+
+    }];
+}
+
+/**
+ * @brief Builds a command line argument string for llama.cpp based on various sources
+ *
+ */
+- (NSString *)buildArgumentsForModelPair:(NSArray *)arrModelPair
+                   withUseAdditionalArgs:(BOOL)useAdditionalArgs
+                        withUseGaugeArgs:(BOOL)useGaugeArgs
+                            returnedTemp:(float *)temp
+                          returnedCtxLen:(uint32_t *)ctxLen {
+    
+    // Did we get the parameters we need?
+    if ( ![Utils isValidModelPair:arrModelPair] || !temp || !ctxLen ) {
+        return nil;
+    }
+    
+    float finalTemp=*temp;
+    uint32_t finalCtxLen=*ctxLen;
+    
+    // Do we have default arguments for this model?
+    ArgManager *am = [[ArgManager alloc] init];
+    ModelInfo *mi=[LlamarattiWrapper modelInfoForFileURL:[arrModelPair firstObject]];
+    if ( mi ) {
+        finalTemp = [mi temp];
+        finalCtxLen = [mi ctxLen];
+        if ( isValidNSString([mi additionalArgs]) ) {
+            [am addArgumentsFromString:[mi additionalArgs]];
+        }
+    }
+    
+    // Were we asked to apply any additional arguments?
+    self->_addtlArgsApplied=NO;
+    if ( useAdditionalArgs ) {
+        
+        // Yes, do we actually have any?
+        NSString *additionalArgs = [self getAdditionalArgumentsForModelName:_modelName];
+        if ( isValidNSString(additionalArgs) ) {
+            
+            [am addArgumentsFromString:additionalArgs];
+            if ( [am hasOption:gArgTemp] ) {
+                finalTemp = [[am getOption:gArgTemp] floatValue];
+            }
+            if ( [am hasOption:gArgCtxSize] ) {
+                finalCtxLen = [[am getOption:gArgCtxSize] intValue];
+            }
+            self->_addtlArgsApplied=YES;
+        }
+    }
+    
+    // Were we asked to apply the current gauge values?
+    if ( useGaugeArgs ) {
+        finalTemp = [self->_sliderLLMTemp value];
+        finalCtxLen = [self->_sliderCtxLen value];
+    }
+    
+    // Add arguments
+    [am setOption:[NSString stringWithFormat:@"%0.1f",finalTemp]
+           forKey:gArgTemp];
+    [am setOption:[NSString stringWithFormat:@"%u",finalCtxLen]
+           forKey:gArgCtxSize];
+    
+    // Return values
+    *temp=finalTemp;
+    *ctxLen=finalCtxLen;
+    NSString *finalArgs = [am toString];
+    
+    return finalArgs;
 }
 
 /**
@@ -616,43 +731,18 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         return NO;
     }
     
-    float temp=0.0f;
-    uint32_t ctxLen=0;
-    [self getParamsForModelPair:arrModelPair
-                     fromGauges:NO
-                   returnedTemp:&temp
-                 returnedCtxLen:&ctxLen];
-    
     return [self loadModelPair:arrModelPair
-                      withTemp:temp
-                    withCtxLen:ctxLen];
-}
-
-/**
- * @brief Loads the last used model pair with custom params
- *
- * @return The status of the operation
- */
-- (BOOL)loadLastModelPairWithTemp:(float)temp
-                        andCtxLen:(uint32_t)ctxLen {
-    
-    // Do we have a previously saved model pair?
-    NSArray *arrModelPair=[self getLastUsedModelPair];
-    if ( ![Utils isValidModelPair:arrModelPair] ) {
-        return NO;
-    }
-    
-    return [self loadModelPair:arrModelPair
-                      withTemp:temp
-                    withCtxLen:ctxLen];
+             useAdditionalArgs:NO
+                  useGaugeArgs:NO];
 }
 
 /**
  * @brief Asks the user if they want to reload the current model with settings
- * from the gauges
+ * from the gauges and any additional arguments
  *
  */
-- (BOOL)promptToReloadWithSettings {
+- (BOOL)promptToReloadWithSettingsFromGaugeValues:(BOOL)useGaugeArgs
+                                andAdditionalArgs:(BOOL)useAdditionalArgs {
     
     // Yes, confirm apply changes?
     if ( ![Utils showAlertWithTitle:@"Apply New Settings?"
@@ -670,58 +760,9 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         return NO;
     }
     
-    // Yes, get model parameters from gauges
-    float temp=0.0f;
-    uint32_t ctxLen=0;
-    [self getParamsForModelPair:arrModelPair
-                     fromGauges:YES
-                   returnedTemp:&temp
-                 returnedCtxLen:&ctxLen];
-
     return [self loadModelPair:arrModelPair
-                      withTemp:temp
-                    withCtxLen:ctxLen];
-}
-
-/**
- * @brief Retrieves the parameters for the specified model pair
- *
- * @param arrModelPair - the model pair
- * @param fromGauges - whether to read the parameters from the gauges
- * @param temp - the returned temperature
- * @param ctxLen - the returned context length
- */
-- (void)getParamsForModelPair:(NSArray *)arrModelPair
-                   fromGauges:(BOOL)fromGauges
-                 returnedTemp:(float *)temp
-               returnedCtxLen:(uint32_t *)ctxLen {
-    
-    // Did we get the parameters we need?
-    if ( ![Utils isValidModelPair:arrModelPair] ||
-          temp == NULL ||
-          ctxLen == NULL ) {
-        return;
-    }
-    
-    // Set defaults
-    *temp=LLAMA_DEFAULT_TEMP;
-    *ctxLen=LLAMA_DEFAULT_CTXLEN;
-
-    // Get parameters from the gauges?
-    if ( fromGauges ) {
-        // Yes, ...
-        *temp=[_sliderLLMTemp value];
-        *ctxLen=[_sliderCtxLen value];
-
-    } else {
-        // No, is this a known model?
-        ModelInfo *mi=[LlamarattiWrapper modelInfoForFileURL:[arrModelPair firstObject]];
-        if ( mi ) {
-            // Yes, use this models defaults
-            *temp=[mi temp];
-            *ctxLen=[mi ctxLen];
-        }
-    }
+             useAdditionalArgs:useAdditionalArgs
+                  useGaugeArgs:useGaugeArgs];
 }
 
 #pragma mark - User Interface - Fields
@@ -788,42 +829,46 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
 /**
  * @brief Selectively enable/disable UI controls
  *
- * @param bEnabled - enable/disable all other controls?
- * @param bStopEnabled - enable/disable the Stop button?
- * @param bSelectEnabled - enable/disable the Select Model button?
+ * @param enabled - enable/disable all other controls?
+ * @param stopEnabled - enable/disable the Stop button?
+ * @param argsEnabled - enable/disable the Args button?
+ * @param selectEnabled - enable/disable the Select Model button?
+ * @param gaugesEnabled - enable/disable the Guages?
  *
  */
-- (IBAction)toggleControls:(BOOL)bEnabled
-           withStopEnabled:(BOOL)bStopEnabled
-         withSelectEnabled:(BOOL)bSelectEnabled
-         withGaugesEnabled:(BOOL)bGaugesEnabled {
+- (IBAction)toggleControls:(BOOL)enabled
+           withStopEnabled:(BOOL)stopEnabled
+           withArgsEnabled:(BOOL)argsEnabled
+         withSelectEnabled:(BOOL)selectEnabled
+         withGaugesEnabled:(BOOL)gaugesEnabled {
     
     NSOperationQueue *omq=[NSOperationQueue mainQueue];
     [omq addOperationWithBlock:^{
         
         // Gauge - LLM TEMP
         [self setGaugeColorForLLMTemp:[self->_sliderLLMTemp value]
-                              enabled:bGaugesEnabled];
-        [self->_sliderLLMTemp setEnabled:bGaugesEnabled];
-        [self->_textLLMTempTitle setEnabled:bGaugesEnabled];
-        [self->_textLLMTemp setEnabled:bGaugesEnabled];
+                              enabled:gaugesEnabled];
+        [self->_sliderLLMTemp setEnabled:gaugesEnabled];
+        [self->_textLLMTempTitle setEnabled:gaugesEnabled];
+        [self->_textLLMTemp setEnabled:gaugesEnabled];
 
         // Gauge - CTX LEN
         [self setGaugeColorForLLMCtxLen:[self->_sliderCtxLen value]
-                                enabled:bGaugesEnabled];
-        [self->_sliderCtxLen setEnabled:bGaugesEnabled];
-        [self->_textCtxLenTitle setEnabled:bGaugesEnabled];
-        [self->_textCtxLen setEnabled:bGaugesEnabled];
+                                enabled:gaugesEnabled];
+        [self->_sliderCtxLen setEnabled:gaugesEnabled];
+        [self->_textCtxLenTitle setEnabled:gaugesEnabled];
+        [self->_textCtxLen setEnabled:gaugesEnabled];
 
         // Fields
-        [self->_textPrompt setEditable:bEnabled];
-        [self->_textResponse setDragAccepted:bEnabled];
+        [self->_textPrompt setEditable:enabled];
+        [self->_textResponse setDragAccepted:enabled];
         
         // Buttons
-        [self->_btnClear setEnabled:bEnabled];
-        [self->_btnGo setEnabled:bEnabled];
-        [self->_btnStop setEnabled:bStopEnabled];
-        [self->_btnModel setEnabled:bSelectEnabled];
+        [self->_btnModel setEnabled:selectEnabled];
+        [self->_btnArgs setEnabled:argsEnabled];
+        [self->_btnClear setEnabled:enabled];
+        [self->_btnStop setEnabled:stopEnabled];
+        [self->_btnGo setEnabled:enabled];
     }];
 }
 
@@ -833,14 +878,12 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
  * Indicators on the UI are used to indicate the types of media that
  * the currently loaded model pair supports
  *
- * @param bText - the current model supports text?
- * @param bImageSupport - whether the current model supports images
- * @param bAudioSupport - whether the current model supports audio
+ * @param imagesSupported - whether the current model supports images
+ * @param audioSupported - whether the current model supports audio
  *
  */
-- (IBAction)toggleMultimodalSupportWithText:(BOOL)bText
-                                  andImages:(BOOL)bImageSupport
-                                   andAudio:(BOOL)bAudioSupport {
+- (IBAction)toggleMultimodalSupportWithImages:(BOOL)imagesSupported
+                                     andAudio:(BOOL)audioSupported {
     
     NSOperationQueue *omq=[NSOperationQueue mainQueue];
     [omq addOperationWithBlock:^{
@@ -849,15 +892,15 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         NSColor *colorSupport=[NSColor colorNamed:@"MediaSupportedColor"];
         NSColor *colorNoSupport=[NSColor colorNamed:@"MediaNotSupportedColor"];
         
-        [self->_imgViewImages setContentTintColor:bImageSupport?colorSupport:colorNoSupport];
-        NSString *strTip=[NSString stringWithFormat:@"Images %@Supported",bImageSupport?@"":@"Not "];
+        [self->_imgViewImages setContentTintColor:imagesSupported?colorSupport:colorNoSupport];
+        NSString *strTip=[NSString stringWithFormat:@"Images %@Supported",imagesSupported?@"":@"Not "];
         [self->_imgViewImages setToolTip:strTip];
         
-        [self->_imgViewAudio setContentTintColor:bAudioSupport?colorSupport:colorNoSupport];
-        strTip=[NSString stringWithFormat:@"Audio %@Supported",bAudioSupport?@"":@"Not "];
+        [self->_imgViewAudio setContentTintColor:audioSupported?colorSupport:colorNoSupport];
+        strTip=[NSString stringWithFormat:@"Audio %@Supported",audioSupported?@"":@"Not "];
         [self->_imgViewAudio setToolTip:strTip];
 
-        [self toggleDragDropIcon:bImageSupport|bAudioSupport];
+        [self toggleDragDropIcon:imagesSupported|audioSupported];
     }];
 }
 
@@ -903,6 +946,26 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
 - (IBAction)btnModel:(id)sender {
     
     [self showModelLoadOptionsMenu];
+}
+
+/**
+ * @brief Displays the model load options menu
+ *
+ * @param sender - unused
+ *
+ */
+- (IBAction)btnArgs:(id)sender {
+    
+    // Do we have a previously saved model pair?
+    NSArray *arrModelPair=[self getLastUsedModelPair];
+    if ( ![Utils isValidModelPair:arrModelPair] ) {
+        return;
+    }
+
+    _argsWindow = [[ArgsWindowController alloc] init];
+    [_argsWindow setVcParent:self];
+    [_argsWindow setArrModelPair:arrModelPair];
+    [_argsWindow showWindow:self];
 }
 
 /**
@@ -982,18 +1045,11 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     NSArray *arrModelPair=[sender representedObject];
     if ( [Utils isValidModelPair:arrModelPair] ) {
         
-        // Yes, get model parameters
-        float temp=0.0f;
-        uint32_t ctxLen=0;
-        [self getParamsForModelPair:arrModelPair
-                         fromGauges:NO
-                       returnedTemp:&temp
-                     returnedCtxLen:&ctxLen];
-        
         // Can we load the model pair?
         if ( ![self loadModelPair:arrModelPair
-                        withTemp:temp
-                       withCtxLen:ctxLen] ) {
+                useAdditionalArgs:NO
+                     useGaugeArgs:NO] ) {
+            
             return;
         }
     }
@@ -1048,7 +1104,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
  *
  */
 - (IBAction)btnDownload:(id)sender {
-    [Utils openURL:[NSURL URLWithString:(NSString *)gURLLlamaModels]];
+    [Utils openURL:[NSURL URLWithString:gURLLlamaModels]];
 }
 
 /**
@@ -1079,8 +1135,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     }
     
     // Do they want to proceed?
-    if ( ![Utils showAlertWithTitle:@"Clear Chat History?"
-                         andMessage:nil
+    if ( ![Utils showAlertWithTitle:@"Reload with Defaults?"
+                         andMessage:@"This will re-load the current model with default settings"
                            urlTitle:nil
                                 url:nil
                             buttons:@[@"Yes",@"Cancel"]] ) {
@@ -1130,7 +1186,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     // Do we have more than just whitespace?
     NSMutableCharacterSet *wsChars=[NSMutableCharacterSet whitespaceCharacterSet];
     [wsChars formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
-    prompt=[prompt stringByTrimmingCharactersInSet:wsChars];
+    prompt=[Utils stripWhitespace:prompt];
     if ( !isValidNSString(prompt) ) {
         return nil;
     }
@@ -1179,6 +1235,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     // Disable controls
     [self toggleControls:NO
          withStopEnabled:YES
+         withArgsEnabled:NO
        withSelectEnabled:NO
        withGaugesEnabled:NO];
     
@@ -1243,6 +1300,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         
         [self toggleControls:YES
              withStopEnabled:NO
+             withArgsEnabled:YES
            withSelectEnabled:YES
            withGaugesEnabled:YES];
         
@@ -1258,7 +1316,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
  */
 - (void)textLogoClicked:(NSClickGestureRecognizer *)gesture {
     
-    [Utils openURL:[NSURL URLWithString:(NSString *)gURLOnDeviceML]];
+    [Utils openURL:[NSURL URLWithString:gURLOnDeviceML]];
 }
 
 #pragma mark - User Interface - Misc
@@ -1325,7 +1383,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if ( isValidFileNSURL(urlHomeDirectory) ) {
         
         // Yes, do we have a previously created Llama caches folder?
-        urlLlamaCacheFolder=[urlHomeDirectory URLByAppendingPathComponent:(NSString *)gLlamaCacheFolder];
+        urlLlamaCacheFolder=[urlHomeDirectory URLByAppendingPathComponent:gLlamaCacheFolder];
         NSFileManager *fm=[NSFileManager defaultManager];
         BOOL isFolder=NO;
         if ( [fm fileExistsAtPath:[urlLlamaCacheFolder path]
@@ -1395,7 +1453,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowsMultipleSelection:YES];
     [openPanel setDirectoryURL:urlFolder];
-    UTType *type = [UTType typeWithFilenameExtension:(NSString *)gGGUFExt];
+    UTType *type = [UTType typeWithFilenameExtension:gGGUFExt];
     openPanel.allowedContentTypes = @[type];
     
     [openPanel beginSheetModalForWindow:self.view.window
@@ -1433,18 +1491,10 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
                 return;
             }
             
-            // Yes, get model parameters
-            float temp=0.0f;
-            uint32_t ctxLen=0;
-            [self getParamsForModelPair:arrModelPair
-                             fromGauges:NO
-                           returnedTemp:&temp
-                         returnedCtxLen:&ctxLen];
-             
-            // Can we load the model pair?
+            // Yes, can we load the model pair?
             if ( ![self loadModelPair:arrModelPair
-                             withTemp:temp
-                           withCtxLen:ctxLen] ) {
+                    useAdditionalArgs:NO
+                         useGaugeArgs:NO] ) {
                 
                 // No, message & outta here...
                 NSURL *urlModel=arrModelPair[0];
@@ -1797,7 +1847,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
  *
  * @return the status of the operation
  */
-- (BOOL)loadAudioIntoContext:(NSURL *)urlAudio {
+- (BOOL)loadAudioIntoContext:(NSURL *)urlAudio
+            useSecurityScope:(BOOL)useSecurityScope {
     
     // Do we have an initialized wrapper?
     if ( !self->_llamaWrapper ) {
@@ -1809,15 +1860,24 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         return NO;
     }
     
+    // Can we start accessing this security-scoped file?
+    if ( useSecurityScope ) {
+        BOOL bSuccess = [Utils startAccessingSecurityScopedURLs:@[urlAudio]];
+        if ( !bSuccess ) {
+            return NO;
+        }
+    }
+
     // Can we load the audio into our context?
-    if ( [_llamaWrapper loadMedia:urlAudio] == false ) {
+    if ( [_llamaWrapper loadMedia:urlAudio
+                 useSecurityScope:useSecurityScope] == false ) {
         return NO;
     }
     
     // Yes, append the image to the response window
     NSURL *urlAudioImage=[[NSBundle mainBundle] URLForImageResource:@"audio"];
     [self appendUserImageToResponse:urlAudioImage
-                   useSecurityScope:NO
+                   useSecurityScope:useSecurityScope
                      withImageWidth:RESPONSE_IMAGE_AUDIO_SIZE];
     
     return YES;
@@ -1830,7 +1890,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
  *
  * @return the status of the operation
  */
-- (BOOL)loadImageIntoContext:(NSURL *)urlImage {
+- (BOOL)loadImageIntoContext:(NSURL *)urlImage
+            useSecurityScope:(BOOL)useSecurityScope {
     
     // Do we have an initialized wrapper?
     if ( !self->_llamaWrapper ) {
@@ -1843,13 +1904,14 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     }
     
     // Can we load the image into our context?
-    if ( [_llamaWrapper loadMedia:urlImage] == false ) {
+    if ( [_llamaWrapper loadMedia:urlImage
+                 useSecurityScope:useSecurityScope] == false ) {
         return NO;
     }
     
     // Append the image
     [self appendUserImageToResponse:urlImage
-                   useSecurityScope:YES
+                   useSecurityScope:useSecurityScope
                      withImageWidth:RESPONSE_IMAGE_SIZE];
     
     return YES;
@@ -2294,7 +2356,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if ( ![_sliderLLMTemp isTracking] ) {
         
         // Yes, confirm changes
-        [self promptToReloadWithSettings];
+        [self promptToReloadWithSettingsFromGaugeValues:YES
+                                      andAdditionalArgs:YES];
     }
 }
 
@@ -2338,7 +2401,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if ( ![_sliderCtxLen isTracking] ) {
         
         // Yes, confirm changes
-        [self promptToReloadWithSettings];
+        [self promptToReloadWithSettingsFromGaugeValues:YES
+                                      andAdditionalArgs:YES];
     }
 }
 
@@ -2669,6 +2733,8 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
 
     [self clearRecentlyUsedPrompts];
     
+    [self clearAllAdditionalArguments];
+    
     // Add: Other stuff to reset...
 }
 
@@ -2691,12 +2757,12 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if ( _runningInSandbox ) {
         // Yes, clear Model Bookmarks
         [ud setURL:nil
-            forKey:(NSString *)gPrefsLastModelBookmarks];
+            forKey:gPrefsLastModelBookmarks];
         
     } else {
         // No, clear Model Paths
         [ud setURL:nil
-            forKey:(NSString *)gPrefsLastModelPaths];
+            forKey:gPrefsLastModelPaths];
     }
     [ud synchronize];
     
@@ -2726,7 +2792,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if (_runningInSandbox) {
         
         // Yes, can we read the model bookmarks?
-        NSArray *bookmarkPairs = [ud arrayForKey:(NSString *)gPrefsLastModelBookmarks];
+        NSArray *bookmarkPairs = [ud arrayForKey:gPrefsLastModelBookmarks];
         if (!isValidNSArray(bookmarkPairs)) {
             return nil;
         }
@@ -2741,7 +2807,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     } else {
         
         // No, can we read the model paths?
-        NSArray *modelPaths = [ud arrayForKey:(NSString *)gPrefsLastModelPaths];
+        NSArray *modelPaths = [ud arrayForKey:gPrefsLastModelPaths];
         if (!isValidNSArray(modelPaths)) {
             return nil;
         }
@@ -2797,26 +2863,26 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if (_runningInSandbox) {
         
         // Yes, can we get the model bookmarks?
-        NSArray *bookmarkPairs = [ud arrayForKey:(NSString *)gPrefsLastModelBookmarks];
+        NSArray *bookmarkPairs = [ud arrayForKey:gPrefsLastModelBookmarks];
         if ( !isValidNSArray(bookmarkPairs) ) {
             return NO;
         }
         NSMutableArray *updatedBookmarkPairs = [bookmarkPairs mutableCopy];
         [updatedBookmarkPairs removeObjectAtIndex:index];
         [ud setObject:updatedBookmarkPairs
-               forKey:(NSString *)gPrefsLastModelBookmarks];
+               forKey:gPrefsLastModelBookmarks];
         
     } else {
         
         // No, can we get the model paths?
-        NSArray *modelPaths = [ud arrayForKey:(NSString *)gPrefsLastModelPaths];
+        NSArray *modelPaths = [ud arrayForKey:gPrefsLastModelPaths];
         if ( !isValidNSArray(modelPaths) ) {
             return NO;
         }
         NSMutableArray *updatedModelPaths = [modelPaths mutableCopy];
         [updatedModelPaths removeObjectAtIndex:index];
         [ud setObject:updatedModelPaths
-               forKey:(NSString *)gPrefsLastModelPaths];
+               forKey:gPrefsLastModelPaths];
     }
     [ud synchronize];
     return YES;
@@ -2845,7 +2911,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if (_runningInSandbox) {
         
         // Yes, can we get the model bookmarks?
-        NSArray *arrModelBookmarkPairs = [ud arrayForKey:(NSString *)gPrefsLastModelBookmarks];
+        NSArray *arrModelBookmarkPairs = [ud arrayForKey:gPrefsLastModelBookmarks];
         if (!isValidNSArray(arrModelBookmarkPairs)){
             return nil;
         }
@@ -2918,7 +2984,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     if (_runningInSandbox) {
 
         // Yes, save as model bookmarks
-        NSArray *existingBookmarks = [ud arrayForKey:(NSString *)gPrefsLastModelBookmarks];
+        NSArray *existingBookmarks = [ud arrayForKey:gPrefsLastModelBookmarks];
         NSMutableArray *mutableBookmarks = isValidNSArray(existingBookmarks) ? [existingBookmarks mutableCopy] : [NSMutableArray array];
         
         NSArray *recentPairs = [self getRecentlyUsedModelPairs];
@@ -2945,12 +3011,12 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         
         // Add and save to prefs
         [mutableBookmarks addObject:bookmarkModelPair];
-        [ud setObject:mutableBookmarks forKey:(NSString *)gPrefsLastModelBookmarks];
+        [ud setObject:mutableBookmarks forKey:gPrefsLastModelBookmarks];
         
     } else {
         
         // No, save as model paths
-        NSArray *existingPairs = [ud arrayForKey:(NSString *)gPrefsLastModelPaths];
+        NSArray *existingPairs = [ud arrayForKey:gPrefsLastModelPaths];
         NSMutableArray *mutablePairs = isValidNSArray(existingPairs) ? [existingPairs mutableCopy] : [NSMutableArray array];
         
         NSArray *newModelPair = @[[arrModelPair[0] path], [arrModelPair[1] path]];
@@ -2969,7 +3035,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
         
         // Add and save to prefs
         [mutablePairs addObject:[newModelPair mutableCopy]];
-        [ud setObject:mutablePairs forKey:(NSString *)gPrefsLastModelPaths];
+        [ud setObject:mutablePairs forKey:gPrefsLastModelPaths];
     }
 
     [ud synchronize];
@@ -3096,7 +3162,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     
     // Do we have any previously saved prompts?
     NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
-    NSArray *arrLastPrompts=(NSMutableArray *)[ud arrayForKey:(NSString *)gPrefsLastPrompts];
+    NSArray *arrLastPrompts=(NSMutableArray *)[ud arrayForKey:gPrefsLastPrompts];
     if ( !isValidNSArray(arrLastPrompts) ) {
         return [NSMutableArray array];
     }
@@ -3136,7 +3202,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     // Do we have any previously saved prompts in prefs?
     NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
     NSMutableArray *arrPrompts;
-    NSArray *arrSavedPrompts=(NSMutableArray *)[ud arrayForKey:(NSString *)gPrefsLastPrompts];
+    NSArray *arrSavedPrompts=(NSMutableArray *)[ud arrayForKey:gPrefsLastPrompts];
     if ( isValidNSArray(arrSavedPrompts) ) {
         
         // Yes, is our current prompt already in there?
@@ -3153,7 +3219,7 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     // Append this prompt as the most recently used
     [arrPrompts addObject:prompt];
     [ud setObject:arrPrompts
-           forKey:(NSString *)gPrefsLastPrompts];
+           forKey:gPrefsLastPrompts];
     [ud synchronize];
     
     return YES;
@@ -3168,7 +3234,88 @@ NSString *gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U
     
     NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
     [ud setURL:nil
-        forKey:(NSString *)gPrefsLastPrompts];
+        forKey:gPrefsLastPrompts];
+    [ud synchronize];
+    
+    return YES;
+}
+
+#pragma mark - NSUserDefaults - Additional Arguments
+
+/**
+ * @brief Retrieves recently used arguments for the specified model name from NSUserDefaults
+ *
+ * @return An NSString representing the recently used arguments for the specified model name
+ *
+ */
+- (NSString *)getAdditionalArgumentsForModelName:(NSString *)modelName {
+    
+    // Did we get the parameters we need?
+    if ( !isValidNSString(modelName) ) {
+        return nil;
+    }
+    
+    // Do we have any previously saved arguments?
+    NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dictLastArgs=[ud objectForKey:gPrefsLastArgs];
+    if ( !isValidNSDictionary(dictLastArgs) ) {
+        return @"";
+    }
+    NSString *lastArgs=[dictLastArgs objectForKey:modelName];
+    return lastArgs;
+}
+
+/**
+ * @brief Saves the specified last used arguments for the specified model name to NSUserDefaults
+ *
+ * @param args the arguments to save
+ * @param modelName the name of the model
+ *
+ * @return the status of the operation
+ *
+ */
+- (BOOL)saveAdditionalArguments:(NSString *)args
+                   forModelName:(NSString *)modelName {
+    
+    // Did we get the parameters we need?
+    if ( !args || !isValidNSString(modelName) ) {
+        return NO;
+    }
+
+    // Remove leading/trailing whitespace
+    args = [Utils stripWhitespace:args];
+    
+    // Can we get the current arguments for all models?
+    NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dictArgs=[ud objectForKey:gPrefsLastArgs];
+    if ( !isValidNSDictionary(dictArgs) ) {
+        dictArgs=[NSMutableDictionary dictionary];
+    } else {
+        dictArgs=[dictArgs mutableCopy];
+    }
+    
+    // Update the specific arguments for this model name
+    [dictArgs setObject:args
+                 forKey:modelName];
+    
+    // Save the dictionary back to NSUserDefaults
+    [ud setObject:dictArgs
+           forKey:gPrefsLastArgs];
+    [ud synchronize];
+    
+    return YES;
+}
+
+/**
+ * @brief Clears all additional arguments from NSUserDefaults
+ *
+ * @return the status of the operation
+ */
+- (BOOL)clearAllAdditionalArguments {
+    
+    NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
+    [ud setURL:nil
+        forKey:gPrefsLastArgs];
     [ud synchronize];
     
     return YES;

@@ -88,7 +88,8 @@
 
 + (BOOL)getBatteryTemperature:(CGFloat *)temp;
 
-+ (BOOL)removeTempFiles:(NSMutableArray *)arrFiles
-       matchingTemplate:(NSString  *)templ;
++ (BOOL)removeTempFilesMatchingTemplate:(NSString *)templ;
+
++ (NSString *)stripWhitespace:(NSString *)str;
 
 @end

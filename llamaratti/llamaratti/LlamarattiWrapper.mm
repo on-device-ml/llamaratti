@@ -40,6 +40,12 @@
 
 #pragma mark Globals
 
+// LLM temperature
+const float LLAMA_DEFAULT_TEMP = 0.2f;
+
+// LLM context length
+const uint32_t LLAMA_DEFAULT_CTXLEN = 2048;
+
 // llama.cpp Arguments
 NSString * const gArgModel=@"model";
 NSString * const gArgMMProj=@"mmproj";
@@ -47,13 +53,13 @@ NSString * const gArgTemp=@"temp";
 NSString * const gArgCtxSize=@"ctx-size";
 
 // Extension
-NSString * const gGGUFExt=@"GGUF";
+NSString *gGGUFExt=@"GGUF";
 
 // Multimedia projection files
-NSString * const gMMProj=@"mmproj";
+NSString *gMMProj=@"mmproj";
 
 // Template for temporary files
-NSString * const gMediaTemplate=@"lr-media-";
+NSString *gMediaTemplate=@"lr-media-";
 
 // "Known" model/projection pairs
 NSArray *gArrModelInfo;

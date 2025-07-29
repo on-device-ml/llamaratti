@@ -22,22 +22,23 @@
 #import "Shared.h"
 #import "ModelInfo.h"
 
-// Llama.cpp Arguments
+// llama.cpp Arguments
 extern NSString * const gArgModel;
 extern NSString * const gArgMMProj;
 extern NSString * const gArgTemp;
 extern NSString * const gArgCtxSize;
 
-extern NSString * const gGGUFExt;
+extern NSString *gGGUFExt;
 
-extern NSString * const gMMProj;
-extern NSString * const gMediaTemplate;
+extern NSString *gMMProj;
+extern NSString *gMediaTemplate;
+
 
 // LLM temperature
-#define LLAMA_DEFAULT_TEMP          0.2
+extern const float LLAMA_DEFAULT_TEMP;
 
 // LLM context length
-#define LLAMA_DEFAULT_CTXLEN        2048
+extern const uint32_t LLAMA_DEFAULT_CTXLEN;
 
 // LLM Seed
 #define LLAMA_DEFAULT_SEED          0xFFFFFFFF

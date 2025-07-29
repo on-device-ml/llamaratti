@@ -122,5 +122,7 @@
                             returnedTemp:(float *)temp
                           returnedCtxLen:(uint32_t *)ctxLen;
 
+- (IBAction)btnGo:(id)sender;
+
 @end
 

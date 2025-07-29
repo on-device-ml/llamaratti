@@ -45,6 +45,8 @@ bool default_lr_mtmd_cli_callback(void *vmtmd,
                                   LlamarattiEvent event,
                                   const char *piece);
 
+void dump_params( int argc, char **argv );
+
 /**
  * @brief mtmd_cli_context
  *
@@ -191,6 +193,10 @@ int lr_mtmd_cli::init(char *argv[],
                       bool *is_vision_supported,
                       bool *is_audio_supported,
                       bool (*user_callback)(void *,LlamarattiEvent, const char *)) {
+    
+#if 1
+    dump_params(argc,argv);
+#endif
     
     // Did the user provide their own callback?
     if ( user_callback ) {
@@ -636,4 +642,22 @@ bool default_lr_mtmd_cli_callback(void *vmtmd,
     
     // Keep executing
     return mtmd->is_interrupted();
+}
+
+/**
+ * @brief Dumps the parameters to stdout
+ *
+ */
+void dump_params( int argc, char **argv ) {
+    
+    // Did we get the parameters we need?
+    if ( argc == 0 || argv == NULL ) {
+        return;
+    }
+    
+    LOG_INF("Command Parameters...\n\n");
+    for ( int ind=0; ind<argc; ind++ ) {
+        LOG_INF("%s\n",argv[ind]);
+    }
+    LOG_INF("\n\n");
 }

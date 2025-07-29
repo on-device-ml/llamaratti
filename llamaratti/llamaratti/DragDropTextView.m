@@ -32,6 +32,7 @@
 {
     _dragAccepted=NO;
     _dragAborted=NO;
+    _cmdReturnAccepted=NO;
     
     _savedBorderColor=[NSColor colorWithCGColor:[[self layer] borderColor]];
     _savedBorderWidth=[[self layer] borderWidth];
@@ -48,6 +49,30 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
+}
+
+/**
+ * @brief keyDown
+ *
+ */
+- (void)keyDown:(NSEvent *)event {
+    
+    // Is CMD-Return monitoring enabled & was it pressed?
+    if ( _cmdReturnAccepted &&
+        (event.modifierFlags & NSEventModifierFlagCommand) &&
+        (event.keyCode == 36) ) {
+        
+        if ( !_vcParent || !
+            isInstanceOfClass(_vcParent, [ViewController class]) ) {
+            return;
+        }
+        
+        // Start generating
+        [(ViewController *)_vcParent btnGo:nil];
+        
+        return;
+    }
+    [super keyDown:event];
 }
 
 #pragma mark - NSDraggingDestination

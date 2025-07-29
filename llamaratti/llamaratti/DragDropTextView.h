@@ -19,6 +19,7 @@
 // Properties
 @property NSObject *vcParent;
 @property BOOL dragAccepted;
+@property BOOL cmdReturnAccepted;
 @property (nonatomic, strong) NSString *placeholderString;
 
 // Methods

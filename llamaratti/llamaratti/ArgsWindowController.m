@@ -52,7 +52,7 @@
     NSString *title = @"Add Arguments";
     NSString *modelName = [_vcParent modelName];
     if ( isValidNSString(modelName) ) {
-        title = [NSString stringWithFormat:@"%@ | %@",modelName,title];
+        title = [NSString stringWithFormat:@"%@ | %@",title,modelName];
     }
     [self.window setTitle:title];
     

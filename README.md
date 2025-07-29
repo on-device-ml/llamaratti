@@ -7,31 +7,52 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 
 # Quick Start
 
-⚡️Jump to these sections to get up & running:
+⚡️ To get started, assuming a ~/MyProjects project folder:
+
+1) Clone llama.cpp to ~/MyProjects & build
+
+2) Download models. Ex: ~/MyProjects/llama.cpp/build/bin//llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF. 
+(Saved to llama caches folder: ~/Library/Caches/llama.cpp)
+
+3) Clone llamaratti to ~/MyProjects, then build ~/MyProjects/llamaratti/lr-mtmd-cli & ~/MyProjects/llamaratti/llamaratti
+
+4) Run llamaratti, select ⏶, then select .../Library/Caches/llama.cpp. Hold ⌘ to select the 2 downloaded .GGUF models.
+
+5) Drag an image into the top response window, type a question about the image, then select ⏵
+
+# Full Steps
+
+🐢 Jump to these sections to get up & running:
 
 1) [Before We Start](#before-we-start)
+
 2) [Building llama](#building-llama)
+
 3) [Building and Running llamaratti](#building-and-running-llamaratti)
+
 4) [Downloading Models](#downloading-models)
+
 5) [Using Models in llamaratti](#using-models-in-llamaratti)
 
 ## Before We Start
 
-- llamaratti is a tool for developers creating on-device Apple Silicon apps that use llama.cpp multimodal capabilities. It provides convenience features such as drag/drop/conversion of multimedia files, simple prompt selection, simple changes to model settings, timing of loading/querying and displays simple metrics that can help understand the system impact of models.
-
 - llamaratti uses llama.cpp multimodal libraries that are still **in development**.  **This means this project will be impacted by future updates**.
 
-- llamaratti doesn't support non-multimodal models - there are plenty of great Apps to do this such as LM Studio and others. Support may be introduced in the future.
+- A playground/tool for developers creating on-device Apple Silicon apps that use llama.cpp's multimodal capabilities. Provides features such as drag/drop/conversion of multimedia files, simple prompt selection, simple changes to model settings, timing of loading/querying and simple metrics that can help visualize the system impact of models.
 
-- What is a GGUF? - GPT-Generated Unified Format is a file format developed by the creators of llama.cpp, designed to store and load large language models (like LLaMA, Mistral, and others) efficiently for use in local inference engines.
+- Currently supports multimodal models only. If you're looking for text inference, there are plenty of great Apps to do this, such as LM Studio.
 
-- Model Pair - In this project, this term refers to the two models that llama.cpp multimodal requires to perform multimodal inferencing - the model & model projector GGUFs. 
+- What is a model GGUF? GPT-Generated Unified Format is a file format developed by the creators of llama.cpp, designed to store and load large language models efficiently for use in local inference engines.
 
-- Known Models - In this project, refers to the model details that are stored in an internal array within the llamaratti wrapper . Generally these are models that we have been testing with, but you can also add new ones as needed to the array.
+- What is an mmproj GGUF? A multimedia projector is a type of model designed to transform multimodal features into a format that can be digested by the model GGUF.
+
+- Model Pair - In this project, this term refers to the two models that llama.cpp multimodal requires to perform multimodal inferencing - the model & multimodal projector GGUFs. 
+
+- Known Models - In this project, refers to the models that have been tested and are stored in an internal array within the wrapper. This array helps llamaratti use and configure the models automatically. You can also add to/modify this array as needed.
 
 - Downloading models - llamaratti allows you to load models directly from the llama.cpp cache folder, which means if you've already been using llama command line tools, you won't need to move or re-download them.
 
-- Demo Apps - The Obj-C app generally gets new features first, which may then be migrated to the Swift app
+- Demo Apps - The Objective-C app normally gets new features first, which can then be migrated to the Swift app. The Objective-C app is a good place to start.
 
 - Back to [Quick Start](#quick-start)
 
@@ -78,7 +99,7 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 - Supports running in sandboxed mode
 - Drag/drop interface for querying image & audio files
 - Text chat capabilities via prompt/response windows, allowing you to query the currently loaded model pair
-- Load/select of downloaded model pairs &#129093;
+- Load/select of downloaded model pairs:
     - Load from llama.cpp default cache folder - exists if you previously used **llama-mtmd-cli**/other llama tools to download models
     - Load from ~/Downloads folder
     - Load from user selected folder
@@ -116,13 +137,14 @@ Modules targeted for these **Devices:**<br>
 - macOS 14 Sonoma
 - macOS 15 Sequoia
 - macOS Tahoe 25 (25A5295e)
+- macOS Tahoe 25 (25A5316i)
 </pre>
 
 ## Development and Test Environments
 
 Modules created/tested using these **llama.cpp versions**:<br>
 <pre>
-- llama.cpp builds: 5760, 5857, 5902, 5970, 5972
+- llama.cpp builds: 5760, 5857, 5902, 5970, 5972, 6000
 </pre>
 
 ...**Devices:**<br>
@@ -137,12 +159,14 @@ Modules created/tested using these **llama.cpp versions**:<br>
 - macOS 14 Sonoma
 - macOS 15 Sequoia
 - macOS Tahoe 25 (25A5295e)
+- macOS Tahoe 25 (25A5316i)
 </pre>
 
 ...**XCode versions:**<br>
 <pre>
 - XCode 16.4 (16F6)
 - XCode 26.0 beta (17A5241e)
+- XCode 26.0 beta (17A5285i)
 </pre>
     
 ...**Themes:**<br>
@@ -152,24 +176,28 @@ Developed & tested mainly in dark mode 🌙
 
 ...**Multimodal Models:**<br>
 <pre>
-- Gemma 3 12b
-- Gemma 3 27b
-- Llama 4 Scout 17b
-- Mistral 3.1 24b
-- Pixtral 12b
-- InternVL 2 1b
-- InternVL 3 8b
+- Gemma 3 12B
+- Gemma 3 27B
+- Llama 4 Scout 17B
+- Mistral 3.1 24B
+- Pixtral 12B
+- InternVL 2 1B
+- InternVL 3 8B
 - SmolVLM Instruct
-- SmolVLM2 Instruct 256m
-- SmolVLM2 Instruct 500m
-- SmolVLM2 Instruct 2.2b
-- SmolVLM2 Video Instruct 250m
-- SmolVLM2 Video Instruct 500m
+- SmolVLM2 Instruct 256M
+- SmolVLM2 Instruct 500M
+- SmolVLM2 Instruct 2.2B
+- SmolVLM2 Video Instruct 250M
+- SmolVLM2 Video Instruct 500M
 - Qwen2 VL 2B
-- Qwen Omni 2.5 3b
-- Qwen Omni 2.5 7b
+- Qwen Omni 2.5 3B
+- Qwen Omni 2.5 7B
+- MobileVLM 3B
+- Llava v1.5 7B
+- Llava 1.6 Mistral 7B
+- MiniCPM v2.6
 - Moondream 2
-- Ultravox 3.2 1b    
+- Ultravox 3.2 1B
 </pre>
 
 
@@ -375,7 +403,7 @@ them from auto-loading in future<br>
 - [llava : introduce libmtmd](https://github.com/ggml-org/llama.cpp/pull/12849)
 - [HuggingFace - Model Deployment Considerations](https://huggingface.co/learn/computer-vision-course/en/unit9/model_deployment)
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-
+- [Trend Micro State of AI Security Report 1H 2025](https://www.trendmicro.com/vinfo/us/security/news/threat-landscape/trend-micro-state-of-ai-security-report-1h-2025)
 
 ## Credits
 

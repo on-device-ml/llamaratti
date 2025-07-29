@@ -246,7 +246,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                        withMMProjHash:@"7e943f7c53f0382a6fc41b6ee0c2def63ba4fded9ab8ed039cc9e2ab905e0edd"
                        withDictCtxLen:@{@0:@16384}
                              withTemp:LLAMA_DEFAULT_TEMP
-                   withAdditionalArgs:nil],
+                   withAdditionalArgs:@"--repeat-penalty=1.5"],
 
          [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 500M"
                              withModel:@"ggml-org_SmolVLM-500M-Instruct-GGUF_SmolVLM-500M-Instruct-Q8_0.gguf"
@@ -356,7 +356,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
 
-            [ModelInfo modelInfoWithTitle:@"Ultravox 3.2 1b"
+            [ModelInfo modelInfoWithTitle:@"Ultravox 3.2 1B"
                                 withModel:@"ggml-org_ultravox-v0_5-llama-3_2-1b-GGUF_Llama-3.2-1B-Instruct-Q4_K_M.gguf"
                             withModelHash:@"6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83"
                                withMMProj:@"ggml-org_ultravox-v0_5-llama-3_2-1b-GGUF_mmproj-ultravox-v0_5-llama-3_2-1b-f16.gguf"
@@ -1156,7 +1156,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
     NSString *modelsList=@"";
     for ( ModelInfo *mi in gArrModelInfo ) {
         modelsList=[modelsList stringByAppendingFormat:@"%@\n",mi.modelTitle];
-        NSLog(@"%@\n",mi.modelTitle);
+        NSLog(@"- %@\n",mi.modelTitle);
     }
     return modelsList;
 }

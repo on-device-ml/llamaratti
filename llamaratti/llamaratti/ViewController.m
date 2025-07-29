@@ -67,12 +67,12 @@ NSString * const gFontNameGaugeBold=@"Avenir Next Condensed Demi Bold";
 NSString * const gFontFilenameLogo=@"FerroRosso";
 
 // URLs
-NSString * const gURLOnDeviceML=@"https://on-device-ml.org/";
+NSString * const gURLOnDeviceML=@"https://github.com/on-device-ml";
 NSString * const gURLLlamaModels=@"https://github.com/ggml-org/llama.cpp/blob/master/docs/multimodal.md";
 
 // Placeholders for Prompt Field
 NSString * const gPlaceholderPromptNoModel=@"Select \U000025B2 to load a model";
-NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then select \U000025B6";
+NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then press \U000025B6 or \U00002318+Return";
 
 #pragma mark - Constants
 
@@ -332,6 +332,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then se
     [_textPrompt setTextContainerInset:TEXT_INSETS];
     [_textPrompt setVcParent:self];
     [_textPrompt setDragAccepted:NO];
+    [_textPrompt setCmdReturnAccepted:YES];
     [self setPromptPlaceholder:gPlaceholderPromptNoModel];
     
     // Right click menu for Response window
@@ -400,7 +401,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then se
     // Buttons - Tooltips
     [_btnModel setToolTip:@"Load model/projection"];
     [_btnGPU setToolTip:@"Show system stats"];
-    [_btnClear setToolTip:@"Reload current model with defaults"];
+    [_btnClear setToolTip:@"Reload with defaults"];
     [_btnStop setToolTip:@"Stop generating"];
     [_btnGo setToolTip:@"Start generating"];
     
@@ -480,7 +481,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then se
         imgBtn=[_imgModel imageTintedWithColor:colorBtn];
         [_btnModel setImage:imgBtn];
         
-        imgBtn=[_imgArgs imageTintedWithColor:(_addtlArgsApplied?_statusWarnColor:colorBtn)];
+        imgBtn=[_imgArgs imageTintedWithColor:colorBtn];
         [_btnArgs setImage:imgBtn];
         
         imgBtn=[_imgGPU imageTintedWithColor:colorBtn];
@@ -625,29 +626,6 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then se
                                        andAudio:[self->_llamaWrapper audioSupported]];
     }];
     return YES;
-}
-
-/**
- * @brief Updates the color of the Args button based on available arguments
- *
- */
-- (void)updateArgsBtnState {
-    
-    NSOperationQueue *omq=[NSOperationQueue mainQueue];
-    [omq addOperationWithBlock:^{
-        
-        NSImage *imgBtn=nil;
-        if ( self->_addtlArgsApplied ) {
-            imgBtn=[self->_imgArgs imageTintedWithColor:self->_statusWarnColor];
-            [self->_btnArgs setToolTip:@"Additional Argmuments Applied"];
-            
-        } else {
-            imgBtn=[self->_imgArgs imageTintedWithColor:self->_statusColor];
-            [self->_btnArgs setToolTip:@"Add Additional Arguments"];
-         }
-        [self->_btnArgs setImage:imgBtn];
-
-    }];
 }
 
 /**
@@ -1305,6 +1283,29 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then se
            withGaugesEnabled:YES];
         
         [self appendStatus:strStatus];
+    }];
+}
+
+/**
+ * @brief Updates the color of the Args button based on available arguments
+ *
+ */
+- (void)updateArgsBtnState {
+    
+    NSOperationQueue *omq=[NSOperationQueue mainQueue];
+    [omq addOperationWithBlock:^{
+        
+        NSImage *imgBtn=nil;
+        if ( self->_addtlArgsApplied ) {
+            imgBtn=[self->_imgArgs imageTintedWithColor:self->_statusWarnColor];
+            [self->_btnArgs setToolTip:@"Additional Argmuments Applied"];
+            
+        } else {
+            imgBtn=[self->_imgArgs imageTintedWithColor:self->_statusColor];
+            [self->_btnArgs setToolTip:@"Add Arguments"];
+         }
+        [self->_btnArgs setImage:imgBtn];
+
     }];
 }
 

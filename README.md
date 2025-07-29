@@ -11,14 +11,14 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 
 1) Clone llama.cpp to ~/MyProjects & build
 
-2) Download models. Ex: ~/MyProjects/llama.cpp/build/bin//llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF. 
-(Saved to llama caches folder: ~/Library/Caches/llama.cpp)
+2) Download models. Ex: ~/MyProjects/llama.cpp/build/bin/llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF. 
+Two GGUF models will be saved to llama caches folder: ~/Library/Caches/llama.cpp.
 
-3) Clone llamaratti to ~/MyProjects, then build ~/MyProjects/llamaratti/lr-mtmd-cli & ~/MyProjects/llamaratti/llamaratti
+3) Clone llamaratti to ~/MyProjects, then use XCode to build ~/MyProjects/llamaratti/lr-mtmd-cli & ~/MyProjects/llamaratti/llamaratti
 
-4) Run llamaratti, select ⏶, then select .../Library/Caches/llama.cpp. Hold ⌘ to select the 2 downloaded .GGUF models.
+4) Run llamaratti, select ⏶. Select .../Library/Caches/llama.cpp & hold ⌘ to select the 2 downloaded .GGUF models.
 
-5) Drag an image into the top response window, type a question about the image, then select ⏵
+5) Drag an image into the top response window, ask a question about the image, then select ⏵ or ⌘-Return.
 
 # Full Steps
 
@@ -38,7 +38,7 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 
 - llamaratti uses llama.cpp multimodal libraries that are still **in development**.  **This means this project will be impacted by future updates**.
 
-- A playground/tool for developers creating on-device Apple Silicon apps that use llama.cpp's multimodal capabilities. Provides features such as drag/drop/conversion of multimedia files, simple prompt selection, simple changes to model settings, timing of loading/querying and simple metrics that can help visualize the system impact of models.
+- llamaratti is a playground/tool for developers creating on-device Apple Silicon apps that use llama.cpp's multimodal capabilities. Provides features such as drag/drop/conversion of multimedia files, simple prompt selection, simple changes to model settings, timing of loading/querying and simple metrics that can help visualize the system impact of models.
 
 - Currently supports multimodal models only. If you're looking for text inference, there are plenty of great Apps to do this, such as LM Studio.
 

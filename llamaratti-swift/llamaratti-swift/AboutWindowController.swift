@@ -1,5 +1,5 @@
 /**
- * @file AboutWindowController.m
+ * @file AboutWindowController.swift
  *
  * @brief About dialog for Llamaratti
  *

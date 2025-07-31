@@ -36,6 +36,8 @@ extern NSString *gMediaTemplate;
 
 // LLM temperature
 extern const float LLAMA_DEFAULT_TEMP;
+extern const float LLAMA_MIN_TEMP;
+extern const float LLAMA_MAX_TEMP;
 
 // LLM context length
 extern const uint32_t LLAMA_DEFAULT_CTXLEN;
@@ -46,6 +48,9 @@ extern const uint32_t LLAMA_DEFAULT_CTXLEN;
 // Prompt Length
 #define MAX_PROMPT_LENGTH           20000
 #define MAX_PROMPT_DISPLAY_LENGTH   100
+
+// Maximum length of arguments for llama.cpp
+#define MAX_LLAMA_ARGS_LEN          4096
 
 // Media
 #define MAX_SUPPORTED_MEDIA         15

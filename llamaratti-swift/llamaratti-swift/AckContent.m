@@ -96,9 +96,8 @@
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     [paraStyle setAlignment:NSTextAlignmentLeft];
     
-    NSString *gFontNameNormal=@"Avenir Next Regular";
-    NSFont *fontAbout=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_SMALL];
-
+    NSFont *fontAbout=[NSFont fontWithName:@"Avenir Next Regular" size:FONT_SIZE_SMALL];
+    
     // Apply attributes to entire string
     [attrCredits addAttribute:NSFontAttributeName
                         value:fontAbout

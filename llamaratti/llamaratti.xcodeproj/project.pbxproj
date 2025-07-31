@@ -33,7 +33,6 @@
 		8F7C36202E1DDABB005E78C9 /* ABOUT.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8F7C361F2E1DDABB005E78C9 /* ABOUT.txt */; };
 		8F7C36232E1DE06B005E78C9 /* AckContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C36222E1DE06B005E78C9 /* AckContent.m */; };
 		8FCFAB612E3697E600D5C5C0 /* ArgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FCFAB602E3697E600D5C5C0 /* ArgManager.m */; };
-		8FE15F572DDD57AC0061722A /* NSColor+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F502DDD57AC0061722A /* NSColor+More.m */; };
 		8FE15F582DDD57AC0061722A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F532DDD57AC0061722A /* Utils.m */; };
 		8FE15F592DDD57AC0061722A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F3D2DDD57AC0061722A /* AppDelegate.m */; };
 		8FE15F5A2DDD57AC0061722A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE15F4C2DDD57AC0061722A /* main.m */; };
@@ -99,8 +98,6 @@
 		8FE15F4B2DDD57AC0061722A /* llamaratti.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = llamaratti.entitlements; sourceTree = "<group>"; };
 		8FE15F4C2DDD57AC0061722A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8FE15F4D2DDD57AC0061722A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8FE15F4F2DDD57AC0061722A /* NSColor+More.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+More.h"; sourceTree = "<group>"; };
-		8FE15F502DDD57AC0061722A /* NSColor+More.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+More.m"; sourceTree = "<group>"; };
 		8FE15F522DDD57AC0061722A /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		8FE15F532DDD57AC0061722A /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		8FE15F542DDD57AC0061722A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -219,8 +216,6 @@
 				8FE15F4E2DDD57AC0061722A /* Main.storyboard */,
 				8F30D0DA2E09B4A600BAA156 /* ModelInfo.h */,
 				8F30D0DB2E09B4A600BAA156 /* ModelInfo.m */,
-				8FE15F4F2DDD57AC0061722A /* NSColor+More.h */,
-				8FE15F502DDD57AC0061722A /* NSColor+More.m */,
 				8F41CA8D2DF07BAA00FEB9FF /* NSImage+More.h */,
 				8F41CA8E2DF07BAA00FEB9FF /* NSImage+More.m */,
 				8FFA027D2E207FB800B23258 /* Ripple */,
@@ -344,7 +339,6 @@
 			files = (
 				8F41CA8C2DF06F8C00FEB9FF /* DragDropTextView.m in Sources */,
 				8FFB66FF2E35C1AE00FAE0EB /* ArgsWindowController.m in Sources */,
-				8FE15F572DDD57AC0061722A /* NSColor+More.m in Sources */,
 				8F1EDD422E200B540044A8FE /* ImageViewContainer.m in Sources */,
 				8FE15F582DDD57AC0061722A /* Utils.m in Sources */,
 				8F0CBBD62E29A4C9006758F0 /* CircularSlider.m in Sources */,
@@ -514,6 +508,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -562,6 +557,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (

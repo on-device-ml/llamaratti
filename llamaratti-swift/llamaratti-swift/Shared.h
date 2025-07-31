@@ -54,11 +54,11 @@
 #define GAUGE_TRACK_LINE_WIDTH          2.0
 
 // LLM TEMP - Thresholds
-#define THRESHOLD_LLM_TEMP_MIN          0.1f
+#define THRESHOLD_LLM_TEMP_MIN          LLAMA_MIN_TEMP
 #define THRESHOLD_LLM_TEMP_DEFAULT      LLAMA_DEFAULT_TEMP
 #define THRESHOLD_LLM_TEMP_WARN         1.0f
 #define THRESHOLD_LLM_TEMP_DANGER       1.2f
-#define THRESHOLD_LLM_TEMP_MAX          2.0f
+#define THRESHOLD_LLM_TEMP_MAX          LLAMA_MAX_TEMP
 
 // LLM CTX LEN - Thesholds
 #define THRESHOLD_LLM_CTXLEN_MIN         2048

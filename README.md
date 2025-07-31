@@ -198,6 +198,7 @@ Developed & tested mainly in dark mode 🌙
 - MiniCPM v2.6
 - Moondream 2
 - Ultravox 3.2 1B
+- Voxtral Mini 3B
 </pre>
 
 
@@ -380,6 +381,9 @@ window is resized (llamaratti).<br>
 
 5. Some .heic images don't appear to convert properly when dragged into the response 
 view.<br>
+
+6. When updating the version of llama.cpp be sure to fully rebuild both lr-mtmd-cli & llamaratti
+or llamaratti-swift to avoid unpredictable behavior.<br>
 </pre>
 
 ## Performance

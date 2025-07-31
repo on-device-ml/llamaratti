@@ -34,7 +34,6 @@
 #include "Shared.h"
 #include "DTimer.h"
 
-#import "NSColor+More.h"
 #import "NSImage+More.h"
 
 #import "RippleMetalView.h"
@@ -1892,7 +1891,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     // Yes, append the image to the response window
     NSURL *urlAudioImage=[[NSBundle mainBundle] URLForImageResource:@"audio"];
     [self appendUserImageToResponse:urlAudioImage
-                   useSecurityScope:useSecurityScope
+                   useSecurityScope:NO
                      withImageWidth:RESPONSE_IMAGE_AUDIO_SIZE];
     
     return YES;
@@ -2075,7 +2074,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     [_sliderLLMTemp setKnobRadius:5.0];
     [_sliderLLMTemp setTickLineWidth:0.3];
     [_sliderLLMTemp setTrackLineWidth:GAUGE_TRACK_LINE_WIDTH];
-    [_sliderLLMTemp setNumberOfTickMarks:(THRESHOLD_LLM_TEMP_MAX/THRESHOLD_LLM_TEMP_MIN)];
+    [_sliderLLMTemp setNumberOfTickMarks:THRESHOLD_LLM_TEMP_MAX*10];
     [_sliderLLMTemp setSnapsToTickMarks:YES];
     [_sliderLLMTemp setAction:@selector(sliderLLMTempValueChanged:)];
     [_sliderLLMTemp setToolTip:@"Adjust LLM Temperature"];

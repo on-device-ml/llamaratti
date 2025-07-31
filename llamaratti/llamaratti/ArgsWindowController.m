@@ -94,11 +94,11 @@
     
     // Were we overloaded with arguments?
     NSString *currentArgs=[_textArgs string];
-    if ( [currentArgs length] > MAX_ARGS_LEN ) {
+    if ( [currentArgs length] > MAX_LLAMA_ARGS_LEN ) {
         
         // Yes, ask user to reduce length
         NSString *title=@"Too Many Arguments";
-        NSString *msg=[NSString stringWithFormat:@"You have exceeded the maximum length of allowable arguments.\n\nPlease enter less than %u characters.",MAX_ARGS_LEN];
+        NSString *msg=[NSString stringWithFormat:@"You have exceeded the maximum length of allowable arguments.\n\nPlease enter less than %u characters.",MAX_LLAMA_ARGS_LEN];
         [Utils showAlertWithTitle:title
                        andMessage:msg
                          urlTitle:nil

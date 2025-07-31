@@ -10,7 +10,6 @@
 #import "DragDropTextView.h"
 #import "ViewController.h"
 
-#import "NSColor+More.h"
 #import "NSImage+More.h"
 
 #import "Shared.h"

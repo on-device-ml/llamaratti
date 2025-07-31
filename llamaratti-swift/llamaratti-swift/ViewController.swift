@@ -1,5 +1,5 @@
 /**
- * @file ViewController.m
+ * @file ViewController.swift
  *
  * @brief Application View Controller for Llamaratti
  *
@@ -52,6 +52,9 @@ struct AppConstants {
         static let pathLlamaCacheFolder = "Library/Caches/llama.cpp"
     }
     
+    struct Display {
+        static let displayMinSize = NSMakeSize(APP_WINDOW_MIN_WIDTH, APP_WINDOW_MIN_HEIGHT)
+    }
     struct Fonts {
         
         // Fonts Available
@@ -235,12 +238,15 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var textLogo: NSTextField!
     
+    /**
+     * @brief Initializes properties of the view controller
+     */
     required init?(coder aDecoder: NSCoder) {
        super.init(coder: aDecoder)
     }
     
     /**
-     * @brief Initializes properties of the view controller
+     * @brief Initializes display properties of the view controller
      */
     override func viewDidLoad() {
         

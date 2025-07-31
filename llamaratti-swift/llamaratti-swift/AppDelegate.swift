@@ -1,5 +1,5 @@
 /**
- * @file AppDelegate.h
+ * @file AppDelegate.swift
  *
  * @brief Application Delegate for Llamaratti
  *
@@ -24,8 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Set the minimum window size
         let window = NSApplication.shared.windows.first
-        let minSize = NSMakeSize(APP_WINDOW_MIN_WIDTH,APP_WINDOW_MIN_HEIGHT)
-        window?.minSize = minSize
+        window?.minSize = AppConstants.Display.displayMinSize
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

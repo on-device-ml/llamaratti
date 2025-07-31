@@ -42,6 +42,8 @@
 
 // LLM temperature
 const float LLAMA_DEFAULT_TEMP = 0.2f;
+const float LLAMA_MIN_TEMP = 0.0f;
+const float LLAMA_MAX_TEMP = 2.0f;
 
 // LLM context length
 const uint32_t LLAMA_DEFAULT_CTXLEN = 2048;
@@ -134,6 +136,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
         [self initArrays];
     }
 }
+
+#pragma mark - Model Array
 
 /**
  * @brief Initializes arrays used by the wrapper when the class is used
@@ -365,6 +369,15 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
             
+            [ModelInfo modelInfoWithTitle:@"Voxtral Mini 3B"
+                               withModel:@"ggml-org_Voxtral-Mini-3B-2507-GGUF_Voxtral-Mini-3B-2507-Q4_K_M.gguf"
+                           withModelHash:@"4705be8ec22ca23d12632f4b4a3691faa95917d90a06d3cf3c3ec0e91958f1a8"
+                              withMMProj:@"ggml-org_Voxtral-Mini-3B-2507-GGUF_mmproj-Voxtral-Mini-3B-2507-Q8_0.gguf"
+                          withMMProjHash:@"4f24c4ef3ce929d02ed9d1cfb050ae9a7365f057c0ddec0d489580982ebe0d02"
+                          withDictCtxLen:@{@0:@32768}
+                                withTemp:LLAMA_DEFAULT_TEMP
+                      withAdditionalArgs:nil],
+                   
            // Add new here...
 //           [ModelInfo modelInfoWithTitle:@""
 //                               withModel:@""

@@ -313,7 +313,7 @@ When the download completes, two .gguf files should exist in your ~/Library/Cach
 
 ## Using Models in llamaratti
 
-The llamaratti Obj-C app uses a known models array in the wrapper to validate the files being loaded. This array is initialized in the initArrays() method. You can add new models to this array as needed:
+Llamaratti uses a "known models" array in the wrapper to validate the files being loaded. This array is initialized in the initArrays() method. You can add new models to this array as needed:
 
 <pre>
 1. Select the ▲ button in the bottom center of the screen to load a model pair.<br>

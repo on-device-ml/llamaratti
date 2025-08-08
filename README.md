@@ -5,7 +5,7 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 
 ![apple-intelligence](https://github.com/on-device-ml/llamaratti/blob/main/lr-load-model-menu.jpg)
 
-[Watch the video](https://img.youtube.com/vi/d83XIHJsXaA/0.jpg)(https://www.youtube.com/watch?v=d83XIHJsXaA)
+[Watch the video](https://www.youtube.com/watch?v=d83XIHJsXaA)
 
 # Quick Start
 

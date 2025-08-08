@@ -136,9 +136,9 @@ Modules targeted for these **Devices:**<br>
 
 ...**O/S versions:**<br>
 <pre>
-- macOS 14 Sonoma
-- macOS 15 Sequoia
-- macOS Tahoe+
+- macOS Sonoma 14
+- macOS Sequoia 14
+- macOS Tahoe 26+
 </pre>
 
 ## Development and Test Environments
@@ -157,8 +157,8 @@ Modules created/tested using these **llama.cpp versions**:<br>
 
 ...**O/S versions:**<br>
 <pre>
-- macOS 14 Sonoma
-- macOS 15 Sequoia
+- macOS Sonoma 14 
+- macOS Sequoia 15 
 - macOS Tahoe 26 (25A5295e)
 - macOS Tahoe 26 (25A5316i)
 </pre>

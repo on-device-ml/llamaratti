@@ -3,12 +3,13 @@
 
 A macOS Silicon wrapper & demo apps for developers to simplify access to llama.cpp multimodal capabilities.
 
-[![Watch the video](https://img.youtube.com/vi/d83XIHJsXaA/0.jpg)](https://www.youtube.com/watch?v=d83XIHJsXaA)
+![Watch the video](https://img.youtube.com/vi/d83XIHJsXaA/0.jpg)](https://www.youtube.com/watch?v=d83XIHJsXaA)
 
 # Quick Start
 
 ⚡️ To get started, assuming a ~/MyProjects project folder:
 
+<pre>
 1) Clone llama.cpp to ~/MyProjects & build
 
 2) Download models. Ex: ~/MyProjects/llama.cpp/build/bin/llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF. 
@@ -19,6 +20,7 @@ Two GGUF models will be saved to llama caches folder: ~/Library/Caches/llama.cpp
 4) Run llamaratti, select ⏶. Select .../Library/Caches/llama.cpp & hold ⌘ to select the 2 downloaded .GGUF models.
 
 5) Drag an image into the top response window, ask a question about the image, then select ⏵ or ⌘-Return.
+</pre>
 
 # Full Steps
 
@@ -136,8 +138,7 @@ Modules targeted for these **Devices:**<br>
 <pre>
 - macOS 14 Sonoma
 - macOS 15 Sequoia
-- macOS Tahoe 25 (25A5295e)
-- macOS Tahoe 25 (25A5316i)
+- macOS Tahoe+
 </pre>
 
 ## Development and Test Environments
@@ -158,15 +159,15 @@ Modules created/tested using these **llama.cpp versions**:<br>
 <pre>
 - macOS 14 Sonoma
 - macOS 15 Sequoia
-- macOS Tahoe 25 (25A5295e)
-- macOS Tahoe 25 (25A5316i)
+- macOS Tahoe 26 (25A5295e)
+- macOS Tahoe 26 (25A5316i)
 </pre>
 
 ...**XCode versions:**<br>
 <pre>
 - XCode 16.4 (16F6)
-- XCode 26.0 beta (17A5241e)
-- XCode 26.0 beta (17A5285i)
+- XCode 26 beta (17A5241e)
+- XCode 26 beta (17A5285i)
 </pre>
     
 ...**Themes:**<br>

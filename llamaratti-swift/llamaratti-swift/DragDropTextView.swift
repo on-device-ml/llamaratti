@@ -177,11 +177,6 @@ class DragDropTextView: NSTextView {
             return
         }
         
-        // Did we get a valid array?
-        if ( !isValidArray(arrDraggedURLs) ) {
-            return
-        }
-        
         // Add any supported dropped file(s)...
         var countAdded = 0
         let countMax = LlamarattiWrapper.maxSupportedMedia()

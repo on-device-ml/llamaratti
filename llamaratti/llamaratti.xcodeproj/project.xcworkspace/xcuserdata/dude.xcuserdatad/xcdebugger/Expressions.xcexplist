@@ -3,10 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[ArgManager hasOption:]:ArgManager.m">
+         contextName = "-[CircularSlider drawRect:]:CircularSlider.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.mutableOptions">
+               value = "_knobColor">
+            </PersistentString>
+            <PersistentString
+               value = "knobRadius">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,18 +25,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ViewController sliderLLMTempValueChanged:]:ViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "event.type">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "+[ChatMessage freeData:withCount:]:ChatMessage.m">
          <PersistentStrings>
             <PersistentString
                value = "pMsgs[i]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController sliderLLMTempValueChanged:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "event.type">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -60,10 +63,50 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "lr_mtmd_cli::init:lr-mtmd-cli.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "argv[7]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[3]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[8]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[4]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[0]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[5]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[1]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[6]">
+            </PersistentString>
+            <PersistentString
+               value = "argv[2]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__43-[ViewController sliderCtxLenValueChanged:]_block_invoke:ViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "[self-&gt;_sliderCtxLen value]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ArgManager hasOption:]:ArgManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mutableOptions">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -83,17 +126,6 @@
          <PersistentStrings>
             <PersistentString
                value = "ctx.bitmaps.entries">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[CircularSlider drawRect:]:CircularSlider.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "_knobColor">
-            </PersistentString>
-            <PersistentString
-               value = "knobRadius">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

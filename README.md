@@ -14,14 +14,19 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 <pre>
 1) Clone llama.cpp to ~/MyProjects & build
 
-2) Download models. Ex: ~/MyProjects/llama.cpp/build/bin/llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF. 
-Two GGUF models will be saved to llama caches folder: ~/Library/Caches/llama.cpp.
+2) Download multimodal models:
+- Ex: ~/MyProjects/llama.cpp/build/bin/llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF. 
+- Two gguf models will be saved to llama caches folder: ~/Library/Caches/llama.cpp.
 
-3) Clone llamaratti to ~/MyProjects, then use XCode to build ~/MyProjects/llamaratti/lr-mtmd-cli & ~/MyProjects/llamaratti/llamaratti
+3) Clone llamaratti to ~/MyProjects, then use XCode to build:
+- ~/MyProjects/llamaratti/lr-mtmd-cli
+- ~/MyProjects/llamaratti/llamaratti
 
-4) Run llamaratti, select ⏶. Select .../Library/Caches/llama.cpp & hold ⌘ to select the 2 downloaded .GGUF models.
+4) Run llamaratti, select ⏶ & select .../Library/Caches/llama.cpp
 
-5) Drag an image into the top response window, ask a question about the image, then select ⏵ or ⌘-Return.
+5) Hold ⌘ and select the 2 downloaded ..gguf models
+
+5) Drag an image into the top response window & ask a question about the image, then select ⏵ or ⌘-Return.
 </pre>
 
 # Full Steps
@@ -147,7 +152,7 @@ Modules targeted for these **Devices:**<br>
 
 Modules created/tested using these **llama.cpp versions**:<br>
 <pre>
-- llama.cpp builds: 5760, 5857, 5902, 5970, 5972, 6000
+- llama.cpp builds: 5760, 5857, 5902, 5970, 5972, 6000, 6150
 </pre>
 
 ...**Devices:**<br>
@@ -161,15 +166,17 @@ Modules created/tested using these **llama.cpp versions**:<br>
 <pre>
 - macOS Sonoma 14 
 - macOS Sequoia 15 
-- macOS Tahoe 26 (25A5295e)
-- macOS Tahoe 26 (25A5316i)
+- macOS Tahoe 26 (25A5295e) Beta 2
+- macOS Tahoe 26 (25A5316i) Beta 4
+- macOS Tahoe 26 (25A5338b) Beta 6
 </pre>
 
 ...**XCode versions:**<br>
 <pre>
 - XCode 16.4 (16F6)
-- XCode 26 beta (17A5241e)
-- XCode 26 beta (17A5285i)
+- XCode 26 beta (17A5241e) Beta 1
+- XCode 26 beta (17A5285i) Beta 4
+- XCode 26 beta (17A5295f) Beta 5
 </pre>
     
 ...**Themes:**<br>
@@ -269,7 +276,7 @@ $(PROJECT_DIR)/../../llama.cpp/build/bin
 $(PROJECT_DIR)/../../llama.cpp/build/common
 </pre>
 
-4. Important: If you're switching between llama.cpp versions and having crashes/other issues, try deleting the **Builds** and **DerivedData** folders in the llamaratti projects prior to doing a full rebuild
+4. Important: If you're switching between llama.cpp versions and having crashes/other issues, try deleting the **Builds** and **DerivedData** folders from both the llamaratti and lr-mtmd-cli projects prior to performing a full rebuild
 
 5. Enabling the SYS TEMP Gauge (llamartti Obj-C)
 The SYS TEMP gauge gets its temperature reading from the system battery, which means its supported on M-series Silicon MacBooks.

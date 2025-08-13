@@ -149,7 +149,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     [super viewDidLoad];
     
     // Enable this to clear prefs
-    //[self resetPrefs];
+    [self resetPrefs];
     
     // Initialize class properties
     [self initProperties];

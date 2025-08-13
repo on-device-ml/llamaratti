@@ -167,7 +167,7 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                            withModelHash:@"c05bd745da387bf9200ffa7070665305d886d5093638c4f8b6c3862ea26ca8aa"
                               withMMProj:@"unsloth_gemma-3-4b-it-GGUF_mmproj-F16.gguf"
                           withMMProjHash:@"731199e016ec5f227b8293fef839899472e0ee4c51adf5f9e5cb66f6558fa142"
-                          withDictCtxLen:@{@0:@2048,@16:@65536,@36:@131072,@64:@131072,@128:@131072}
+                          withDictCtxLen:@{@0:@2048,@16:@65536,@36:@32767/*131072*/,@64:@131072,@128:@131072}
                                 withTemp:LLAMA_DEFAULT_TEMP
                       withAdditionalArgs:nil],
            

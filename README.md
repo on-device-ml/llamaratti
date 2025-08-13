@@ -12,21 +12,21 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 ⚡️ To get started, assuming a ~/MyProjects project folder:
 
 <pre>
-1) Clone llama.cpp to ~/MyProjects & build
+- Clone llama.cpp to ~/MyProjects & build
 
-2) Download multimodal models:
-- Ex: ~/MyProjects/llama.cpp/build/bin/llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF. 
-- Two gguf models will be saved to llama caches folder: ~/Library/Caches/llama.cpp.
+- Download multimodal models:
+    - Ex: ~/MyProjects/llama.cpp/build/bin/llama-mtmd-cli -hf ggml-org/SmolVLM-500M-Instruct-GGUF
+    - Two gguf models will be saved to llama caches folder: ~/Library/Caches/llama.cpp
 
-3) Clone llamaratti to ~/MyProjects, then use XCode to build:
-- ~/MyProjects/llamaratti/lr-mtmd-cli
-- ~/MyProjects/llamaratti/llamaratti
+- Clone llamaratti to ~/MyProjects, then use XCode to build:
+    - ~/MyProjects/llamaratti/lr-mtmd-cli
+    - ~/MyProjects/llamaratti/llamaratti
 
-4) Run llamaratti, select ⏶ & select .../Library/Caches/llama.cpp
+- Run llamaratti, select ⏶ & select .../Library/Caches/llama.cpp
 
-5) Hold ⌘ and select the 2 downloaded ..gguf models
+- Hold ⌘ and select the 2 downloaded .gguf models
 
-5) Drag an image into the top response window & ask a question about the image, then select ⏵ or ⌘-Return.
+- Drag an image into the top response window & ask a question about the image, then select ⏵ or ⌘-Return
 </pre>
 
 # Full Steps
@@ -62,6 +62,8 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 - Downloading models - llamaratti allows you to load models directly from the llama.cpp cache folder, which means if you've already been using llama command line tools, you won't need to move or re-download them.
 
 - Demo Apps - The Objective-C app normally gets new features first, which can then be migrated to the Swift app. The Objective-C app is a good place to start.
+
+- When updating your llama.cpp version from github, be sure to delete the **Builds** and **DerivedData** folders from both the llamaratti/llamaratti-swift and lr-mtmd-cli projects prior to performing a *full* rebuild, otherwise you will experience crashes
 
 - Back to [Quick Start](#quick-start)
 

@@ -938,6 +938,8 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     if ( ![Utils isValidModelPair:arrModelPair] ) {
         return;
     }
+    
+    [LlamarattiWrapper listKnownModels];
 
     _argsWindow = [[ArgsWindowController alloc] init];
     [_argsWindow setVcParent:self];

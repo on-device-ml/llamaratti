@@ -188,6 +188,7 @@ Developed & tested mainly in dark mode 🌙
 
 ...**Multimodal Models:**<br>
 <pre>
+- Gemma 3 4B
 - Gemma 3 12B
 - Gemma 3 27B
 - Llama 4 Scout 17B
@@ -208,6 +209,12 @@ Developed & tested mainly in dark mode 🌙
 - Llava v1.5 7B
 - Llava 1.6 Mistral 7B
 - MiniCPM v2.6
+- LiquidAI LFM2-VL 1.6B F16 Full
+- LiquidAI LFM2-VL 1.6B Q4 Fast
+- LiquidAI LFM2-VL 1.6B Q8 Fast
+- LiquidAI LFM2-VL 450M F16 Full
+- LiquidAI LFM2-VL 450M Q4_0 Fast
+- LiquidAI LFM2-VL 450M Q8_0 Fast
 - Moondream 2
 - Ultravox 3.2 1B
 - Voxtral Mini 3B

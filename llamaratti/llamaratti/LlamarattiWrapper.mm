@@ -351,6 +351,66 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
 
+            // https://huggingface.co/LiquidAI/LFM2-VL-1.6B
+            [ModelInfo modelInfoWithTitle:@"LiquidAI LFM2-VL 1.6B F16 Full"
+                                withModel:@"LiquidAI_LFM2-VL-1.6B-GGUF_LFM2-VL-1.6B-F16.gguf"
+                            withModelHash:@"0a82498edc354b50247fee78081c8954ae7f4deee9068f8464a5ee774e82118a"
+                               withMMProj:@"LiquidAI_LFM2-VL-1.6B-GGUF_mmproj-LFM2-VL-1.6B-Q8_0.gguf"
+                           withMMProjHash:@"65ec437db88d65fff93f472d00c145e09880769ac67fedff5cd1c0f8d8301d87"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:0.1
+                       withAdditionalArgs:@"--min-p 0.15 --repeat-penalty 1.05"],
+
+            // https://huggingface.co/LiquidAI/LFM2-VL-1.6B
+            [ModelInfo modelInfoWithTitle:@"LiquidAI LFM2-VL 1.6B Q4 Fast"
+                                withModel:@"LiquidAI_LFM2-VL-1.6B-GGUF_LFM2-VL-1.6B-Q4_0.gguf"
+                            withModelHash:@"ce0d4b122d328d14390ef160785da3a51a527f96844f392a04cb2db96f134e5d"
+                               withMMProj:@"LiquidAI_LFM2-VL-1.6B-GGUF_mmproj-LFM2-VL-1.6B-Q8_0.gguf"
+                           withMMProjHash:@"65ec437db88d65fff93f472d00c145e09880769ac67fedff5cd1c0f8d8301d87"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:0.1
+                       withAdditionalArgs:@"--min-p 0.15 --repeat-penalty 1.05"],
+
+            // https://huggingface.co/LiquidAI/LFM2-VL-1.6B
+            [ModelInfo modelInfoWithTitle:@"LiquidAI LFM2-VL 1.6B Q8 Fast"
+                                withModel:@"LiquidAI_LFM2-VL-1.6B-GGUF_LFM2-VL-1.6B-Q8_0.gguf"
+                            withModelHash:@"4c3b66c0a6bf25d5ef876edf118a96deebc15de04d58f4e280cdcfda708b7932"
+                               withMMProj:@"LiquidAI_LFM2-VL-1.6B-GGUF_mmproj-LFM2-VL-1.6B-Q8_0.gguf"
+                           withMMProjHash:@"65ec437db88d65fff93f472d00c145e09880769ac67fedff5cd1c0f8d8301d87"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:0.1
+                       withAdditionalArgs:@"--min-p 0.15 --repeat-penalty 1.05"],
+
+            // https://huggingface.co/LiquidAI/LFM2-VL-450M-GGUF
+            [ModelInfo modelInfoWithTitle:@"LiquidAI LFM2-VL 450M F16 Full"
+                                withModel:@"LiquidAI_LFM2-VL-450M-GGUF_LFM2-VL-450M-F16.gguf"
+                            withModelHash:@"0197edb886bb25136b52ac47e8c75a1d51e7ba41deda7eb18e8258b193b59a3b"
+                               withMMProj:@"LiquidAI_LFM2-VL-450M-GGUF_mmproj-LFM2-VL-450M-Q8_0.gguf"
+                           withMMProjHash:@"a6a813fae4ba3f90852a990fdd4786a017dba0e80e599a366853ba539ee2b5ef"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:0.1
+                       withAdditionalArgs:@"--min-p 0.15 --repeat-penalty 1.05"],
+
+            // https://huggingface.co/LiquidAI/LFM2-VL-450M-GGUF
+            [ModelInfo modelInfoWithTitle:@"LiquidAI LFM2-VL 450M Q4_0 Fast"
+                                withModel:@"LiquidAI_LFM2-VL-450M-GGUF_LFM2-VL-450M-Q4_0.gguf"
+                            withModelHash:@"1fbf4797e8669cdeabd97fa1d31ab046907cb1fc78b1c3d4bda1ba879574e5d7"
+                               withMMProj:@"LiquidAI_LFM2-VL-450M-GGUF_mmproj-LFM2-VL-450M-Q8_0.gguf"
+                           withMMProjHash:@"a6a813fae4ba3f90852a990fdd4786a017dba0e80e599a366853ba539ee2b5ef"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:0.1
+                       withAdditionalArgs:@"--min-p 0.15 --repeat-penalty 1.05"],
+
+            // https://huggingface.co/LiquidAI/LFM2-VL-450M-GGUF
+            [ModelInfo modelInfoWithTitle:@"LiquidAI LFM2-VL 450M Q8_0 Fast"
+                                withModel:@"LiquidAI_LFM2-VL-450M-GGUF_LFM2-VL-450M-Q8_0.gguf"
+                            withModelHash:@"e97704a0cf0a1d00ca604b4c672c82f4234318dba9d43a7f7a4c0d2df6747844"
+                               withMMProj:@"LiquidAI_LFM2-VL-450M-GGUF_mmproj-LFM2-VL-450M-Q8_0.gguf"
+                           withMMProjHash:@"a6a813fae4ba3f90852a990fdd4786a017dba0e80e599a366853ba539ee2b5ef"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:0.1
+                       withAdditionalArgs:@"--min-p 0.15 --repeat-penalty 1.05"],
+
             [ModelInfo modelInfoWithTitle:@"Moondream 2"
                                 withModel:@"ggml-org_moondream2-20250414-GGUF_moondream2-text-model-f16_ct-vicuna.gguf"
                             withModelHash:@"917dfd3794e8e190e4c8b3c979a6823f7e6713592fae4362fb6102a36e9c76d7"

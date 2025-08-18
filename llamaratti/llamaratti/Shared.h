@@ -43,7 +43,7 @@
 #define DISPLAY_DETAILED_DEVICE         NO
 
 // Toggle model hash verification
-#define VERIFY_MODEL_HASHES             NO
+#define VERIFY_MODEL_HASHES             YES
 
 #define TEXT_INSETS                     NSMakeSize(10, 10)
 

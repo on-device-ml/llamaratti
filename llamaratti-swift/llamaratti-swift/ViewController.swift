@@ -253,7 +253,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         // Enable this to clear prefs
-        //resetPrefs()
+        resetPrefs()
         
         appleDevice = LlamarattiWrapper.appleSiliconModel(AppConstants.ModelParams.displayDetailedDevice)
         modelName = ""

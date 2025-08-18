@@ -154,7 +154,7 @@ Modules targeted for these **Devices:**<br>
 
 Modules created/tested using these **llama.cpp versions**:<br>
 <pre>
-- llama.cpp builds: 5760, 5857, 5902, 5970, 5972, 6000, 6150
+- llama.cpp builds: 5760, 5857, 5902, 5970, 5972, 6000, 6150, 6189
 </pre>
 
 ...**Devices:**<br>

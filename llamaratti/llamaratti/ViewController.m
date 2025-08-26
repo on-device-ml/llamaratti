@@ -65,6 +65,13 @@ NSString * const gFontNameGauge=@"AvenirNextCondensed-Regular";
 NSString * const gFontNameGaugeBold=@"Avenir Next Condensed Demi Bold";
 NSString * const gFontFilenameLogo=@"FerroRosso";
 
+// Gauges
+NSArray * const gArrGuageTitleLMTEMP=@[@"LLM\nTEMP"];
+NSArray * const gArrGuageTitleCTXLEN=@[@"CTX\nLEN"];
+NSArray * const gArrGuageTitleSYSMEM=@[@"SYS\nMEM"];
+NSArray * const gArrGuageTitleSYSDSK=@[@"SYS\nDSK"];
+NSArray * const gArrGuageTitleSYSTEMP=@[@"SYS\nTEMP"];
+
 // URLs
 NSString * const gURLOnDeviceML=@"https://github.com/on-device-ml";
 NSString * const gURLLlamaModels=@"https://github.com/ggml-org/llama.cpp/blob/master/docs/multimodal.md";
@@ -81,6 +88,8 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     NSString *_appleDevice;
     
     BOOL _runningInSandbox;
+    
+    NSUInteger _indLanguage;
     
     // Current model Information
     NSImage *_modelIcon;
@@ -173,6 +182,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     [Utils getTotalSystemMemory:&_sysMemTotal];
     [Utils getTotalDiskSpace:&_sysDskTotal];
     _runningInSandbox = [Utils runningInSandbox];
+    _indLanguage = 0;   // English=0, ...
     
     _modelName=@"";
     _bVerifyModels=VERIFY_MODEL_HASHES;
@@ -194,7 +204,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     _fontSmallBold=[NSFont fontWithName:gFontNameBold size:FONT_SIZE_SMALL];
     _fontSmallNormalDate=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_SMALL];
     _fontNormal=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_MEDIUM];
-    _fontLargeDemiBold=[NSFont fontWithName:gFontNameDemiBold size:FONT_SIZE_LARGE];
+    _fontLargeDemiBold=[NSFont fontWithName:gFontNameDemiBold size:FONT_SIZE_MEDIUM];
     _fontLogo=[NSFont fontWithName:gFontNameNormal size:FONT_SIZE_MEDIUM];
     
     _fontGaugeText=[NSFont fontWithName:gFontNameGauge size:FONT_SIZE_GAUGE_TEXT];
@@ -828,7 +838,7 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
         [self->_sliderLLMTemp setEnabled:gaugesEnabled];
         [self->_textLLMTempTitle setEnabled:gaugesEnabled];
         [self->_textLLMTemp setEnabled:gaugesEnabled];
-
+        
         // Gauge - CTX LEN
         [self setGaugeColorForLLMCtxLen:[self->_sliderCtxLen value]
                                 enabled:gaugesEnabled];
@@ -938,8 +948,6 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     if ( ![Utils isValidModelPair:arrModelPair] ) {
         return;
     }
-    
-    [LlamarattiWrapper listKnownModels];
 
     _argsWindow = [[ArgsWindowController alloc] init];
     [_argsWindow setVcParent:self];
@@ -1095,6 +1103,8 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
  *
  */
 - (IBAction)btnGPU:(id)sender {
+    
+    //[LlamarattiWrapper listKnownModels];
     
     // Launch Activity Monitor
     [Utils launchActivityMonitor];
@@ -2082,12 +2092,14 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     [_sliderLLMTemp setToolTip:@"Adjust LLM Temperature"];
     
     // Title
+    NSString *title=gArrGuageTitleLMTEMP[_indLanguage];
     [_textLLMTempTitle setTextColor:_statusColor];
     [_textLLMTempTitle setBackgroundColor:textBackgroudColor];
     [_textLLMTempTitle setAlignment:NSTextAlignmentCenter];
-    [_textLLMTempTitle setStringValue:@"LM TEMP"];
+    [_textLLMTempTitle setStringValue:title];
     [_textLLMTempTitle setSelectable:NO];
     [_textLLMTempTitle setFont:_fontGaugeTitle];
+    [_textLLMTempTitle setMaximumNumberOfLines:2];
     
     // Value
     [_textLLMTemp setTextColor:_statusColor];
@@ -2123,12 +2135,14 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     [_sliderCtxLen setToolTip:@"Adjust LLM Context Length"];
 
     // Title
+    title=gArrGuageTitleCTXLEN[_indLanguage];
     [_textCtxLenTitle setTextColor:_statusColor];
     [_textCtxLenTitle setBackgroundColor:textBackgroudColor];
     [_textCtxLenTitle setAlignment:NSTextAlignmentCenter];
-    [_textCtxLenTitle setStringValue:@"CTX LEN"];
+    [_textCtxLenTitle setStringValue:title];
     [_textCtxLenTitle setSelectable:NO];
     [_textCtxLenTitle setFont:_fontGaugeTitle];
+    [_textCtxLenTitle setMaximumNumberOfLines:2];
     
     // Value
     [_textCtxLen setTextColor:_statusColor];
@@ -2154,12 +2168,14 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     [_progressSysMem setToolTip:@"Available System Memory"];
     
     // Title
+    title=gArrGuageTitleSYSMEM[_indLanguage];
     [_textSysMemTitle setTextColor:_statusColor];
     [_textSysMemTitle setBackgroundColor:textBackgroudColor];
     [_textSysMemTitle setAlignment:NSTextAlignmentCenter];
-    [_textSysMemTitle setStringValue:@"SYS MEM"];
+    [_textSysMemTitle setStringValue:title];
     [_textSysMemTitle setSelectable:NO];
     [_textSysMemTitle setFont:_fontGaugeTitle];
+    [_textSysMemTitle setMaximumNumberOfLines:2];
     
     // Value
     [_textSysMem setTextColor:_statusColor];
@@ -2182,12 +2198,14 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
     [_progressSysDsk setToolTip:@"Available System Disk Space"];
     
     // Title
+    title=gArrGuageTitleSYSDSK[_indLanguage];
     [_textSysDskTitle setTextColor:_statusColor];
     [_textSysDskTitle setBackgroundColor:textBackgroudColor];
     [_textSysDskTitle setAlignment:NSTextAlignmentCenter];
-    [_textSysDskTitle setStringValue:@"SYS DSK"];
+    [_textSysDskTitle setStringValue:title];
     [_textSysDskTitle setSelectable:NO];
     [_textSysDskTitle setFont:_fontGaugeTitle];
+    [_textSysDskTitle setMaximumNumberOfLines:2];
     
     // Value
     [_textSysDsk setTextColor:_statusColor];
@@ -2215,10 +2233,11 @@ NSString * const gPlaceholderPromptAsk=@"Right click or ask me anything, then pr
         [_progressSysTemp setToolTip:@"Current System Temperature"];
         
         // Title
+        title=gArrGuageTitleSYSTEMP[_indLanguage];
         [_textSysTempTitle setTextColor:_statusColor];
         [_textSysTempTitle setBackgroundColor:textBackgroudColor];
         [_textSysTempTitle setAlignment:NSTextAlignmentCenter];
-        [_textSysTempTitle setStringValue:@"SYS TEMP"];
+        [_textSysTempTitle setStringValue:title];
         [_textSysTempTitle setSelectable:NO];
         [_textSysTempTitle setFont:_fontGaugeTitle];
         

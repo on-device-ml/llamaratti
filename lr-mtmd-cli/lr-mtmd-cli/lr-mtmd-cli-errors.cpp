@@ -20,3 +20,5 @@ const char *gErrMtmdParseParams="{} | 􀇾 ERROR: Unable to parse parameters";
 const char *gErrMtmdClientContext="{} | 􀇾 ERROR: Unable to create client context. Desc={}";
 const char *gErrMtmdDecodeToken="{} | 􀇾 ERROR: Unable to decode token";
 const char *gErrMtmdLoadMedia="{} | 􀇾 ERROR: Unable to load media '{}'";
+const char *gErrMtmdGetCtx="{} | 􀇾 ERROR: Unable to get llama memory from context";
+const char *gErrMtmdRemoveTokSeq="{} | 􀇾 ERROR: Unable to remove token sequence";

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24112" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24118.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24112"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24118.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -712,9 +712,9 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UvZ-tp-PWD">
-                                                <rect key="frame" x="12" y="40" width="70" height="16"/>
+                                                <rect key="frame" x="12" y="25" width="70" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="CTX LEN" id="loa-M7-kKS">
+                                                <textFieldCell key="cell" alignment="center" title="CTX LEN" id="loa-M7-kKS">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -750,9 +750,9 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eor-nf-fBx">
-                                                <rect key="frame" x="11" y="40" width="73" height="16"/>
+                                                <rect key="frame" x="13" y="24" width="70" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="LLM TEMP" id="xf8-rI-Xct">
+                                                <textFieldCell key="cell" alignment="center" title="LLM TEMP" id="xf8-rI-Xct">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -830,9 +830,9 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G60-HM-zEc">
-                                                <rect key="frame" x="5" y="30" width="70" height="16"/>
+                                                <rect key="frame" x="5" y="16" width="70" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SYS MEM" id="TPX-0f-rBL">
+                                                <textFieldCell key="cell" alignment="center" title="SYS MEM" id="TPX-0f-rBL">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -859,9 +859,9 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zX0-fh-E8I">
-                                                <rect key="frame" x="4" y="30" width="72" height="16"/>
+                                                <rect key="frame" x="4" y="16" width="72" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SYS TEMP" id="ONh-qw-y2o">
+                                                <textFieldCell key="cell" alignment="center" title="SYS TEMP" id="ONh-qw-y2o">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -895,9 +895,9 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dsq-1J-Wae">
-                                                <rect key="frame" x="5" y="30" width="70" height="16"/>
+                                                <rect key="frame" x="5" y="16" width="70" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SYS DSK" id="dm7-KP-Sp4">
+                                                <textFieldCell key="cell" alignment="center" title="SYS DSK" id="dm7-KP-Sp4">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

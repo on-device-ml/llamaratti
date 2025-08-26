@@ -91,6 +91,10 @@ extern const uint32_t LLAMA_DEFAULT_CTXLEN;
 
 + (ModelInfo *)modelInfoForFileURL:(NSURL *)urlFile;
 
++ (ModelInfo *)modelInfoFromModelPair:(NSArray *)arrModelPair;
+
++ (NSString *)arrayStringForModelInfo:(ModelInfo *)mi;
+
 + (NSString *)titleForModelURL:(NSURL *)urlModel;
 
 - (NSString *)title;
@@ -129,6 +133,8 @@ extern const uint32_t LLAMA_DEFAULT_CTXLEN;
 + (NSString *)appleSiliconModel:(BOOL)bDetailed;
 
 + (NSString *)listKnownModels;
+
++ (BOOL)isValidModelInfo:(ModelInfo *)mi;
 
 @end
 

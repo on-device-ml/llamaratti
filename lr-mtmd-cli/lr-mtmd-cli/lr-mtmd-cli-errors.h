@@ -21,6 +21,8 @@ extern const char *gErrMtmdParseParams;
 extern const char *gErrMtmdClientContext;
 extern const char *gErrMtmdDecodeToken;
 extern const char *gErrMtmdLoadMedia;
+extern const char *gErrMtmdGetCtx;
+extern const char *gErrMtmdRemoveTokSeq;
 
 #endif // LR_MTMD_CLI_ERRORS_H
 

@@ -296,21 +296,18 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
 }
 
 /**
- * @brief Checks the SHA256 of the specified file against a hash
+ * @brief Returns the SHA256 hash of the specified file URL
  *
- * @param urlFile the file URL of the file to check
- * @param sha256Hash the hash to use when validating the file content
+ * @param urlFile the file URL of the file to hash
  *
- * @return whether the hash matches the file content
+ * @return a SHA256 as an NSString, or nil on error
  *
  */
-+ (BOOL)checkSHA256ForURL:(NSURL *)urlFile
-                 withHash:(NSString *)sha256Hash {
++ (NSString *)getSHA256ForURL:(NSURL *)urlFile {
     
     // Did we get the parameters we need?
-    if ( !isValidFileNSURL(urlFile) ||
-         !isValidNSString(sha256Hash) ) {
-        return NO;
+    if ( !isValidFileNSURL(urlFile) ) {
+        return nil;
     }
 
     // Can we open the file?
@@ -323,7 +320,7 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
               [urlFile path],
               safeDesc(e),
               safeCode(e));
-        return NO;
+        return nil;
     }
 
     CC_SHA256_CTX sha256;
@@ -350,7 +347,34 @@ completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable e)
         [fileHash appendFormat:@"%02x", digest[i]];
     }
 
-    // Do we have a match?
+    return fileHash;
+}
+
+/**
+ * @brief Checks the SHA256 of the specified file against a hash
+ *
+ * @param urlFile the file URL of the file to check
+ * @param sha256Hash the hash to use when validating the file content
+ *
+ * @return whether the hash matches the file content
+ *
+ */
++ (BOOL)checkSHA256ForURL:(NSURL *)urlFile
+                 withHash:(NSString *)sha256Hash {
+    
+    // Did we get the parameters we need?
+    if ( !isValidFileNSURL(urlFile) ||
+         !isValidNSString(sha256Hash) ) {
+        return NO;
+    }
+
+    // Can we hash this file?
+    NSString *fileHash=[self getSHA256ForURL:urlFile];
+    if ( !isValidNSString(fileHash) ) {
+        return NO;
+    }
+    
+    // Yes, do we have a match?
     if ( [fileHash caseInsensitiveCompare:sha256Hash] != NSOrderedSame ) {
         return NO;
     }

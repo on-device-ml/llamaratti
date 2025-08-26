@@ -41,6 +41,8 @@
 + (NSString *)abbreviatePath:(NSString *)path
                     toLength:(NSUInteger)len;
 
++ (NSString *)getSHA256ForURL:(NSURL *)urlFile;
+
 + (BOOL)checkSHA256ForURL:(NSURL *)urlFile
                  withHash:(NSString *)sha256Hash;
 

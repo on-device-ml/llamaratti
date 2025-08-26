@@ -154,7 +154,7 @@ Modules targeted for these **Devices:**<br>
 
 Modules created/tested using these **llama.cpp versions**:<br>
 <pre>
-- llama.cpp builds: 5760, 5857, 5902, 5970, 5972, 6000, 6150, 6189
+- llama.cpp builds: 5760, 5857, 5902, 5970, 5972, 6000, 6150, 6189, 6292
 </pre>
 
 ...**Devices:**<br>
@@ -171,6 +171,7 @@ Modules created/tested using these **llama.cpp versions**:<br>
 - macOS Tahoe 26 (25A5295e) Beta 2
 - macOS Tahoe 26 (25A5316i) Beta 4
 - macOS Tahoe 26 (25A5338b) Beta 6
+- macOS Tahoe 26 (25A5349a) Beta 8
 </pre>
 
 ...**XCode versions:**<br>
@@ -178,7 +179,7 @@ Modules created/tested using these **llama.cpp versions**:<br>
 - XCode 16.4 (16F6)
 - XCode 26 beta (17A5241e) Beta 1
 - XCode 26 beta (17A5285i) Beta 4
-- XCode 26 beta (17A5295f) Beta 5
+- XCode 26 beta (17A5295f) Beta 6
 </pre>
     
 ...**Themes:**<br>
@@ -194,8 +195,6 @@ Developed & tested mainly in dark mode 🌙
 - Llama 4 Scout 17B
 - Mistral 3.1 24B
 - Pixtral 12B
-- InternVL 2 1B
-- InternVL 3 8B
 - SmolVLM Instruct
 - SmolVLM2 Instruct 256M
 - SmolVLM2 Instruct 500M
@@ -215,6 +214,14 @@ Developed & tested mainly in dark mode 🌙
 - LiquidAI LFM2-VL 450M F16 Full
 - LiquidAI LFM2-VL 450M Q4_0 Fast
 - LiquidAI LFM2-VL 450M Q8_0 Fast
+- InternVL 2 1B
+- InternVL 3 8B
+- OpenGVLab InternVL (LMStudio Community) 3.5 30B A3B Q4
+- OpenGVLab InternVL (LMStudio Community) 3.5 8B Q4
+- OpenGVLab InternVL (LMStudio Community) 3.5 2B Q4
+- OpenGVLab InternVL (LMStudio Community) 14B Q4
+- OpenGVLab InternVL (LMStudio Community) 3.5 4B Q4
+- OpenGVLab InternVL (LMStudio Community) 3.5 1B Q4
 - Moondream 2
 - Ultravox 3.2 1B
 - Voxtral Mini 3B

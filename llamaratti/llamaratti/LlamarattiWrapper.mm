@@ -216,24 +216,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                 withTemp:LLAMA_DEFAULT_TEMP
                       withAdditionalArgs:nil],
            
-            [ModelInfo modelInfoWithTitle:@"InternVL 2 1B"
-                                withModel:@"ggml-org_InternVL2_5-1B-GGUF_InternVL2_5-1B-Q8_0.gguf"
-                            withModelHash:@"61c02b37762eeb1ea86427541bdc0696ea9b1cc676ccbf7966c187678bdebb6f"
-                               withMMProj:@"ggml-org_InternVL2_5-1B-GGUF_mmproj-InternVL2_5-1B-Q8_0.gguf"
-                           withMMProjHash:@"bab5e4294eda170db20c361f087a4c568c97380c8982d2404dfb19a9d294b72f"
-                           withDictCtxLen:@{@0:@32768}
-                                 withTemp:LLAMA_DEFAULT_TEMP
-                       withAdditionalArgs:nil],
-            
-            [ModelInfo modelInfoWithTitle:@"InternVL 3 8B"
-                                withModel:@"ggml-org_InternVL3-8B-Instruct-GGUF_InternVL3-8B-Instruct-Q4_K_M.gguf"
-                            withModelHash:@"645b5db5754711f90adcc85dd99217a66d1306c97c2a2d3ae69071e3dea7a42e"
-                               withMMProj:@"ggml-org_InternVL3-8B-Instruct-GGUF_mmproj-InternVL3-8B-Instruct-Q8_0.gguf"
-                           withMMProjHash:@"de6a246f6b2ec51e5863e987c994c7b6d3edfa742b8d0ccf115ac4c67eb6b7aa"
-                           withDictCtxLen:@{@0:@8192,@36:@32768,@64:@32768,@128:@32768,@192:@32768}
-                                 withTemp:LLAMA_DEFAULT_TEMP
-                       withAdditionalArgs:nil],
-                   
+            // SmolVLM
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"SmolVLM Instruct"
                                withModel:@"ggml-org_SmolVLM-Instruct-GGUF_SmolVLM-Instruct-Q4_K_M.gguf"
                            withModelHash:@"dc80966bd84789de64115f07888939c03abb1714d431c477dfb405517a554af5"
@@ -243,41 +227,43 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                 withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
                   
-        [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 256M"
-                            withModel:@"ggml-org_SmolVLM-256M-Instruct-GGUF_SmolVLM-256M-Instruct-Q8_0.gguf"
-                        withModelHash:@"2a31195d3769c0b0fd0a4906201666108834848db768af11de1d2cef7cd35e65"
-                           withMMProj:@"ggml-org_SmolVLM-256M-Instruct-GGUF_mmproj-SmolVLM-256M-Instruct-Q8_0.gguf"
-                       withMMProjHash:@"7e943f7c53f0382a6fc41b6ee0c2def63ba4fded9ab8ed039cc9e2ab905e0edd"
-                       withDictCtxLen:@{@0:@16384}
-                             withTemp:LLAMA_DEFAULT_TEMP
-                   withAdditionalArgs:@"--repeat-penalty=1.5"],
+            // SmolVLM2
+            // ------------------------------------------------------------------------------------------------
+            [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 256M"
+                                withModel:@"ggml-org_SmolVLM-256M-Instruct-GGUF_SmolVLM-256M-Instruct-Q8_0.gguf"
+                            withModelHash:@"2a31195d3769c0b0fd0a4906201666108834848db768af11de1d2cef7cd35e65"
+                               withMMProj:@"ggml-org_SmolVLM-256M-Instruct-GGUF_mmproj-SmolVLM-256M-Instruct-Q8_0.gguf"
+                           withMMProjHash:@"7e943f7c53f0382a6fc41b6ee0c2def63ba4fded9ab8ed039cc9e2ab905e0edd"
+                           withDictCtxLen:@{@0:@16384}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:@"--repeat-penalty=1.5"],
 
-         [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 500M"
-                             withModel:@"ggml-org_SmolVLM-500M-Instruct-GGUF_SmolVLM-500M-Instruct-Q8_0.gguf"
-                         withModelHash:@"9d4612de6a42214499e301494a3ecc2be0abdd9de44e663bda63f1152fad1bf4"
-                            withMMProj:@"ggml-org_SmolVLM-500M-Instruct-GGUF_mmproj-SmolVLM-500M-Instruct-Q8_0.gguf"
-                        withMMProjHash:@"d1eb8b6b23979205fdf63703ed10f788131a3f812c7b1f72e0119d5d81295150"
-                        withDictCtxLen:@{@0:@16384}
-                              withTemp:LLAMA_DEFAULT_TEMP
-                    withAdditionalArgs:nil],
+            [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 500M"
+                                withModel:@"ggml-org_SmolVLM-500M-Instruct-GGUF_SmolVLM-500M-Instruct-Q8_0.gguf"
+                            withModelHash:@"9d4612de6a42214499e301494a3ecc2be0abdd9de44e663bda63f1152fad1bf4"
+                               withMMProj:@"ggml-org_SmolVLM-500M-Instruct-GGUF_mmproj-SmolVLM-500M-Instruct-Q8_0.gguf"
+                           withMMProjHash:@"d1eb8b6b23979205fdf63703ed10f788131a3f812c7b1f72e0119d5d81295150"
+                           withDictCtxLen:@{@0:@16384}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
 
-          [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 2.2B"
-                             withModel:@"ggml-org_SmolVLM2-2.2B-Instruct-GGUF_SmolVLM2-2.2B-Instruct-Q4_K_M.gguf"
-                         withModelHash:@"0cf76814555b8665149075b74ab6b5c1d428ea1d3d01c1918c12012e8d7c9f58"
-                            withMMProj:@"ggml-org_SmolVLM2-2.2B-Instruct-GGUF_mmproj-SmolVLM2-2.2B-Instruct-Q8_0.gguf"
-                        withMMProjHash:@"ae07ea1facd07dd3230c4483b63e8cda96c6944ad2481f33d531f79e892dd024"
-                        withDictCtxLen:@{@0:@16384}
-                              withTemp:LLAMA_DEFAULT_TEMP
-                     withAdditionalArgs:nil],
+            [ModelInfo modelInfoWithTitle:@"SmolVLM2 Instruct 2.2B"
+                                withModel:@"ggml-org_SmolVLM2-2.2B-Instruct-GGUF_SmolVLM2-2.2B-Instruct-Q4_K_M.gguf"
+                            withModelHash:@"0cf76814555b8665149075b74ab6b5c1d428ea1d3d01c1918c12012e8d7c9f58"
+                               withMMProj:@"ggml-org_SmolVLM2-2.2B-Instruct-GGUF_mmproj-SmolVLM2-2.2B-Instruct-Q8_0.gguf"
+                           withMMProjHash:@"ae07ea1facd07dd3230c4483b63e8cda96c6944ad2481f33d531f79e892dd024"
+                           withDictCtxLen:@{@0:@16384}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
 
-           [ModelInfo modelInfoWithTitle:@"SmolVLM2 Video Instruct 250M"
-                              withModel:@"ggml-org_SmolVLM2-256M-Video-Instruct-GGUF_SmolVLM2-256M-Video-Instruct-Q8_0.gguf"
-                          withModelHash:@"af7ce9951a2f46c4f6e5def253e5b896ca5e417010e7a9949fdc9e5175c27767"
-                             withMMProj:@"ggml-org_SmolVLM2-256M-Video-Instruct-GGUF_mmproj-SmolVLM2-256M-Video-Instruct-Q8_0.gguf"
-                         withMMProjHash:@"d34913a588464ff7215f086193e0426a4f045eaba74456ee5e2667d8ed6798b1"
-                         withDictCtxLen:@{@0:@16384}
-                               withTemp:LLAMA_DEFAULT_TEMP
-                      withAdditionalArgs:nil],
+            [ModelInfo modelInfoWithTitle:@"SmolVLM2 Video Instruct 250M"
+                                withModel:@"ggml-org_SmolVLM2-256M-Video-Instruct-GGUF_SmolVLM2-256M-Video-Instruct-Q8_0.gguf"
+                            withModelHash:@"af7ce9951a2f46c4f6e5def253e5b896ca5e417010e7a9949fdc9e5175c27767"
+                               withMMProj:@"ggml-org_SmolVLM2-256M-Video-Instruct-GGUF_mmproj-SmolVLM2-256M-Video-Instruct-Q8_0.gguf"
+                           withMMProjHash:@"d34913a588464ff7215f086193e0426a4f045eaba74456ee5e2667d8ed6798b1"
+                           withDictCtxLen:@{@0:@16384}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
 
             [ModelInfo modelInfoWithTitle:@"SmolVLM2 Video Instruct 500M"
                                withModel:@"ggml-org_SmolVLM2-500M-Video-Instruct-GGUF_SmolVLM2-500M-Video-Instruct-Q8_0.gguf"
@@ -288,6 +274,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                 withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
                   
+           // Qwen2 VL
+           // ------------------------------------------------------------------------------------------------
            [ModelInfo modelInfoWithTitle:@"Qwen2 VL 2B"
                               withModel:@"ggml-org_Qwen2-VL-2B-Instruct-GGUF_Qwen2-VL-2B-Instruct-Q4_K_M.gguf"
                           withModelHash:@"5745685d2e607a82a0696c1118e56a2a1ae0901da450fd9cd4f161c6b62867d7"
@@ -297,6 +285,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                 withTemp:LLAMA_DEFAULT_TEMP
                       withAdditionalArgs:nil],
 
+            // Qwen Omni 2.5
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"Qwen Omni 2.5 3B"
                                withModel:@"ggml-org_Qwen2.5-Omni-3B-GGUF_Qwen2.5-Omni-3B-Q4_K_M.gguf"
                            withModelHash:@"fac13cb507141119bcc3a6c92e75437542448f2b5b38a06a5f6b2241e59199f9"
@@ -315,6 +305,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
 
+            // MobileVLM
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"MobileVLM 3B"
                                 withModel:@"guinmoon_MobileVLM-3B-GGUF_MobileVLM-3B-Q4_K_M.gguf"
                             withModelHash:@"22ae82a42706020e8980178f2cf7b0e1c62476c03ef15886fc7a8585ab088665"
@@ -324,6 +316,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:@"--chat-template deepseek"],
 
+            // Llava 1.5
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"Llava v1.5 7B"
                                 withModel:@"second-state_Llava-v1.5-7B-GGUF_llava-v1.5-7b-Q4_K_M.gguf"
                             withModelHash:@"2687b20ac8b7a23f6c70296d5b1e7f908fef2ce4769ecdebd1bb9503528a75bf"
@@ -333,6 +327,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:@"--chat-template vicuna"],
 
+            // Llava 1.6
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"Llava 1.6 Mistral 7B"
                                 withModel:@"cjpais_llava-1.6-mistral-7b-gguf_llava-1.6-mistral-7b.Q6_K.gguf"
                             withModelHash:@"31826170ffa2e8080bbcd74cac718f906484fd5a59895550ef94c1baa4997595"
@@ -342,6 +338,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
 
+            // MiniCPM 2.6
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"MiniCPM v2.6"
                                 withModel:@"openbmb_MiniCPM-V-2_6-gguf_ggml-model-Q4_K_M.gguf"
                             withModelHash:@"3a4078d53b46f22989adbf998ce5a3fd090b6541f112d7e936eb4204a04100b1"
@@ -351,6 +349,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
 
+            // LIQUID AI LFM2-VL
+            // ------------------------------------------------------------------------------------------------
             // https://huggingface.co/LiquidAI/LFM2-VL-1.6B
             [ModelInfo modelInfoWithTitle:@"LiquidAI LFM2-VL 1.6B F16 Full"
                                 withModel:@"LiquidAI_LFM2-VL-1.6B-GGUF_LFM2-VL-1.6B-F16.gguf"
@@ -411,6 +411,93 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:0.1
                        withAdditionalArgs:@"--min-p 0.15 --repeat-penalty 1.05"],
 
+
+            // InternVL 2
+            // ------------------------------------------------------------------------------------------------
+            [ModelInfo modelInfoWithTitle:@"InternVL 2 1B"
+                                withModel:@"ggml-org_InternVL2_5-1B-GGUF_InternVL2_5-1B-Q8_0.gguf"
+                            withModelHash:@"61c02b37762eeb1ea86427541bdc0696ea9b1cc676ccbf7966c187678bdebb6f"
+                               withMMProj:@"ggml-org_InternVL2_5-1B-GGUF_mmproj-InternVL2_5-1B-Q8_0.gguf"
+                           withMMProjHash:@"bab5e4294eda170db20c361f087a4c568c97380c8982d2404dfb19a9d294b72f"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
+               
+            // InternVL 3
+            // ------------------------------------------------------------------------------------------------
+            [ModelInfo modelInfoWithTitle:@"InternVL 3 8B"
+                                withModel:@"ggml-org_InternVL3-8B-Instruct-GGUF_InternVL3-8B-Instruct-Q4_K_M.gguf"
+                            withModelHash:@"645b5db5754711f90adcc85dd99217a66d1306c97c2a2d3ae69071e3dea7a42e"
+                               withMMProj:@"ggml-org_InternVL3-8B-Instruct-GGUF_mmproj-InternVL3-8B-Instruct-Q8_0.gguf"
+                           withMMProjHash:@"de6a246f6b2ec51e5863e987c994c7b6d3edfa742b8d0ccf115ac4c67eb6b7aa"
+                           withDictCtxLen:@{@0:@8192,@36:@32768,@64:@32768,@128:@32768,@192:@32768}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
+                          
+            // InternVL 3.5
+            // ------------------------------------------------------------------------------------------------
+            // https://huggingface.co/lmstudio-community/InternVL3_5-30B-A3B-GGUF
+            [ModelInfo modelInfoWithTitle:@"OpenGVLab InternVL (LM Studio Community) 3.5 30B A3B Q4"
+                                withModel:@"lmstudio-community_InternVL3_5-30B-A3B-GGUF_InternVL3_5-30B-A3B-Q4_K_M.gguf"
+                            withModelHash:@"3daa247ebb2da383582a99d18d7dc871588df61d314ab8538b8189552d67ede6"
+                               withMMProj:@"lmstudio-community_InternVL3_5-30B-A3B-GGUF_mmproj-model-f16.gguf"
+                           withMMProjHash:@"fa362a7396c3dddecf6f9a714144ed86207211d6c68ef39ea0d7dfe21b969b8d"
+                           withDictCtxLen:@{@0:@4096}
+                                 withTemp:0.6
+                       withAdditionalArgs:nil],
+                   
+            // https://huggingface.co/lmstudio-community/InternVL3_5-8B-GGUF
+            [ModelInfo modelInfoWithTitle:@"OpenGVLab InternVL (LM Studio Community) 3.5 8B Q4"
+                                withModel:@"lmstudio-community_InternVL3_5-8B-GGUF_InternVL3_5-8B-Q4_K_M.gguf"
+                            withModelHash:@"2809043479b8d3aab30378766c7a2a4bd93eedd97c86efc6d65d627fd680faba"
+                               withMMProj:@"lmstudio-community_InternVL3_5-8B-GGUF_mmproj-model-f16.gguf"
+                           withMMProjHash:@"212cc090f81ea2981b870186d4b424fae69489a5313a14e52ffdb2e877852389"
+                           withDictCtxLen:@{@0:@4096}
+                                 withTemp:0.6
+                       withAdditionalArgs:nil],
+            
+            // https://huggingface.co/lmstudio-community/InternVL3_5-2B-GGUF
+            [ModelInfo modelInfoWithTitle:@"OpenGVLab InternVL (LM Studio Community) 3.5 2B Q4"
+                                withModel:@"lmstudio-community_InternVL3_5-2B-GGUF_InternVL3_5-2B-Q4_K_M.gguf"
+                            withModelHash:@"701018149d6f0a59978333ba38e2de8f642dbc75842301d49809a67e70b53db3"
+                               withMMProj:@"lmstudio-community_InternVL3_5-2B-GGUF_mmproj-model-f16.gguf"
+                           withMMProjHash:@"e83ba6e675b747f7801557dc24594f43c17a7850b6129d4972d55e3e9b010359"
+                           withDictCtxLen:@{@0:@4096}
+                                 withTemp:0.6
+                       withAdditionalArgs:nil],
+                   
+            // https://huggingface.co/lmstudio-community/InternVL3_5-14B-GGUF
+            [ModelInfo modelInfoWithTitle:@"OpenGVLab InternVL (LM Studio Community) 3.5 14B Q4"
+                                withModel:@"lmstudio-community_InternVL3_5-14B-GGUF_InternVL3_5-14B-Q4_K_M.gguf"
+                            withModelHash:@"aec3dd9351a5ea20204b5b5d40b61e3208e033f84c70ade1819cc3323468420b"
+                               withMMProj:@"lmstudio-community_InternVL3_5-14B-GGUF_mmproj-model-f16.gguf"
+                           withMMProjHash:@"c9625c981969d267052464e2d345f8ff5bc7e841871f5284a2bd972461c7356d"
+                           withDictCtxLen:@{@0:@4096}
+                                 withTemp:0.6
+                       withAdditionalArgs:nil],
+         
+            // https://huggingface.co/lmstudio-community/InternVL3_5-4B-GGUF
+            [ModelInfo modelInfoWithTitle:@"OpenGVLab InternVL (LM Studio Community) 3.5 4B Q4"
+                                withModel:@"lmstudio-community_InternVL3_5-4B-GGUF_InternVL3_5-4B-Q4_K_M.gguf"
+                            withModelHash:@"9a4640d6c8def4e7d5ce8cd89adb567a7752f6f883390778cecfe449a3c78718"
+                               withMMProj:@"lmstudio-community_InternVL3_5-4B-GGUF_mmproj-model-f16.gguf"
+                           withMMProjHash:@"0f9704972fcb9cb0a4f2c0f4eb7fe4f58e53ccd4b06ec17cf7a80271aa963eb7"
+                           withDictCtxLen:@{@0:@4096}
+                                 withTemp:0.6
+                       withAdditionalArgs:nil],
+                   
+            // https://huggingface.co/lmstudio-community/InternVL3_5-1B-GGUF
+            [ModelInfo modelInfoWithTitle:@"OpenGVLab InternVL (LM Studio Community) 3.5 1B Q4"
+                                withModel:@"lmstudio-community_InternVL3_5-1B-GGUF_InternVL3_5-1B-Q4_K_M.gguf"
+                            withModelHash:@"e62a8e865f674566382b515779a8ff1fc8da43489c8cd9b68e3955365df2717f"
+                               withMMProj:@"lmstudio-community_InternVL3_5-1B-GGUF_mmproj-model-f16.gguf"
+                           withMMProjHash:@"6cfc8577bef359ae14ab6f508a2ba72b9cb6160e11cc64ee27a09c871e0963f5"
+                           withDictCtxLen:@{@0:@4096}
+                                 withTemp:0.6
+                       withAdditionalArgs:nil],
+                   
+            // Moondream 2
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"Moondream 2"
                                 withModel:@"ggml-org_moondream2-20250414-GGUF_moondream2-text-model-f16_ct-vicuna.gguf"
                             withModelHash:@"917dfd3794e8e190e4c8b3c979a6823f7e6713592fae4362fb6102a36e9c76d7"
@@ -420,6 +507,8 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
 
+            // Ultravox 3.2
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"Ultravox 3.2 1B"
                                 withModel:@"ggml-org_ultravox-v0_5-llama-3_2-1b-GGUF_Llama-3.2-1B-Instruct-Q4_K_M.gguf"
                             withModelHash:@"6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83"
@@ -428,25 +517,19 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                            withDictCtxLen:@{@0:@8192,@16:@32768,@36:@32768,@64:@32768,@128:@32768,@192:@32768}
                                  withTemp:LLAMA_DEFAULT_TEMP
                        withAdditionalArgs:nil],
-            
+    
+            // Voxtral Mini
+            // ------------------------------------------------------------------------------------------------
             [ModelInfo modelInfoWithTitle:@"Voxtral Mini 3B"
-                               withModel:@"ggml-org_Voxtral-Mini-3B-2507-GGUF_Voxtral-Mini-3B-2507-Q4_K_M.gguf"
-                           withModelHash:@"4705be8ec22ca23d12632f4b4a3691faa95917d90a06d3cf3c3ec0e91958f1a8"
-                              withMMProj:@"ggml-org_Voxtral-Mini-3B-2507-GGUF_mmproj-Voxtral-Mini-3B-2507-Q8_0.gguf"
-                          withMMProjHash:@"4f24c4ef3ce929d02ed9d1cfb050ae9a7365f057c0ddec0d489580982ebe0d02"
-                          withDictCtxLen:@{@0:@32768}
-                                withTemp:LLAMA_DEFAULT_TEMP
-                      withAdditionalArgs:nil],
+                                withModel:@"ggml-org_Voxtral-Mini-3B-2507-GGUF_Voxtral-Mini-3B-2507-Q4_K_M.gguf"
+                            withModelHash:@"4705be8ec22ca23d12632f4b4a3691faa95917d90a06d3cf3c3ec0e91958f1a8"
+                               withMMProj:@"ggml-org_Voxtral-Mini-3B-2507-GGUF_mmproj-Voxtral-Mini-3B-2507-Q8_0.gguf"
+                           withMMProjHash:@"4f24c4ef3ce929d02ed9d1cfb050ae9a7365f057c0ddec0d489580982ebe0d02"
+                           withDictCtxLen:@{@0:@32768}
+                                 withTemp:LLAMA_DEFAULT_TEMP
+                       withAdditionalArgs:nil],
                    
-           // Add new here...
-//           [ModelInfo modelInfoWithTitle:@""
-//                               withModel:@""
-//                           withModelHash:@""
-//                              withMMProj:@""
-//                          withMMProjHash:@""
-//                          withDictCtxLen:LLM_CTXLEN_DEFAULT
-//                                withTemp:LLM_TEMP_DEFAULT
-//                      withAdditionalArgs:nil]],
+            // Add new here...
                                       
         nil];
 
@@ -697,6 +780,11 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
                 // Prevents re-verifying for this session
                 [mi setIsVerified:YES];
             }
+        } else {
+            // Generate array entry
+            mi=[LlamarattiWrapper modelInfoFromModelPair:arrModelPair];
+            NSString *arrEntry=[LlamarattiWrapper arrayStringForModelInfo:mi];
+            NSLog(@"Add this entry to gArrModelInfo:\n\n%@\n\n",arrEntry);
         }
 
         // Build the argv C array for llama.cpp
@@ -773,6 +861,77 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
 }
 
 /**
+ * @brief Creates a ModelInfo from a model pair
+ *
+ * @param arrModelPair the model pair
+  *
+ * @return a ModelInfo * if successful, otherwise nil on error
+ *
+ */
++ (ModelInfo *)modelInfoFromModelPair:(NSArray *)arrModelPair {
+    
+    // Did we get the parameters we need?
+    if ( ![Utils isValidModelPair:arrModelPair] ) {
+        return nil;
+    }
+    
+    // Can we generate a SHA256 hash for the model?
+    NSURL *urlModel=arrModelPair[0];
+    NSString *sha256Model=[Utils getSHA256ForURL:urlModel];
+    if ( !isValidNSString(sha256Model) ) {
+        return nil;
+    }
+
+    // Can we generate a SHA256 hash for the mmproj?
+    NSURL *urlMMProj=arrModelPair[1];
+    NSString *sha256MMProj=[Utils getSHA256ForURL:urlMMProj];
+    if ( !isValidNSString(sha256MMProj) ) {
+        return nil;
+    }
+
+    // Create the ModelInfo
+    NSString *modelTitle=[LlamarattiWrapper titleForModelURL:urlModel];
+    NSDictionary *dictCtxLens=@{@0:[NSNumber numberWithUnsignedInteger:LLAMA_DEFAULT_CTXLEN]};
+    
+    ModelInfo *mi=[ModelInfo modelInfoWithTitle:modelTitle
+                                      withModel:[urlModel path]
+                                  withModelHash:sha256Model
+                                     withMMProj:[urlMMProj path]
+                                 withMMProjHash:sha256MMProj
+                                 withDictCtxLen:dictCtxLens
+                                       withTemp:LLAMA_DEFAULT_TEMP
+                             withAdditionalArgs:@""];
+    return mi;
+}
+
+/**
+ * @brief Creates an array entry for the specified ModelInfo
+ *
+ * @param mi an initialized ModelInfo
+  *
+ * @return a ModelInfo * if successful, otherwise nil on error
+ *
+ */
++ (NSString *)arrayStringForModelInfo:(ModelInfo *)mi {
+    
+    // Did we get the parameters we need?
+    if ( ![LlamarattiWrapper isValidModelInfo:mi] ) {
+        return nil;
+    }
+    
+    NSString *arrEnt=[NSString stringWithFormat:@"[ModelInfo modelInfoWithTitle:@\"%@\"\n",[mi modelTitle]];
+    arrEnt=[arrEnt stringByAppendingFormat:@"withModel:@\"%@\"\n",[[mi modelFilename] lastPathComponent]];
+    arrEnt=[arrEnt stringByAppendingFormat:@"withModelHash:@\"%@\"\n",[mi modelHash]];
+    arrEnt=[arrEnt stringByAppendingFormat:@"withMMProj:@\"%@\"\n",[[mi mmprojFilename] lastPathComponent]];
+    arrEnt=[arrEnt stringByAppendingFormat:@"withMMProjHash:@\"%@\"\n",[mi mmprojHash]];
+    arrEnt=[arrEnt stringByAppendingFormat:@"withDictCtxLen:@{@0:@2048}\n"];
+    arrEnt=[arrEnt stringByAppendingFormat:@"withTemp:%0.1f\n",[mi temp]];
+    arrEnt=[arrEnt stringByAppendingFormat:@"withAdditionalArgs:nil],"];
+    
+    return arrEnt;
+}
+
+/**
  * @brief Returns a title for the specified model
  *
  * The title can be used for display purposes
@@ -834,16 +993,9 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
     
     // Extract from the first "_" to the next non-alphanumeric
     NSString *title = fileName;
-    NSRange range = [title rangeOfString:@"_"];
+    NSRange range = [title rangeOfString:@"-GGUF"];
     if (range.location != NSNotFound) {
-        title = [title substringFromIndex:range.location+1];
-        NSCharacterSet *nonAlphaNumeric=[[NSCharacterSet alphanumericCharacterSet] invertedSet];
-        range = [title rangeOfCharacterFromSet:nonAlphaNumeric];
-        if (range.location != NSNotFound) {
-            title = [title substringToIndex:range.location];
-            title = [title stringByReplacingCharactersInRange:NSMakeRange(0, 1)
-                                withString:[[title substringToIndex:1] uppercaseString]];
-        }
+        title = [title substringToIndex:range.location];
     }
     return title;
 }
@@ -1255,6 +1407,32 @@ bool llama_multimodal_callback(void *vmtmd, LlamarattiEvent type, const char *te
     free(argv);
     argv=NULL;
 
+}
+
+/**
+ *
+ * @brief Returns whether the specified ModelInfo is valid
+ *
+ * @param mi - the ModelInfo to validate
+ *
+ * @return - the validity of the ModelInfo
+ *
+ */
++ (BOOL)isValidModelInfo:(ModelInfo *)mi {
+    
+    // Are the important properties valid?
+    if ( !mi ||
+         !isValidNSString([mi modelTitle]) ||
+         !isValidNSString([mi modelFilename]) ||
+         !isValidNSString([mi mmprojFilename]) ||
+         !isValidNSString([mi modelHash]) ||
+         !isValidNSString([mi mmprojHash]) ||
+         !isValidLLMTemp([mi temp]) ||
+         !isValidNSDictionary([mi dictCtxLen]) ) {
+        
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Cleanup

@@ -600,7 +600,29 @@ int lr_mtmd_cli::clear_history() {
     mtmd_cli_context *ctx=(mtmd_cli_context *)_vctx;
     
     ctx->n_past=0;
-    llama_kv_self_seq_rm(ctx->lctx, 0, 1, -1); // keep BOS
+    //llama_kv_self_seq_rm(ctx->lctx, 0, 1, -1); // keep BOS
+    
+    // Can we get the memory object from the context?
+    llama_memory_t mem = llama_get_memory(ctx->lctx);
+    if ( !mem ) {
+        auto args = std::make_format_args(__func__);
+        std::string err=std::vformat(gErrMtmdGetCtx, args);
+        LOG_ERR("%s\n", err.c_str());
+        lr_mtmd_cli_callback(this, LlamarattiEventStatus,err.c_str());
+        
+        return GGML_STATUS_FAILED;
+    }
+    
+    // Can we remove the token sequence?
+    bool bSuccess = llama_memory_seq_rm(mem, 0, 1, -1);
+    if ( !bSuccess ) {
+        auto args = std::make_format_args(__func__);
+        std::string err=std::vformat(gErrMtmdRemoveTokSeq, args);
+        LOG_ERR("%s\n", err.c_str());
+        lr_mtmd_cli_callback(this, LlamarattiEventStatus,err.c_str());
+        
+        return GGML_STATUS_FAILED;
+    }
     
     ctx->bitmaps.entries.clear();
     

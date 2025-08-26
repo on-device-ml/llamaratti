@@ -95,7 +95,7 @@
 #define FONT_SIZE_LARGE              20
 #define FONT_SIZE_HUGE               25
 
-#define FONT_SIZE_GAUGE_TITLE        13
+#define FONT_SIZE_GAUGE_TITLE        14
 #define FONT_SIZE_GAUGE_TEXT         16
 
 extern NSString * const gAppName;

@@ -5,8 +5,8 @@ A macOS Silicon wrapper & demo apps for developers to simplify access to llama.c
 
 ![apple-intelligence](https://github.com/on-device-ml/llamaratti/blob/main/lr-load-model-menu.jpg)
 
-[LiquidAI LFM2-VL Video](https://youtu.be/XiPNodLSp6E)
-[InternVL3.5 Video](https://youtu.be/PyRZ0c8r1d0)
+[LiquidAI LFM2-VL Video](https://youtu.be/XiPNodLSp6E)<br>
+[InternVL3.5 Video](https://youtu.be/PyRZ0c8r1d0)<br>
 [Demo Video](https://www.youtube.com/watch?v=d83XIHJsXaA)
 
 # Quick Start
